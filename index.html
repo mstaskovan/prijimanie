@@ -221,7 +221,7 @@
         </div>
 
         <h2>Prežehnanie</h2>
-        <p class="rubrik">18. Potom sa prežehná a pozdraví prítomných:</p>
+        <p class="rubrik num-rubrik">18. Potom sa prežehná a pozdraví prítomných:</p>
         
         <p><span class="versicle">V.</span> V mene Otca i Syna ✠ i Ducha Svätého.<br>
         <span class="versicle">R.</span> Amen.<br>
@@ -229,7 +229,7 @@
         <span class="versicle">R.</span> Zvelebený Boh naveky.</p>
 
         <h2>Úkon kajúcnosti</h2>
-        <p class="rubrik">19. Vysluhovateľ vyzve chorého i ostatných prítomných na úkon kajúcnosti:</p>
+        <p class="rubrik num-rubrik">19. Vysluhovateľ vyzve chorého i ostatných prítomných na úkon kajúcnosti:</p>
 
         <div class="option-block" data-group="kajucnost">
             <label class="option-select">
@@ -286,7 +286,7 @@
         </div>
 
         <h2>Krátke čítanie Božieho slova</h2>
-        <p class="rubrik">20. Podľa okolností môže niekto z prítomných alebo sám vysluhovateľ prečítať text Svätého písma, napríklad:</p>
+        <p class="rubrik num-rubrik">20. Podľa okolností môže niekto z prítomných alebo sám vysluhovateľ prečítať text Svätého písma, napríklad:</p>
 
         <div class="option-block" data-group="citanie">
             <label class="option-select">
@@ -372,7 +372,7 @@
 
         <h2>Sväté prijímanie</h2>
         <h3>Modlitba Pána</h3>
-        <p class="rubrik">21. Potom vysluhovateľ uvedie Modlitbu Pána týmito alebo podobnými slovami:</p>
+        <p class="rubrik num-rubrik">21. Potom vysluhovateľ uvedie Modlitbu Pána týmito alebo podobnými slovami:</p>
 
         <p>A teraz spoločne prosme nebeského Otca a modlime sa, ako nás naučil náš Pán Ježiš Kristus:</p>
 
@@ -388,14 +388,14 @@
         ale zbav nás Zlého.</p>
 
         <h3>Prijímanie</h3>
-        <p class="rubrik">22. Vysluhovateľ ukáže Najsvätejšiu sviatosť a powie:</p>
+        <p class="rubrik num-rubrik">22. Vysluhovateľ ukáže Najsvätejšiu sviatosť a powie:</p>
 
         <p>Hľa, Baránok Boží, ktorý sníma hriechy sveta. Blažení tí, čo sú pozvaní na hostinu Baránkovu.</p>
 
         <p class="rubrik">Chorý a tí, čo budú prijímať, hovoria:</p>
         <p>Pane, nie som hoden, aby si vošiel pod moju strechu, ale povedz iba slovo a duša mi ozdravie.</p>
 
-        <p class="rubrik">23. Vysluhovateľ pristúpi k chorému, ukáže mu Oltárnu sviatosť a powie:</p>
+        <p class="rubrik num-rubrik">23. Vysluhovateľ pristúpi k chorému, ukáže mu Oltárnu sviatosť a powie:</p>
         <p>Telo Kristovo.</p>
 
         <p class="rubrik">Chorý odpovie:</p>
@@ -403,11 +403,11 @@
 
         <p class="rubrik">Po zvolaní Amen prijímajúci prijme hostiu. Ostatní prijímajú Eucharistiu zvyčajným spôsobom.</p>
 
-        <p class="rubrik">24. Po svätom prijímaní si vysluhovateľ zvyčajne očistí prsty a nádobku.<br>
+        <p class="rubrik num-rubrik">24. Po svätom prijímaní si vysluhovateľ zvyčajne očistí prsty a nádobku.<br>
         Potom, ak je to vhodné, možno zachovať chvíľu posvätného ticha.</p>
 
         <h2>Modlitba po prijímaní</h2>
-        <p class="rubrik">25. Potom vysluhovateľ powie záverečnú modlitbu:</p>
+        <p class="rubrik num-rubrik">25. Potom vysluhovateľ powie záverečnú modlitbu:</p>
 
         <div class="option-block" data-group="modlitba">
             <label class="option-select">
@@ -534,7 +534,7 @@
         <div class="option-block" data-group="modlitba">
             <label class="option-select">
                 <input type="radio" name="modlitba" value="13">
-                <span class="versicle">Modlitba 13 (Prosíme ťa, nekonečný Bože...)</span>
+                <span class="versicle">Prosíme ťa, nekonečný Bože...</span>
             </label>
             <p>Modlime sa.</p>
             <p>Prosíme ťa, nekonečný Bože, nech nás dôstojné prijatie sviatosti tvojho Syna očistí od všetkých chýb minulosti a pretvorí na nových ľudí. Skrze Krista, nášho Pána.<br>
@@ -552,7 +552,7 @@
         </div>
 
         <h2>ZÁVEREČNÉ OBRADY</h2>
-        <p class="rubrik">26. Vysluhovateľ vzýva Božie požehnanie, prežehná sa a pritom hovorí:</p>
+        <p class="rubrik num-rubrik">26. Vysluhovateľ vzýva Božie požehnanie, prežehná sa a pritom hovorí:</p>
 
         <div class="option-block" data-group="pozehnanie">
             <label class="option-select">
@@ -615,7 +615,7 @@
             }
         }
 
-        /* Filtrácia textov */
+        /* Filtrácia textov a skrytie číslovania rubrík (18 - 26) */
         function filterSelected() {
             const blocks = document.querySelectorAll('.option-block');
             
@@ -630,6 +630,10 @@
                     block.classList.add('hidden');
                 }
             });
+
+            // Skryje očíslované redakčné popisy
+            const numRubriks = document.querySelectorAll('.num-rubrik');
+            numRubriks.forEach(rubrik => rubrik.classList.add('hidden'));
         }
 
         function resetFilter() {
@@ -640,6 +644,10 @@
                 const selectLabel = block.querySelector('.option-select');
                 if (selectLabel) selectLabel.classList.remove('hidden');
             });
+
+            // Opäť zobrazí očíslované redakčné popisy
+            const numRubriks = document.querySelectorAll('.num-rubrik');
+            numRubriks.forEach(rubrik => rubrik.classList.remove('hidden'));
         }
 
         // Spustenie detekcie motívu po načítaní
