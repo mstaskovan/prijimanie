@@ -519,7 +519,7 @@
             <span class="versicle">R.</span> Amen.</p>
         </div>
 
-        <p class="rubrik">Vo Veľkonočnom období:</p>
+        <p class="rubrik num-rubrik">Vo Veľkonočnom období:</p>
 
         <div class="option-block" data-group="modlitba">
             <label class="option-select">
@@ -615,7 +615,7 @@
             }
         }
 
-        /* Filtrácia textov a skrytie číslovania rubrík (18 - 26) */
+        /* Filtrácia textov a skrytie číslovania rubrík / pokynov */
         function filterSelected() {
             const blocks = document.querySelectorAll('.option-block');
             
@@ -631,7 +631,7 @@
                 }
             });
 
-            // Skryje očíslované redakčné popisy
+            // Skryje očíslované a vedľajšie redakčné popisy
             const numRubriks = document.querySelectorAll('.num-rubrik');
             numRubriks.forEach(rubrik => rubrik.classList.add('hidden'));
         }
@@ -645,7 +645,7 @@
                 if (selectLabel) selectLabel.classList.remove('hidden');
             });
 
-            // Opäť zobrazí očíslované redakčné popisy
+            // Opäť zobrazí redakčné popisy
             const numRubriks = document.querySelectorAll('.num-rubrik');
             numRubriks.forEach(rubrik => rubrik.classList.remove('hidden'));
         }
