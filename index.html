@@ -4,124 +4,174 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Riadny obrad prijímania chorých</title>
+    <!-- Import fontu Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <style>
         :root {
             --base-font-size: 18px;
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --container-bg: #ffffff;
+            --header-border: #ddd;
+            --heading-color: #8b0000;
+            --rubrik-color: #a00000;
+            --versicle-color: #a00000;
+            --control-bg: #f8f9fa;
+            --control-border: #ccc;
+            --control-btn-bg: #ffffff;
+            --control-btn-text: #1a1a1a;
+            --hr-color: #e0e0e0;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --container-bg: #1e1e1e;
+            --header-border: #333;
+            --heading-color: #ff6b6b;
+            --rubrik-color: #ff8e8e;
+            --versicle-color: #ff8e8e;
+            --control-bg: #1e1e1e;
+            --control-border: #444;
+            --control-btn-bg: #2d2d2d;
+            --control-btn-text: #ffffff;
+            --hr-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Times New Roman', Times, serif, sans-serif;
-            line-height: 1.6;
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.5;
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f9;
-            color: #1a1a1a;
+            padding: 4px; /* Minimálne odsadenie od okrajov obrazovky */
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .controls {
             position: sticky;
             top: 0;
-            background-color: #ffffff;
-            padding: 10px 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: var(--control-bg);
+            padding: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 10px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
             z-index: 1000;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            border: 1px solid var(--control-border);
+        }
+
+        .controls-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .controls button {
-            padding: 8px 16px;
-            font-size: 16px;
+            padding: 6px 12px;
+            font-size: 15px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
             cursor: pointer;
-            border: 1px solid #ccc;
-            background-color: #ffffff;
+            border: 1px solid var(--control-border);
+            background-color: var(--control-btn-bg);
+            color: var(--control-btn-text);
             border-radius: 4px;
             transition: background-color 0.2s;
         }
 
-        .controls button:hover {
-            background-color: #e0e0e0;
-        }
-
         .container {
-            max-width: 700px;
+            width: 100%; /* Plná šírka */
+            max-width: 100%;
             margin: 0 auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            background: var(--container-bg);
+            padding: 8px 4px; /* Tesne od okrajov */
             font-size: var(--base-font-size);
         }
 
-        /* Štýlovanie liturgického textu */
         .header-title {
             text-align: center;
-            font-size: 0.9em;
-            letter-spacing: 1px;
-            color: #555;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--header-border);
+            padding-bottom: 8px;
+            font-weight: 700;
         }
 
         .page-num {
             float: right;
             font-size: 0.9em;
-            color: #777;
+            opacity: 0.7;
         }
 
         h2 {
             text-align: center;
-            color: #8b0000;
+            color: var(--heading-color);
             text-transform: uppercase;
-            font-size: 1.3em;
-            margin-top: 30px;
-            margin-bottom: 15px;
+            font-size: 1.25em;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            font-weight: 700;
         }
 
         h3 {
             text-align: center;
-            color: #8b0000;
+            color: var(--heading-color);
             font-size: 1.1em;
-            margin-top: 25px;
+            margin-top: 18px;
+            font-weight: 700;
         }
 
         .num-heading {
             text-align: center;
-            font-weight: bold;
+            font-weight: 700;
             font-size: 1.1em;
-            margin-top: 20px;
+            margin-top: 15px;
+            color: var(--heading-color);
         }
 
         .rubrik {
-            color: #a00000;
+            color: var(--rubrik-color);
             font-style: italic;
-            margin-top: 10px;
-            margin-bottom: 10px;
+            font-weight: 400; /* Inštrukcie normálnym písmom */
+            margin-top: 8px;
+            margin-bottom: 8px;
         }
 
         .versicle {
-            color: #a00000;
-            font-weight: bold;
+            color: var(--versicle-color);
+            font-weight: 700;
         }
 
+        /* Texty modlitieb sú tučné */
         p {
-            margin-bottom: 12px;
-            text-align: justify;
+            margin-bottom: 10px;
+            text-align: left;
+            font-weight: 700;
         }
 
         .indent {
-            padding-left: 20px;
+            padding-left: 15px;
         }
 
         .source {
             float: right;
-            color: #a00000;
+            color: var(--rubrik-color);
             font-style: italic;
+            font-weight: 400;
         }
 
         .clear {
@@ -131,18 +181,23 @@
         hr {
             border: 0;
             height: 1px;
-            background: #e0e0e0;
-            margin: 40px 0;
+            background: var(--hr-color);
+            margin: 25px 0;
         }
     </style>
 </head>
 <body>
 
     <div class="controls">
-        <span>Veľkosť písma:</span>
-        <button onclick="changeFontSize(-2)">A-</button>
-        <button onclick="resetFontSize()">Pôvodná</button>
-        <button onclick="changeFontSize(2)">A+</button>
+        <div class="controls-group">
+            <span>Písmo:</span>
+            <button onclick="changeFontSize(-2)">A-</button>
+            <button onclick="resetFontSize()">100%</button>
+            <button onclick="changeFontSize(2)">A+</button>
+        </div>
+        <div class="controls-group">
+            <button onclick="toggleTheme()" id="themeBtn">🌙 Tmavý motív</button>
+        </div>
     </div>
 
     <div class="container" id="content">
@@ -296,7 +351,7 @@
             RIADNY OBRAD PRIJÍMANIA CHORÝCH
         </div>
 
-        <p><strong>A teraz spoločne prosme nebeského Otca a modlime sa, ako nás naučil náš Pán Ježiš Kristus:</strong></p>
+        <p>A teraz spoločne prosme nebeského Otca a modlime sa, ako nás naučil náš Pán Ježiš Kristus:</p>
 
         <p class="rubrik">Všetci spoločne hovoria:</p>
         <p>Otče náš, ktorý si na nebesiach,<br>
@@ -312,13 +367,13 @@
         <h3>Prijímanie</h3>
         <p class="rubrik">22. Vysluhovateľ ukáže Najsvätejšiu sviatosť a powie:</p>
 
-        <p><strong>Hľa, Baránok Boží, ktorý sníma hriechy sveta. Blažení tí, čo sú pozvaní na hostinu Baránkovu.</strong></p>
+        <p>Hľa, Baránok Boží, ktorý sníma hriechy sveta. Blažení tí, čo sú pozvaní na hostinu Baránkovu.</p>
 
         <p class="rubrik">Chorý a tí, čo budú prijímať, hovoria:</p>
         <p>Pane, nie som hoden, aby si vošiel pod moju strechu, ale povedz iba slovo a duša mi ozdravie.</p>
 
         <p class="rubrik">23. Vysluhovateľ pristúpi k chorému, ukáže mu Oltárnu sviatosť a powie:</p>
-        <p><strong>Telo Kristovo.</strong></p>
+        <p>Telo Kristovo.</p>
 
         <p class="rubrik">Chorý odpovie:</p>
         <p>Amen.</p>
@@ -340,12 +395,12 @@
         <p class="rubrik">25. Potom vysluhovateľ powie záverečnú modlitbu:</p>
 
         <div class="num-heading">1.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Pane, svätý Otče, všemohúci večný Bože, s dôverou ťa prosíme, nech prijatie najsvätejšieho tela <span class="rubrik">(najsvätejšej krvi)</span> nášho Pána Ježiša Krista, tvojho Syna, ochraňuje a posilňuje tohto nášho brata <span class="rubrik">(túto našu sestru)</span>, nech mu <span class="rubrik">(jej)</span> prinesie úľavu na tele i na duši a nech mu <span class="rubrik">(jej)</span> slúži na večnú spásu. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
         <div class="num-heading">2.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Bože, naša spása, ty si zavŕšil dielo nášho vykúpenia veľkonočným tajomstvom svojho Syna; keď sviatostnými znakmi zvestujeme jeho smrť a zmŕtvychvstanie, daj, aby sme mali vždy väčšiu účasť na diele našej spásy. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
@@ -358,17 +413,17 @@
         </div>
 
         <div class="num-heading">3.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Dobrotivý Otče, pri tomto oltári si nás posilnil tým istým nebeským chlebom; naplň nás všetkých svojím Duchom a v láske nám zjednoť srdcia i mysle. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
         <div class="num-heading">4.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Bože, milosrdný Otče, nech nás posvätí účasť na eucharistickej hostine, aby nás telo a krv nášho Pána Ježiša Krista spojili všetkých v bratskej láske. O to ťa prosíme skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
         <div class="num-heading">5.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Dobrotivý Otče, vo svojej nesmiernej láske si nás nasýtil duchovným pokrmom; prosíme ťa, daj, aby sme sa účasťou na tejto sviatosti naučili správne hodnotiť pozemské veci a milovať hodnoty nebeské. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
@@ -381,17 +436,17 @@
         </div>
 
         <div class="num-heading">6.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Dobrotivý Otče, vrúcne ti ďakujeme, že môžeme prijímať Najsvätejšiu sviatosť a že nám už v pozemskom živote dávaš účasť na nebeskej hostine. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
         <div class="num-heading">7.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Všemohúci Bože, svojimi sviatosťami nám dávaš nový život; vrúcne ťa prosíme, pomáhaj nám šíriť vo svete Kristovu lásku a dosvedčovať ju skutkami. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
         <div class="num-heading">8.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Milosrdný Bože, doprial si nám účasť na tom istom chlebe a kalichu; prosíme ťa, pomáhaj nám žiť tak, aby sme všetci boli jedno v Kristovi a radostne s ním spolupracovali na spáse sveta. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
@@ -404,17 +459,17 @@
         </div>
 
         <div class="num-heading">9.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Všemohúci Bože, ďakujeme ti, že si nás nasýtil pri svojom stole, a prosíme ťa, aby tento sviatostný pokrm živil v našich srdciach lásku a pobádal nás slúžiť ti v našich bratoch a sestrách. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
         <div class="num-heading">10.</div>
-        <p><strong>Modlime sa.</strong></p>
-        <p>Dobrotivý Bože, ďakujeme ti, že si nás posilnil chlebom života, a prosíme ťa, daj, nech nás sila Ducha Svätého, ktorá pôsobí vo sviatostiach, ustavične obnovuje, aby sme ti zostali úprimne oddaní. Skrze Krista, nášho Pána.<br>
+        <p>Modlime sa.</p>
+        <p>Dobrotivý Bože, ďakujeme ti, že si nás posilnil chlebom života, a prosíme ťa, daj, nech sila Ducha Svätého, ktorá pôsobí vo sviatostiach, ustavične obnovuje, aby sme ti zostali úprimne oddaní. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
         <div class="num-heading">11.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Milosrdný Bože, ty si nám dal účasť na jednom chlebe a na jednom kalichu;</p>
 
         <hr>
@@ -431,12 +486,12 @@
         <p class="rubrik">Vo Veľkonočnom období:</p>
 
         <div class="num-heading">12.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Dobrotivý Bože, pri veľkonočnej hostine si nás posilnil sviatostným pokrmom; naplň nás všetkých svojím Duchom a v láske nám zjednoť srdcia i mysle. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
         <div class="num-heading">13.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Prosíme ťa, nekonečný Bože, nech nás dôstojné prijatie sviatosti tvojho Syna očistí od všetkých chýb minulosti a pretvorí na nových ľudí. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
@@ -449,7 +504,7 @@
         </div>
 
         <div class="num-heading">14.</div>
-        <p><strong>Modlime sa.</strong></p>
+        <p>Modlime sa.</p>
         <p>Všemohúci a večný Bože, zmŕtvychvstaním tvojho Syna znovu si nám otvoril cestu do večného života; naplň nás silou spásonosného pokrmu, ktorý sme prijali, a zveľaďuj v nás účinky veľkonočného tajomstva. Skrze Krista, nášho Pána.<br>
         <span class="versicle">R.</span> Amen.</p>
 
@@ -466,18 +521,30 @@
     </div>
 
     <script>
-        let currentSize = 18; // Základná veľkosť v px
+        let currentSize = 18;
 
         function changeFontSize(delta) {
             currentSize += delta;
-            if (currentSize < 12) currentSize = 12; // Minimálna veľkosť
-            if (currentSize > 36) currentSize = 36; // Maximálna veľkosť
+            if (currentSize < 12) currentSize = 12;
+            if (currentSize > 36) currentSize = 36;
             document.getElementById('content').style.fontSize = currentSize + 'px';
         }
 
         function resetFontSize() {
             currentSize = 18;
             document.getElementById('content').style.fontSize = currentSize + 'px';
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('themeBtn');
+            if (body.hasAttribute('data-theme')) {
+                body.removeAttribute('data-theme');
+                themeBtn.innerHTML = '🌙 Tmavý motív';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeBtn.innerHTML = '☀️ Svetlý motív';
+            }
         }
     </script>
 </body>
