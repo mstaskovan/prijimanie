@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riadny obrad prijímania chorých</title>
+    <style>
+        :root {
+            --base-font-size: 18px;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #1a1a1a;
+        }
+
+        .controls {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            padding: 10px 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 1000;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .controls button {
+            padding: 8px 16px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #ffffff;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .controls button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            font-size: var(--base-font-size);
+        }
+
+        /* Štýlovanie liturgického textu */
+        .header-title {
+            text-align: center;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+            color: #555;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .page-num {
+            float: right;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        h2 {
+            text-align: center;
+            color: #8b0000;
+            text-transform: uppercase;
+            font-size: 1.3em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            text-align: center;
+            color: #8b0000;
+            font-size: 1.1em;
+            margin-top: 25px;
+        }
+
+        .num-heading {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 20px;
+        }
+
+        .rubrik {
+            color: #a00000;
+            font-style: italic;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .versicle {
+            color: #a00000;
+            font-weight: bold;
+        }
+
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+
+        .indent {
+            padding-left: 20px;
+        }
+
+        .source {
+            float: right;
+            color: #a00000;
+            font-style: italic;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #e0e0e0;
+            margin: 40px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="controls">
+        <span>Veľkosť písma:</span>
+        <button onclick="changeFontSize(-2)">A-</button>
+        <button onclick="resetFontSize()">Pôvodná</button>
+        <button onclick="changeFontSize(2)">A+</button>
+    </div>
+
+    <div class="container" id="content">
+
+        <!-- STRÁNA 15 -->
+        <div class="header-title">
+            <span class="page-num">15</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <h2>Prežehnanie</h2>
+        <p class="rubrik">18. Potom sa prežehná a pozdraví prítomných:</p>
+        
+        <p><span class="versicle">V.</span> V mene Otca i Syna ✠ i Ducha Svätého.<br>
+        <span class="versicle">R.</span> Amen.<br>
+        <span class="versicle">V.</span> Bratia a sestry, velebte Pána, ktorý nás (vás) dobrotivo pozýva k stolu Kristovho tela.<br>
+        <span class="versicle">R.</span> Zvelebený Boh naveky.</p>
+
+        <h2>Úkon kajúcnosti</h2>
+        <p class="rubrik">19. Vysluhovateľ vyzve chorého i ostatných prítomných na úkon kajúcnosti:</p>
+        
+        <p>Bratia a sestry, uznajme svoje hriechy, aby sme mohli mať s čistým srdcom účasť na tomto posvätnom slávení.</p>
+
+        <p class="rubrik">Nasleduje chvíľa ticha.<br>Potom všetci spoločne vyznávajú:</p>
+
+        <p>Vyznávam všemohúcemu Bohu i vám, bratia a sestry, že som veľa zhrešil myšlienkami, slovami, skutkami a zanedbávaním dobrého.</p>
+
+        <p class="rubrik">Bijú sa do pŕs a hovoria:</p>
+        <p>Moja vina, moja vina, moja preveľká vina.</p>
+
+        <p class="rubrik">Potom pokračujú:</p>
+        <p>Preto prosím blahoslavenú Máriu, vždy Pannu, všetkých anjelov a svätých i vás, bratia a sestry, modlite sa za mňa k Pánu, Bohu nášmu.</p>
+
+        <hr>
+
+        <!-- STRÁNA 16 -->
+        <div class="header-title">
+            <span class="page-num">16</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <p class="rubrik">Vysluhovateľ uzavrie úkon kajúcnosti slovami:</p>
+        <p>Nech sa zmiluje nad nami všemohúci Boh, nech nám hriechy odpustí a privedie nás do života večného.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">2.</div>
+        <p>Bratia a sestry, uznajme svoje hriechy, aby sme mohli mať s čistým srdcom účasť na tomto posvätnom slávení.</p>
+
+        <p class="rubrik">Nasleduje chvíľa ticha. Potom vysluhovateľ powie:</p>
+        <p><span class="versicle">V.</span> Zmiluj sa nad nami, Pane.<br>
+        <span class="versicle">R.</span> Lebo sme sa prehrešili proti tebe.<br>
+        <span class="versicle">V.</span> Ukáž nám, Pane, svoje milosrdenstvo.<br>
+        <span class="versicle">R.</span> A daj nám svoju spásu.</p>
+
+        <p class="rubrik">Vysluhovateľ uzavrie úkon kajúcnosti slovami:</p>
+        <p>Nech sa zmiluje nad nami všemohúci Boh, nech nám hriechy odpustí a privedie nás do života večného.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">3.</div>
+        <p>Bratia a sestry, uznajme svoje hriechy, aby sme mohli mať s čistým srdcom účasť na tomto posvätnom slávení.</p>
+
+        <hr>
+
+        <!-- STRÁNA 17 -->
+        <div class="header-title">
+            <span class="page-num">17</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <p class="rubrik">Nasleduje chvíľa ticha. Potom vysluhovateľ alebo niekto z prítomných prednesie tieto alebo iné zvolania s invokáciou Pane, zmiluj sa:</p>
+
+        <p><span class="versicle">V.</span> Pane, ty si nám veľkonočným tajomstvom získal spásu.<br>
+        <span class="indent">Pane, zmiluj sa <span class="rubrik">(Alebo: Kyrie, eléison)</span>.</span><br>
+        <span class="versicle">R.</span> Pane, zmiluj sa <span class="rubrik">(Alebo: Kyrie, eléison)</span>.<br>
+        <span class="versicle">V.</span> Ty stále obnovuješ medzi nami pamiatku svojho umučenia.<br>
+        <span class="indent">Kriste, zmiluj sa <span class="rubrik">(Alebo: Christe, eléison)</span>.</span><br>
+        <span class="versicle">R.</span> Kriste, zmiluj sa <span class="rubrik">(Alebo: Christe, eléison)</span>.<br>
+        <span class="versicle">V.</span> V prijímaní svojho tela nám dávaš účasť na veľkonočnej obete.<br>
+        <span class="indent">Pane, zmiluj sa <span class="rubrik">(Alebo: Kyrie, eléison)</span>.</span><br>
+        <span class="versicle">R.</span> Pane, zmiluj sa <span class="rubrik">(Alebo: Kyrie, eléison)</span>.</p>
+
+        <p class="rubrik">Vysluhovateľ uzavrie úkon kajúcnosti slovami:</p>
+        <p>Nech sa zmiluje nad nami všemohúci Boh, nech nám hriechy odpustí a privedie nás do života večného.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <h2>Krátke čítanie Božieho slova</h2>
+        <p class="rubrik">20. Podľa okolností môže niekto z prítomných alebo sám vysluhovateľ prečítať text Svätého písma, napríklad:</p>
+
+        <div class="num-heading">1.</div>
+        <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 6, 54 – 55</span></p>
+        <p class="clear">Kto je moje telo a pije moju krv, má večný život a ja ho vzkriesim v posledný deň. Lebo moje telo je pravý pokrm a moja krv je pravý nápoj.</p>
+
+        <hr>
+
+        <!-- STRÁNA 18 -->
+        <div class="header-title">
+            <span class="page-num">18</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <div class="num-heading">2.</div>
+        <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 6, 54 – 58</span></p>
+        <p class="clear">Kto je moje telo a pije moju krv, má večný život a ja ho vzkriesim v posledný deň. Lebo moje telo je pravý pokrm a moja krv je pravý nápoj. Kto je moje telo a pije moju krv, ostáva vo mne a ja v ňom.<br>
+        Ako mňa poslal živý Otec a ja žijem z Otca, aj ten, čo mňa je, bude žiť zo mňa. Toto je ten chlieb, ktorý zostúpil z neba, a nie aký jedli otcovia a pomreli. Kto je tento chlieb, bude žiť naveky.</p>
+
+        <div class="num-heading">3.</div>
+        <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 14, 6</span></p>
+        <p class="clear">Ja som cesta, pravda a život. Nik nepríde k Otcovi, iba cezo mňa.</p>
+
+        <div class="num-heading">4.</div>
+        <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 14, 23</span></p>
+        <p class="clear">Kto ma miluje, bude zachovávať moje slovo a môj Otec ho bude milovať; prídeme k nemu a urobíme si uňho príbytok.</p>
+
+        <div class="num-heading">5.</div>
+        <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 14, 27</span></p>
+        <p class="clear">Pokoj vám zanechávam, svoj pokoj vám dávam. Ale ja vám nedávam, ako svet dáva. Nech sa vám srdce nevzrušuje a nestrachuje.</p>
+
+        <hr>
+
+        <!-- STRÁNA 19 -->
+        <div class="header-title">
+            <span class="page-num">19</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <div class="num-heading">6.</div>
+        <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 15, 4</span></p>
+        <p class="clear">Ostaňte vo mne a ja vo vás. Ako ratolesť nemôže prinášať ovocie sama od seba, ak neostane na viniči, tak ani vy, ak neostanete vo mne.</p>
+
+        <div class="num-heading">7.</div>
+        <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 15, 5</span></p>
+        <p class="clear">Ja som vinič, vy ste ratolesti. Kto ostáva vo mne a ja v ňom, prináša veľa ovocia; lebo bezo mňa nemôžete nič urobiť.</p>
+
+        <div class="num-heading">8.</div>
+        <p><span class="rubrik">(Svätý apoštol Pavol píše:)</span> <span class="source">1 Kor 11, 26</span></p>
+        <p class="clear">Vždy, keď budete jesť tento chlieb a piť tento kalich, zvestujete Pánovu smrť, kým nepríde.</p>
+
+        <div class="num-heading">9.</div>
+        <p><span class="rubrik">(Svätý apoštol Ján píše:)</span> <span class="source">1 Jn 4, 16</span></p>
+        <p class="clear">My, čo sme uverili, spoznali sme lásku, akú má Boh k nám. Boh je láska; a kto ostáva v láske, ostáva v Bohu a Boh ostáva v ňom.</p>
+
+        <h2>Sväté prijímanie</h2>
+        <h3>Modlitba Pána</h3>
+        <p class="rubrik">21. Potom vysluhovateľ uvedie Modlitbu Pána týmito alebo podobnými slovami:</p>
+
+        <hr>
+
+        <!-- STRÁNA 20 -->
+        <div class="header-title">
+            <span class="page-num">20</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <p><strong>A teraz spoločne prosme nebeského Otca a modlime sa, ako nás naučil náš Pán Ježiš Kristus:</strong></p>
+
+        <p class="rubrik">Všetci spoločne hovoria:</p>
+        <p>Otče náš, ktorý si na nebesiach,<br>
+        posväť sa meno tvoje,<br>
+        príď kráľovstvo tvoje,<br>
+        buď vôľa tvoja ako v nebi, tak i na zemi.<br>
+        Chlieb náš každodenný daj nám dnes<br>
+        a odpusť nám naše viny,<br>
+        ako i my odpúšťame svojim vinníkom,<br>
+        a neuveď nás do pokušenia,<br>
+        ale zbav nás Zlého.</p>
+
+        <h3>Prijímanie</h3>
+        <p class="rubrik">22. Vysluhovateľ ukáže Najsvätejšiu sviatosť a powie:</p>
+
+        <p><strong>Hľa, Baránok Boží, ktorý sníma hriechy sveta. Blažení tí, čo sú pozvaní na hostinu Baránkovu.</strong></p>
+
+        <p class="rubrik">Chorý a tí, čo budú prijímať, hovoria:</p>
+        <p>Pane, nie som hoden, aby si vošiel pod moju strechu, ale povedz iba slovo a duša mi ozdravie.</p>
+
+        <p class="rubrik">23. Vysluhovateľ pristúpi k chorému, ukáže mu Oltárnu sviatosť a powie:</p>
+        <p><strong>Telo Kristovo.</strong></p>
+
+        <p class="rubrik">Chorý odpovie:</p>
+        <p>Amen.</p>
+
+        <p class="rubrik">Po zvolaní Amen prijímajúci prijme hostiu. Ostatní prijímajú Eucharistiu zvyčajným spôsobom.</p>
+
+        <hr>
+
+        <!-- STRÁNA 21 -->
+        <div class="header-title">
+            <span class="page-num">21</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <p class="rubrik">24. Po svätom prijímaní si vysluhovateľ zvyčajne očistí prsty a nádobku.<br>
+        Potom, ak je to vhodné, možno zachovať chvíľu posvätného ticha.</p>
+
+        <h2>Modlitba po prijímaní</h2>
+        <p class="rubrik">25. Potom vysluhovateľ powie záverečnú modlitbu:</p>
+
+        <div class="num-heading">1.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Pane, svätý Otče, všemohúci večný Bože, s dôverou ťa prosíme, nech prijatie najsvätejšieho tela <span class="rubrik">(najsvätejšej krvi)</span> nášho Pána Ježiša Krista, tvojho Syna, ochraňuje a posilňuje tohto nášho brata <span class="rubrik">(túto našu sestru)</span>, nech mu <span class="rubrik">(jej)</span> prinesie úľavu na tele i na duši a nech mu <span class="rubrik">(jej)</span> slúži na večnú spásu. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">2.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Bože, naša spása, ty si zavŕšil dielo nášho vykúpenia veľkonočným tajomstvom svojho Syna; keď sviatostnými znakmi zvestujeme jeho smrť a zmŕtvychvstanie, daj, aby sme mali vždy väčšiu účasť na diele našej spásy. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <hr>
+
+        <!-- STRÁNA 22 -->
+        <div class="header-title">
+            <span class="page-num">22</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <div class="num-heading">3.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Dobrotivý Otče, pri tomto oltári si nás posilnil tým istým nebeským chlebom; naplň nás všetkých svojím Duchom a v láske nám zjednoť srdcia i mysle. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">4.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Bože, milosrdný Otče, nech nás posvätí účasť na eucharistickej hostine, aby nás telo a krv nášho Pána Ježiša Krista spojili všetkých v bratskej láske. O to ťa prosíme skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">5.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Dobrotivý Otče, vo svojej nesmiernej láske si nás nasýtil duchovným pokrmom; prosíme ťa, daj, aby sme sa účasťou na tejto sviatosti naučili správne hodnotiť pozemské veci a milovať hodnoty nebeské. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <hr>
+
+        <!-- STRÁNA 23 -->
+        <div class="header-title">
+            <span class="page-num">23</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <div class="num-heading">6.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Dobrotivý Otče, vrúcne ti ďakujeme, že môžeme prijímať Najsvätejšiu sviatosť a že nám už v pozemskom živote dávaš účasť na nebeskej hostine. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">7.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Všemohúci Bože, svojimi sviatosťami nám dávaš nový život; vrúcne ťa prosíme, pomáhaj nám šíriť vo svete Kristovu lásku a dosvedčovať ju skutkami. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">8.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Milosrdný Bože, doprial si nám účasť na tom istom chlebe a kalichu; prosíme ťa, pomáhaj nám žiť tak, aby sme všetci boli jedno v Kristovi a radostne s ním spolupracovali na spáse sveta. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <hr>
+
+        <!-- STRÁNA 24 -->
+        <div class="header-title">
+            <span class="page-num">24</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <div class="num-heading">9.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Všemohúci Bože, ďakujeme ti, že si nás nasýtil pri svojom stole, a prosíme ťa, aby tento sviatostný pokrm živil v našich srdciach lásku a pobádal nás slúžiť ti v našich bratoch a sestrách. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">10.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Dobrotivý Bože, ďakujeme ti, že si nás posilnil chlebom života, a prosíme ťa, daj, nech nás sila Ducha Svätého, ktorá pôsobí vo sviatostiach, ustavične obnovuje, aby sme ti zostali úprimne oddaní. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">11.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Milosrdný Bože, ty si nám dal účasť na jednom chlebe a na jednom kalichu;</p>
+
+        <hr>
+
+        <!-- STRÁNA 25 -->
+        <div class="header-title">
+            <span class="page-num">25</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <p>vrúcne ťa prosíme, posilňuj nás v láske k tebe a daj, aby sme stále žili novým životom. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <p class="rubrik">Vo Veľkonočnom období:</p>
+
+        <div class="num-heading">12.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Dobrotivý Bože, pri veľkonočnej hostine si nás posilnil sviatostným pokrmom; naplň nás všetkých svojím Duchom a v láske nám zjednoť srdcia i mysle. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <div class="num-heading">13.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Prosíme ťa, nekonečný Bože, nech nás dôstojné prijatie sviatosti tvojho Syna očistí od všetkých chýb minulosti a pretvorí na nových ľudí. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <hr>
+
+        <!-- STRÁNA 26 -->
+        <div class="header-title">
+            <span class="page-num">26</span>
+            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        </div>
+
+        <div class="num-heading">14.</div>
+        <p><strong>Modlime sa.</strong></p>
+        <p>Všemohúci a večný Bože, zmŕtvychvstaním tvojho Syna znovu si nám otvoril cestu do večného života; naplň nás silou spásonosného pokrmu, ktorý sme prijali, a zveľaďuj v nás účinky veľkonočného tajomstva. Skrze Krista, nášho Pána.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+        <h2>ZÁVEREČNÉ OBRADY</h2>
+        <p class="rubrik">26. Vysluhovateľ vzýva Božie požehnanie, prežehná sa a pritom hovorí:</p>
+
+        <p>Nech nás žehná Pán, nech nás chráni od zlého a nech nás privedie do večného života.</p>
+
+        <p class="rubrik">Alebo:</p>
+
+        <p>Nech nás žehná a chráni všemohúci a milosrdný Pán, Otec i Syn i Duch Svätý.<br>
+        <span class="versicle">R.</span> Amen.</p>
+
+    </div>
+
+    <script>
+        let currentSize = 18; // Základná veľkosť v px
+
+        function changeFontSize(delta) {
+            currentSize += delta;
+            if (currentSize < 12) currentSize = 12; // Minimálna veľkosť
+            if (currentSize > 36) currentSize = 36; // Maximálna veľkosť
+            document.getElementById('content').style.fontSize = currentSize + 'px';
+        }
+
+        function resetFontSize() {
+            currentSize = 18;
+            document.getElementById('content').style.fontSize = currentSize + 'px';
+        }
+    </script>
+</body>
+</html>
