@@ -10,22 +10,7 @@
     <style>
         :root {
             --base-font-size: 18px;
-            --bg-color: #ffffff;
-            --text-color: #1a1a1a;
-            --container-bg: #ffffff;
-            --header-border: #ddd;
-            --heading-color: #8b0000;
-            --rubrik-color: #a00000;
-            --versicle-color: #a00000;
-            --control-bg: #f8f9fa;
-            --control-border: #ccc;
-            --control-btn-bg: #ffffff;
-            --control-btn-text: #1a1a1a;
-            --accent-btn: #8b0000;
-            --accent-btn-text: #ffffff;
-        }
-
-        [data-theme="dark"] {
+            /* Predvolene tmavé farby */
             --bg-color: #121212;
             --text-color: #e0e0e0;
             --container-bg: #1e1e1e;
@@ -39,6 +24,25 @@
             --control-btn-text: #ffffff;
             --accent-btn: #ff6b6b;
             --accent-btn-text: #121212;
+            --hr-color: #333333;
+        }
+
+        /* Farby pre svetlý režim */
+        [data-theme="light"] {
+            --bg-color: #ffffff;
+            --text-color: #1a1a1a;
+            --container-bg: #ffffff;
+            --header-border: #ddd;
+            --heading-color: #8b0000;
+            --rubrik-color: #a00000;
+            --versicle-color: #a00000;
+            --control-bg: #f8f9fa;
+            --control-border: #ccc;
+            --control-btn-bg: #ffffff;
+            --control-btn-text: #1a1a1a;
+            --accent-btn: #8b0000;
+            --accent-btn-text: #ffffff;
+            --hr-color: #e0e0e0;
         }
 
         * { box-sizing: border-box; }
@@ -165,7 +169,6 @@
 
         .clear { clear: both; }
 
-        /* Štýl pre možnosti výberu */
         .option-block {
             border-left: 3px solid var(--rubrik-color);
             padding-left: 10px;
@@ -203,7 +206,7 @@
             <button onclick="changeFontSize(2)">A+</button>
         </div>
         <div class="controls-group">
-            <button onclick="toggleTheme()" id="themeBtn">🌙 Tmavý motív</button>
+            <button onclick="toggleTheme()" id="themeBtn">☀️ Svetlý motív</button>
         </div>
         <div class="controls-group">
             <button class="btn-apply" onclick="filterSelected()">✓ Použiť výber</button>
@@ -228,7 +231,6 @@
         <h2>Úkon kajúcnosti</h2>
         <p class="rubrik">19. Vysluhovateľ vyzve chorého i ostatných prítomných na úkon kajúcnosti:</p>
 
-        <!-- ÚKON KAJÚCNOSTI - SKUPINA 1 -->
         <div class="option-block" data-group="kajucnost">
             <label class="option-select">
                 <input type="radio" name="kajucnost" value="1" checked>
@@ -286,7 +288,6 @@
         <h2>Krátke čítanie Božieho slova</h2>
         <p class="rubrik">20. Podľa okolností môže niekto z prítomných alebo sám vysluhovateľ prečítať text Svätého písma, napríklad:</p>
 
-        <!-- ČÍTANIA - SKUPINA 2 -->
         <div class="option-block" data-group="citanie">
             <label class="option-select">
                 <input type="radio" name="citanie" value="1" checked>
@@ -408,7 +409,6 @@
         <h2>Modlitba po prijímaní</h2>
         <p class="rubrik">25. Potom vysluhovateľ powie záverečnú modlitbu:</p>
 
-        <!-- MODLITBY PO PRIJÍMANÍ - SKUPINA 3 -->
         <div class="option-block" data-group="modlitba">
             <label class="option-select">
                 <input type="radio" name="modlitba" value="1" checked>
@@ -425,7 +425,7 @@
                 <span class="versicle">Modlitba 2 (Bože, naša spása...)</span>
             </label>
             <p>Modlime sa.</p>
-            <p>Bože, naša spása, ty si zavŕšil dielo nášho vykúpenia veľkonočným tajomstvom svojho Syna; keď sviatostnými znakmi zvestujeme jeho smrť a zmŕtvychvstanie, daj, aby sme mali vždy väčšiu účasť na diele našej spásy. Skrze Krista, nášho Pána.<br>
+            <p>Bože, naša spása, ty si zavŕšil dielo nášho vykúpenia veľkonočným tajomstvom svojho Syna; keď sviatostnými znakmi zvestujeme jeho smrť a zmŕtvychvstanie, daj, aby sme mali vždy väčšiu účasť na diele nášho spásy. Skrze Krista, nášho Pána.<br>
             <span class="versicle">R.</span> Amen.</p>
         </div>
 
@@ -554,7 +554,6 @@
         <h2>ZÁVEREČNÉ OBRADY</h2>
         <p class="rubrik">26. Vysluhovateľ vzýva Božie požehnanie, prežehná sa a pritom hovorí:</p>
 
-        <!-- POŽEHNANIE - SKUPINA 4 -->
         <div class="option-block" data-group="pozehnanie">
             <label class="option-select">
                 <input type="radio" name="pozehnanie" value="1" checked>
@@ -589,19 +588,34 @@
             document.getElementById('content').style.fontSize = currentSize + 'px';
         }
 
-        function toggleTheme() {
-            const body = document.body;
+        /* Automatická detekcia a správa motívu */
+        function initTheme() {
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
             const themeBtn = document.getElementById('themeBtn');
-            if (body.hasAttribute('data-theme')) {
-                body.removeAttribute('data-theme');
+
+            if (prefersLight) {
+                document.body.setAttribute('data-theme', 'light');
                 themeBtn.innerHTML = '🌙 Tmavý motív';
             } else {
-                body.setAttribute('data-theme', 'dark');
+                document.body.removeAttribute('data-theme');
                 themeBtn.innerHTML = '☀️ Svetlý motív';
             }
         }
 
-        /* Logika filtrácie textov */
+        function toggleTheme() {
+            const body = document.body;
+            const themeBtn = document.getElementById('themeBtn');
+
+            if (body.getAttribute('data-theme') === 'light') {
+                body.removeAttribute('data-theme');
+                themeBtn.innerHTML = '☀️ Svetlý motív';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeBtn.innerHTML = '🌙 Tmavý motív';
+            }
+        }
+
+        /* Filtrácia textov */
         function filterSelected() {
             const blocks = document.querySelectorAll('.option-block');
             
@@ -611,7 +625,7 @@
                 
                 if (radio && radio.checked) {
                     block.classList.remove('hidden');
-                    if (selectLabel) selectLabel.classList.add('hidden'); // Skryje prepínač, nech neprekáža pri čítaní
+                    if (selectLabel) selectLabel.classList.add('hidden');
                 } else {
                     block.classList.add('hidden');
                 }
@@ -627,6 +641,9 @@
                 if (selectLabel) selectLabel.classList.remove('hidden');
             });
         }
+
+        // Spustenie detekcie motívu po načítaní
+        initTheme();
     </script>
 </body>
 </html>
