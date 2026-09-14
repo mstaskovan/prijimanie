@@ -60,8 +60,10 @@
         }
 
         .controls {
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            right: 0;
             background-color: var(--control-bg);
             padding: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
@@ -71,9 +73,12 @@
             flex-wrap: wrap;
             gap: 8px;
             z-index: 1000;
-            border-radius: 6px;
-            margin-bottom: 12px;
-            border: 1px solid var(--control-border);
+            border-bottom: 1px solid var(--control-border);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .controls.controls-hidden {
+            transform: translateY(-100%);
         }
 
         .controls-group {
@@ -106,7 +111,7 @@
             max-width: 100%;
             margin: 0 auto;
             background: var(--container-bg);
-            padding: 8px 4px;
+            padding: 60px 4px 8px 4px; /* Horné odsadenie aby lišta neprekrývala úvodný text */
             font-size: var(--base-font-size);
         }
 
@@ -200,7 +205,7 @@
 </head>
 <body>
 
-    <div class="controls">
+    <div class="controls" id="controls">
         <div class="controls-group">
             <button onclick="changeFontSize(-2)">A-</button>
             <button onclick="resetFontSize()">100%</button>
@@ -506,7 +511,7 @@
                 <span class="versicle">Modlitba 10 (Dobrotivý Bože, ďakujeme ti...)</span>
             </label>
             <p>Modlime sa.</p>
-            <p>Dobrotivý Bože, ďakujeme ti, že si nás posilnil chlebom života, a prosíme ťa, daj, nech nás sila Ducha Svätého, ktorá pôsobí vo sviatostiach, ustavične obnovuje, aby sme ti zostali úprimne oddaní. Skrze Krista, nášho Pána.<br>
+            <p>Dobrotivý Bože, ďakujeme ti, že si nás posilnil chlebom života, a prosíme ťa, daj, nech sila Ducha Svätého, ktorá pôsobí vo sviatostiach, ustavične obnovuje, aby sme ti zostali úprimne oddaní. Skrze Krista, nášho Pána.<br>
             <span class="versicle">R.</span> Amen.</p>
         </div>
 
@@ -650,6 +655,23 @@
             const numRubriks = document.querySelectorAll('.num-rubrik');
             numRubriks.forEach(rubrik => rubrik.classList.remove('hidden'));
         }
+
+        /* Sledovanie skrolovania na skrytie/zobrazenie menu */
+        let lastScrollTop = 0;
+        const controls = document.getElementById('controls');
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Pri skrolovaní nadol sa skryje, pri skrolovaní nahor sa opäť zobrazí
+            if (scrollTop > lastScrollTop && scrollTop > 50) {
+                controls.classList.add('controls-hidden');
+            } else {
+                controls.classList.remove('controls-hidden');
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
 
         // Spustenie detekcie motívu po načítaní
         initTheme();
