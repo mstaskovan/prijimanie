@@ -66,6 +66,7 @@ button, label, a {
     left: 0;
     right: 0;
     background-color: var(--control-bg);
+    padding-top: max(8px, env(safe-area-inset-top));
     padding: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     display: flex;
