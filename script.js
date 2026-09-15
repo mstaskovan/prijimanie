@@ -14,7 +14,7 @@ function resetFontSize() {
 
 /* Automatická detekcia a správa motívu */
 function initTheme() {
-    const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
     const themeBtn = document.getElementById('themeBtn');
 
     if (prefersLight) {
@@ -80,7 +80,7 @@ let lastScrollTop = 0;
 const controls = document.getElementById('controls');
 
 window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let scrollTop = window.scrollY || document.documentElement.scrollTop;
     
     if (scrollTop > lastScrollTop && scrollTop > 50) {
         controls.classList.add('controls-hidden');
