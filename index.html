@@ -235,7 +235,6 @@
         </div>
         <div class="controls-group">
             <button class="btn-apply" onclick="filterSelected()">✓ Použiť výber</button>
-            <button onclick="resetFilter()">↺ Obnoviť všetko</button>
         </div>
     </div>
 
@@ -720,39 +719,26 @@
         }
 
         /* Filtrácia textov a skrytie číslovania rubrík / pokynov */
-        function filterSelected() {
-            const blocks = document.querySelectorAll('.option-block');
-            
-            blocks.forEach(block => {
-                const radio = block.querySelector('input[type="radio"]');
-                const selectLabel = block.querySelector('.option-select');
-                
-                if (radio && radio.checked) {
-                    block.classList.remove('hidden');
-                    if (selectLabel) selectLabel.classList.add('hidden');
-                } else {
-                    block.classList.add('hidden');
-                }
-            });
-
-            // Skryje očíslované a vedľajšie redakčné popisy
-            const numRubriks = document.querySelectorAll('.num-rubrik');
-            numRubriks.forEach(rubrik => rubrik.classList.add('hidden'));
+function filterSelected() {
+    const blocks = document.querySelectorAll('.option-block');
+    
+    blocks.forEach(block => {
+        const radio = block.querySelector('input[type="radio"]');
+        const selectLabel = block.querySelector('.option-select');
+        
+        // Ak je radio button v bloku zaškrtnutý (či už predvolený alebo ručne zmenený):
+        if (radio && radio.checked) {
+            block.classList.remove('hidden');
+            if (selectLabel) selectLabel.classList.add('hidden'); // Skryje prepínač
+        } else {
+            block.classList.add('hidden'); // Skryje neoznačené alternatívy
         }
+    });
 
-        function resetFilter() {
-            const blocks = document.querySelectorAll('.option-block');
-            
-            blocks.forEach(block => {
-                block.classList.remove('hidden');
-                const selectLabel = block.querySelector('.option-select');
-                if (selectLabel) selectLabel.classList.remove('hidden');
-            });
-
-            // Opäť zobrazí redakčné popisy
-            const numRubriks = document.querySelectorAll('.num-rubrik');
-            numRubriks.forEach(rubrik => rubrik.classList.remove('hidden'));
-        }
+    // Skryje červené očíslované rubriky (pokyny)
+    const numRubriks = document.querySelectorAll('.num-rubrik');
+    numRubriks.forEach(rubrik => rubrik.classList.add('hidden'));
+}
 
         /* Sledovanie skrolovania na skrytie/zobrazenie menu */
         let lastScrollTop = 0;
