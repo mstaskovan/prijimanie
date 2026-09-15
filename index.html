@@ -10,12 +10,12 @@
     <style>
         :root {
             --base-font-size: 18px;
-            /* Tmavý režim podla obrázka (LH / Breviár dark mode) */
+            /* Tmavý režim */
             --bg-color: #000000;
             --text-color: #ffffff;
             --container-bg: #000000;
             --header-border: #333333;
-            --heading-color: #ffffd0; /* Svetložltá / krémová ako nadpis na obrázku */
+            --heading-color: #ffffd0; /* Svetložltá / krémová */
             --subheading-color: #ffffff;
             --rubrik-color: #ff3b30; /* Výrazná červená */
             --versicle-color: #ff3b30;
@@ -28,7 +28,7 @@
             --hr-color: #222222;
         }
 
-        /* Farby pre svetlý režim podľa obrázka (LH / Breviár light mode) */
+        /* Farby pre svetlý režim */
         [data-theme="light"] {
             --bg-color: #ffffff;
             --text-color: #1a1a1a;
@@ -36,7 +36,7 @@
             --header-border: #e0e0e0;
             --heading-color: #1a1a1a;
             --subheading-color: #1a1a1a;
-            --rubrik-color: #e52b2b; /* Červená pre svetlý motív */
+            --rubrik-color: #e52b2b;
             --versicle-color: #e52b2b;
             --control-bg: #f2f2f7;
             --control-border: #cccccc;
@@ -111,27 +111,46 @@
             max-width: 100%;
             margin: 0 auto;
             background: var(--container-bg);
-            padding: 60px 4px 8px 4px; /* Horné odsadenie aby lišta neprekrývala úvodný text */
+            padding: 60px 4px 8px 4px;
             font-size: var(--base-font-size);
         }
 
-        .header-title {
+        .chapter-title {
             text-align: center;
             font-size: 1.1em;
             letter-spacing: 0.5px;
             color: var(--heading-color);
-            margin-bottom: 15px;
+            margin-top: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .header-title {
+            text-align: center;
+            font-size: 1.25em;
+            letter-spacing: 0.5px;
+            color: var(--heading-color);
+            margin-bottom: 20px;
             border-bottom: 1px solid var(--header-border);
             padding-bottom: 8px;
             font-weight: 700;
             text-transform: uppercase;
         }
 
+        h1 {
+            text-align: center;
+            color: var(--rubrik-color);
+            text-transform: uppercase;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
         h2 {
             text-align: center;
-            color: var(--subheading-color);
-            text-transform: uppercase;
-            font-size: 1.25em;
+            color: var(--rubrik-color);
+            font-size: 1.15em;
             margin-top: 20px;
             margin-bottom: 12px;
             font-weight: 700;
@@ -222,8 +241,87 @@
 
     <div class="container" id="content">
 
-        <div class="header-title">
-            RIADNY OBRAD PRIJÍMANIA CHORÝCH
+        <div class="chapter-title">PRVÁ KAPITOLA</div>
+        <div class="header-title">RIADNY OBRAD PRIJÍMANIA CHORÝCH</div>
+
+        <p class="rubrik num-rubrik">14. Kňaz alebo diakon vysluhuje chorým sväté prijímanie a viatikum podľa knihy <i>Pomazanie chorých a pastoračná starostlivosť o nich</i>. Keď Eucharistiu prináša chorým akolyta alebo mimoriadny vysluhovateľ svätého prijímania, poverený podľa noriem práva, má sa dodržať obrad, ktorý nasleduje.</p>
+
+        <p class="rubrik num-rubrik">15. Tým, čo nemôžu prijať Eucharistiu pod spôsobom chleba, je dovolené podať ju iba pod spôsobom vína.<br>
+        Kristova krv sa nesie k chorému v nádobke uzavretej tak, aby sa úplne vylúčilo nebezpečenstvo vyliatia. Pri vysluhovaní sviatosti v jednotlivých prípadoch sa má vybrať vhodnejší spôsob z tých, ktoré sú určené na rozdávanie prijímania pod obidvoma spôsobmi.<br>
+        Ak po prijímaní zostalo niečo z najdrahšej Kristovej krvi, prijme ju vysluhovateľ a urobí povinnú purifikáciu.</p>
+
+        <h1>ÚVODNÉ OBRADY</h1>
+
+        <h2>Pozdrav</h2>
+        <p class="rubrik num-rubrik">16. Vysluhovateľ, primerane oblečený na túto službu (porov. bod 8), príde k chorému a vľúdne pozdraví jeho i ostatných prítomných. Môže to urobiť týmito slovami:</p>
+        
+        <p><strong>Pokoj tomuto domu a všetkým, čo v ňom bývajú.</strong></p>
+
+        <p class="rubrik num-rubrik">Možno použiť aj iné slová zo Svätého písma, ktorými sa veriaci zvyčajne pozdravujú.</p>
+
+        <h2>Krátka poklona Oltárnej sviatosti</h2>
+        <p class="rubrik num-rubrik">17. Potom položí Najsvätejšiu sviatosť na stôl a spolu s prítomnými sa jej klania. Možno použiť niektorú z týchto formúl:</p>
+
+        <div class="option-block" data-group="poklona">
+            <label class="option-select">
+                <input type="radio" name="poklona" value="1" checked>
+                <span class="versicle">Forma 1 (Svätá hostina, pri ktorej...)</span>
+            </label>
+            <p><strong>Svätá hostina, pri ktorej prijímame Krista:<br>
+            slávi sa pamiatka jeho umučenia,<br>
+            duša sa napĺňa milosťou<br>
+            a dostávame závdavok budúcej slávy.</strong></p>
+        </div>
+
+        <div class="option-block" data-group="poklona">
+            <label class="option-select">
+                <input type="radio" name="poklona" value="2">
+                <span class="versicle">Forma 2 (Aké láskavé je tvoje zmýšľanie...)</span>
+            </label>
+            <p><strong>Aké láskavé je tvoje zmýšľanie, Pane!<br>
+            Aby si ukázal svoju dobrotu<br>
+            voči svojim deťom,<br>
+            dávaš im prevzácny chlieb z neba;<br>
+            hladných kŕmiš dobrotami<br>
+            a pyšných boháčov prepúšťaš naprázdno.</strong></p>
+        </div>
+
+        <div class="option-block" data-group="poklona">
+            <label class="option-select">
+                <input type="radio" name="poklona" value="3">
+                <span class="versicle">Forma 3 (Zdrav buď, pravé telo Krista...)</span>
+            </label>
+            <p><strong>Zdrav buď, pravé telo Krista<br>
+            z Panny Matky zrodené,<br>
+            za nás ako obeť čistá na kríži umučené.<br>
+            Z jeho boku tiekla voda i krv,<br>
+            čo nás obmyla;<br>
+            ochraňuj nás v chvíli smrti,<br>
+            sviatosť spásy premilá.<br>
+            Ježiš drahý, dobrotivý,<br>
+            Syn Márie milostivý!</strong></p>
+        </div>
+
+        <div class="option-block" data-group="poklona">
+            <label class="option-select">
+                <input type="radio" name="poklona" value="4">
+                <span class="versicle">Forma 4 (Ja som živý chlieb...)</span>
+            </label>
+            <p><strong>Ja som živý chlieb,<br>
+            ktorý zostúpil z neba.<br>
+            Kto bude jesť z tohto chleba,<br>
+            bude žiť naveky.<br>
+            A chlieb, ktorý ja dám,<br>
+            je moje telo za život sveta.</strong></p>
+        </div>
+
+        <div class="option-block" data-group="poklona">
+            <label class="option-select">
+                <input type="radio" name="poklona" value="5">
+                <span class="versicle">Forma 5 (Klaniame sa ti, Pane Ježišu...)</span>
+            </label>
+            <p><strong>Klaniame sa ti, Pane Ježišu,<br>
+            v Najsvätejšej oltárnej sviatosti.</strong></p>
         </div>
 
         <h2>Prežehnanie</h2>
@@ -376,8 +474,8 @@
             <p class="clear">My, čo sme uverili, spoznali sme lásku, akú má Boh k nám. Boh je láska; a kto ostáva v láske, ostáva v Bohu a Boh ostáva v ňom.</p>
         </div>
 
-        <h2>Sväté prijímanie</h2>
-        <h3>Modlitba Pána</h3>
+        <h1>SVÄTÉ PRIJÍMANIE</h1>
+        <h2>Modlitba Pána</h2>
         <p class="rubrik num-rubrik">21. Potom vysluhovateľ uvedie Modlitbu Pána týmito alebo podobnými slovami:</p>
 
         <p>A teraz spoločne prosme nebeského Otca a modlime sa, ako nás naučil náš Pán Ježiš Kristus:</p>
@@ -393,7 +491,7 @@
         a neuveď nás do pokušenia,<br>
         ale zbav nás Zlého.</p>
 
-        <h3>Prijímanie</h3>
+        <h2>Prijímanie</h2>
         <p class="rubrik num-rubrik">22. Vysluhovateľ ukáže Najsvätejšiu sviatosť a powie:</p>
 
         <p>Hľa, Baránok Boží, ktorý sníma hriechy sveta. Blažení tí, čo sú pozvaní na hostinu Baránkovu.</p>
@@ -412,7 +510,7 @@
         <p class="rubrik num-rubrik">24. Po svätom prijímaní si vysluhovateľ zvyčajne očistí prsty a nádobku.<br>
         Potom, ak je to vhodné, možno zachovať chvíľu posvätného ticha.</p>
 
-        <h2>Modlitba po prijímaní</h2>
+        <h1>MODLITBA PO PRIJÍMANÍ</h1>
         <p class="rubrik num-rubrik">25. Potom vysluhovateľ powie záverečnú modlitbu:</p>
 
         <div class="option-block" data-group="modlitba">
@@ -557,7 +655,7 @@
             <span class="versicle">R.</span> Amen.</p>
         </div>
 
-        <h2>ZÁVEREČNÉ OBRADY</h2>
+        <h1>ZÁVEREČNÉ OBRADY</h1>
         <p class="rubrik num-rubrik">26. Vysluhovateľ vzýva Božie požehnanie, prežehná sa a pritom hovorí:</p>
 
         <div class="option-block" data-group="pozehnanie">
@@ -609,7 +707,7 @@
         }
 
         function toggleTheme() {
-            const body = document.body;
+            const body = body = document.body;
             const themeBtn = document.getElementById('themeBtn');
 
             if (body.getAttribute('data-theme') === 'light') {
@@ -663,7 +761,6 @@
         window.addEventListener('scroll', function() {
             let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
             
-            // Pri skrolovaní nadol sa skryje, pri skrolovaní nahor sa opäť zobrazí
             if (scrollTop > lastScrollTop && scrollTop > 50) {
                 controls.classList.add('controls-hidden');
             } else {
