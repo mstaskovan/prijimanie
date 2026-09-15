@@ -1,18 +1,27 @@
 let currentSize = 18;
 
+/* Zmena veľkosti písma */
 function changeFontSize(delta) {
     currentSize += delta;
     if (currentSize < 12) currentSize = 12;
     if (currentSize > 36) currentSize = 36;
-    document.getElementById('content').style.fontSize = currentSize + 'px';
+    
+    // Ak 'content' neexistuje, zmení písmo v '.container'
+    const target = document.getElementById('content') || document.querySelector('.container');
+    if (target) {
+        target.style.fontSize = currentSize + 'px';
+    }
 }
 
 function resetFontSize() {
     currentSize = 18;
-    document.getElementById('content').style.fontSize = currentSize + 'px';
+    const target = document.getElementById('content') || document.querySelector('.container');
+    if (target) {
+        target.style.fontSize = currentSize + 'px';
+    }
 }
 
-/* Automatická detekcia a správa motívu */
+/* Automatická detekcia a správa motívu (iOS/Android kompatibilné) */
 function initTheme() {
     const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
     const themeBtn = document.getElementById('themeBtn');
@@ -32,26 +41,31 @@ function toggleTheme() {
 
     if (body.getAttribute('data-theme') === 'light') {
         body.removeAttribute('data-theme');
-        themeBtn.innerHTML = '☀️ Svetlý motív';
+        if (themeBtn) themeBtn.innerHTML = '☀️ Svetlý motív';
     } else {
         body.setAttribute('data-theme', 'light');
-        themeBtn.innerHTML = '🌙 Tmavý motív';
+        if (themeBtn) themeBtn.innerHTML = '🌙 Tmavý motív';
     }
 }
 
 /* Ovládanie sendvičového menu */
 function toggleMenu() {
     const menu = document.getElementById('navMenu');
-    menu.classList.toggle('active');
+    if (menu) {
+        menu.classList.toggle('active');
+    }
 }
 
-/* Zavretie menu pri kliknutí mimo neho */
+/* Zavretie menu pri kliknutí mimo neho ALEBO pri kliknutí na odkaz */
 document.addEventListener('click', function(event) {
     const menu = document.getElementById('navMenu');
     const toggleBtn = document.querySelector('.menu-toggle');
     
-    if (menu && toggleBtn && !menu.contains(event.target) && !toggleBtn.contains(event.target)) {
-        menu.classList.remove('active');
+    if (menu && menu.classList.contains('active')) {
+        // Ak klikneš mimo menu a tlačidla, alebo priamo na odkaz <a> v menu
+        if ((!menu.contains(event.target) && !toggleBtn.contains(event.target)) || event.target.tagName === 'A') {
+            menu.classList.remove('active');
+        }
     }
 });
 
@@ -75,25 +89,30 @@ function filterSelected() {
     numRubriks.forEach(rubrik => rubrik.classList.add('hidden'));
 }
 
-/* Sledovanie skrolovania na skrytie/zobrazenie menu */
+/* Sledovanie skrolovania (skrytie/zobrazenie lišty + cross-platform iOS scroll fix) */
 let lastScrollTop = 0;
-const controls = document.getElementById('controls');
 
 window.addEventListener('scroll', function() {
+    // Cross-platform podpora pre iOS Safari aj Android Chrome
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const controls = document.getElementById('controls');
+    const menu = document.getElementById('navMenu');
     
-    if (scrollTop > lastScrollTop && scrollTop > 50) {
-        controls.classList.add('controls-hidden');
-        const menu = document.getElementById('navMenu');
-        if (menu) menu.classList.remove('active');
-    } else {
-        controls.classList.remove('controls-hidden');
+    if (controls) {
+        if (scrollTop > lastScrollTop && scrollTop > 50) {
+            // Skrolovanie nadol -> skryť lištu aj menu
+            controls.classList.add('controls-hidden');
+            if (menu) menu.classList.remove('active');
+        } else {
+            // Skrolovanie nahor -> zobraziť lištu
+            controls.classList.remove('controls-hidden');
+        }
     }
     
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-});
+}, { passive: true });
 
-// Inicializácia po načítaní
+/* Inicializácia po načítaní DOM */
 document.addEventListener('DOMContentLoaded', function() {
     initTheme();
 });
