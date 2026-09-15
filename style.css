@@ -120,8 +120,8 @@ button.btn-apply {
 /* Rozbalovacie navigačné menu na PLNÚ ŠÍRKU */
 .nav-menu {
     display: none;
-    position: fixed;
-    top: calc(100% - 1px);
+    position: absolute; /* Správna pozícia voči nadradenej lište .controls */
+    top: 100%;          /* Rozbalenie presne od spodnej hranice .controls */
     left: 0;
     width: 100%;
     background-color: var(--menu-bg);
@@ -131,7 +131,7 @@ button.btn-apply {
 }
 
 /* Ak sa lišta skryje pri skrolovaní, skryje sa aj otvorená ponuka menu */
-.controls.controls-hidden ~ .nav-menu {
+.controls.controls-hidden .nav-menu {
     display: none !important;
 }
 
