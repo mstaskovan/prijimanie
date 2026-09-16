@@ -1,23 +1,27 @@
-let currentSize = 18;
-
-/* Zmena veľkosti písma */
-function changeFontSize(delta) {
-    currentSize += delta;
-    if (currentSize < 12) currentSize = 12;
-    if (currentSize > 36) currentSize = 36;
-    
-    const target = document.getElementById('content') || document.querySelector('.container');
-    if (target) {
-        target.style.fontSize = currentSize + 'px';
-    }
+/* Získanie a správa veľkosti písma z CSS premennej */
+function getBaseFontSize() {
+    const rootStyles = getComputedStyle(document.documentElement);
+    const baseSize = rootStyles.getPropertyValue('--base-font-size').trim();
+    return parseFloat(baseSize) || 18; // Ak premenná chýba, použije sa 18
 }
 
+// Inicializácia aktuálnej veľkosti podľa CSS
+let currentFontSize = getBaseFontSize();
+
+/* Zmena veľkosti písma (A+ / A-) */
+function changeFontSize(delta) {
+    currentFontSize += delta;
+    if (currentFontSize < 12) currentFontSize = 12;
+    if (currentFontSize > 36) currentFontSize = 36;
+    
+    // Nastavenie premennej priamo v :root pre dynamickú zmenu celej stránky
+    document.documentElement.style.setProperty('--base-font-size', currentFontSize + 'px');
+}
+
+/* Reset na 100% (návrat k pôvodnej hodnote z CSS) */
 function resetFontSize() {
-    currentSize = 18;
-    const target = document.getElementById('content') || document.querySelector('.container');
-    if (target) {
-        target.style.fontSize = currentSize + 'px';
-    }
+    document.documentElement.style.removeProperty('--base-font-size');
+    currentFontSize = getBaseFontSize();
 }
 
 /* Unifikovaná funkcia pre tlačidlo "✓ Skryť / Zobraziť pokyny / Použiť výber" */
@@ -86,7 +90,6 @@ document.addEventListener('click', function(event) {
     const toggleBtn = document.querySelector('.menu-toggle');
     
     if (menu && menu.classList.contains('active')) {
-        // Zavrieť ak sa klikne mimo menu a tlačidla, ALEBO ak sa klikne na odkaz v menu/submenu
         const isMenuClick = menu.contains(event.target);
         const isToggleClick = toggleBtn && toggleBtn.contains(event.target);
         const isLinkClick = event.target.tagName === 'A' || event.target.closest('a');
@@ -103,7 +106,6 @@ let lastScrollTop = 0;
 window.addEventListener('scroll', function() {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
     
-    // Podpora pre nový obal headerControls aj starý controls
     const headerWrapper = document.getElementById('headerControls');
     const controls = document.getElementById('controls');
     const menu = document.getElementById('navMenu');
@@ -112,12 +114,10 @@ window.addEventListener('scroll', function() {
 
     if (targetElement) {
         if (scrollTop > lastScrollTop && scrollTop > 50) {
-            // Skrolovanie nadol -> skryť lištu aj otvorenú ponuku
             targetElement.classList.add('nav-hidden');
             targetElement.classList.add('controls-hidden');
             if (menu) menu.classList.remove('active');
         } else {
-            // Skrolovanie nahor -> zobraziť lištu
             targetElement.classList.remove('nav-hidden');
             targetElement.classList.remove('controls-hidden');
         }
@@ -126,10 +126,6 @@ window.addEventListener('scroll', function() {
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
 }, { passive: true });
 
-/* Inicializácia po načítaní DOM */
-document.addEventListener('DOMContentLoaded', function() {
-    initTheme();
-});
 /* Plynulý posun na začiatok stránky */
 function scrollToTop() {
     window.scrollTo({
@@ -149,3 +145,10 @@ window.addEventListener('scroll', function() {
         }
     }
 }, { passive: true });
+
+/* Inicializácia po načítaní DOM */
+document.addEventListener('DOMContentLoaded', function() {
+    initTheme();
+    // Aktualizácia premennej po načítaní DOM
+    currentFontSize = getBaseFontSize();
+});
