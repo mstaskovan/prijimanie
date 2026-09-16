@@ -21,6 +21,11 @@ function resetFontSize() {
     }
 }
 
+// Pridaj do svojho script.js:
+function filterSelected() {
+    document.body.classList.toggle('hide-rubriks');
+}
+
 /* Automatická detekcia a správa motívu (iOS/Android kompatibilné) */
 function initTheme() {
     const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
