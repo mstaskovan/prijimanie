@@ -2,704 +2,235 @@
 <html lang="sk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Obrad odporúčania zomierajúcich</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'media',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        .tab-btn.active {
-            border-bottom-color: #4f46e5;
-            color: #4f46e5;
-            font-weight: 600;
-        }
-        .dark .tab-btn.active {
-            border-bottom-color: #818cf8;
-            color: #818cf8;
-        }
-        /* Style for hidden sections via toggles */
-        .section-hidden {
-            display: none !important;
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style_3.css">
 </head>
-<body class="bg-slate-50 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
-
-    <!-- Header & Navigation -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-slate-800/90 backdrop-blur border-b border-slate-200 dark:border-slate-700 shadow-sm">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
-            
-            <!-- Dropdown Menu / Page Selector -->
-            <div class="relative">
-                <button id="pageMenuBtn" class="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 font-medium text-sm transition">
-                    <i class="fa-solid fa-book-bible text-indigo-600 dark:text-indigo-400"></i>
-                    <span>Stránky</span>
-                    <i class="fa-solid fa-chevron-down text-xs opacity-60"></i>
-                </button>
-
-                <!-- Dropdown content -->
-                <div id="pageMenuDropdown" class="hidden absolute left-0 mt-2 w-56 bg-white dark:bg-slate-800 rounded-xl shadow-xl border border-slate-200 dark:border-slate-700 py-2 z-50">
-                    <a href="#" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-700 flex items-center gap-2">
-                        <i class="fa-solid fa-heart-pulse text-indigo-500 w-4"></i> Pomazanie chorých
-                    </a>
-                    <a href="#" class="block px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-indigo-50 dark:hover:bg-slate-700 flex items-center gap-2">
-                        <i class="fa-solid fa-hand-holding-hand text-indigo-500 w-4"></i> Viatikum
-                    </a>
-                    <a href="#" class="block px-4 py-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-50/50 dark:bg-slate-700/50 flex items-center gap-2">
-                        <i class="fa-solid fa-cross text-indigo-500 w-4"></i> Odporúčanie zomierajúcich
-                    </a>
-                </div>
-            </div>
-
-            <!-- Page Title -->
-            <h1 class="text-base sm:text-lg font-bold text-slate-800 dark:text-slate-100 truncate">
-                Odporúčanie zomierajúcich
-            </h1>
-
-            <!-- Controls (Font & Section Toggle) -->
-            <div class="flex items-center gap-1 sm:gap-2">
-                <!-- Text size controls -->
-                <div class="flex items-center bg-slate-100 dark:bg-slate-700 rounded-lg p-1 border border-slate-200 dark:border-slate-600 text-xs sm:text-sm">
-                    <button onclick="changeFontSize(-1)" class="px-2 py-1 rounded hover:bg-white dark:hover:bg-slate-600 font-bold" title="Zmenšiť písmo">A-</button>
-                    <button onclick="changeFontSize(0)" class="px-2 py-1 rounded hover:bg-white dark:hover:bg-slate-600 text-xs" title="Pôvodná veľkosť">100%</button>
-                    <button onclick="changeFontSize(1)" class="px-2 py-1 rounded hover:bg-white dark:hover:bg-slate-600 font-bold" title="Zväčšiť písmo">A+</button>
-                </div>
-
-                <!-- Rubrics Toggle Button -->
-                <button onclick="toggleRubrics()" id="btn-rubrics" class="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs sm:text-sm flex items-center gap-1.5" title="Skryť/Zobraziť červené instrukcie">
-                    <i class="fa-regular fa-eye-slash" id="rubric-icon"></i>
-                    <span class="hidden sm:inline" id="rubric-text-label">Rubriky</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Section Tabs Navigation -->
-        <nav class="max-w-4xl mx-auto px-4 flex overflow-x-auto no-scrollbar space-x-1 border-t border-slate-200 dark:border-slate-700 text-xs sm:text-sm">
-            <button data-tab="tab-uvod" class="tab-btn active py-2.5 px-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap">
-                Úvod
-            </button>
-            <button data-tab="tab-zvolania" class="tab-btn py-2.5 px-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap">
-                I. Zvolania
-            </button>
-            <button data-tab="tab-citania" class="tab-btn py-2.5 px-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap">
-                II. Čítania
-            </button>
-            <button data-tab="tab-litanie" class="tab-btn py-2.5 px-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap">
-                III. Litánie
-            </button>
-            <button data-tab="tab-modlitby" class="tab-btn py-2.5 px-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap">
-                IV. Odporúčanie
-            </button>
-            <button data-tab="tab-skonanie" class="tab-btn py-2.5 px-3 border-b-2 border-transparent text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 whitespace-nowrap">
-                V. Po skonaní
-            </button>
-        </nav>
-    </header>
-
-    <!-- Main Content Container -->
-    <main id="main-content" class="flex-grow max-w-3xl w-full mx-auto p-4 sm:p-6 text-base leading-relaxed">
-
-        <!-- TAB: ÚVOD -->
-        <section id="tab-uvod" class="tab-content block space-y-6">
-            <div class="text-center border-b border-slate-200 dark:border-slate-700 pb-4">
-                <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-wide text-indigo-700 dark:text-indigo-400">Štvrtá kapitola</h2>
-                <h3 class="text-lg sm:text-xl font-semibold text-slate-700 dark:text-slate-300">Obrad odporúčania zomierajúcich</h3>
-            </div>
-
-            <div class="rubric text-red-600 dark:text-red-400 italic space-y-3 bg-red-50/50 dark:bg-red-950/20 p-4 rounded-xl border-l-4 border-red-500">
-                <p><strong>50.</strong> Keď veriaci príde do štádia zápasu so smrťou, kňaz a ostatní prítomní nech sa modlia za umierajúceho odporúčacie modlitby. Sú to znaky kresťanskej lásky, ako aj svedectvo viery v oslobodenie a spásu človeka skrze Kristovo zmŕtvychvstanie.</p>
-                <p>Obrad odporúčania zomierajúcich má teda posilniť veriacemu vnímanie Kristovej prítomnosti a vliať mu dôveru v Božie milosrdenstvo. Okrem toho má pomôcť prítomným príbuzným a priateľom, aby prežili túto chvíľu vo svetle viery a našli v nej duchovnú útechu.</p>
-                <p><strong>51.</strong> Tieto modlitby má viesť kňaz alebo diakon. Ak nie sú prítomní, modlitbu môže viesť iný veriaci.</p>
-                <p><strong>52.</strong> Odporúčacie modlitby sa skladajú z viacerejších častí, ktoré sa môžu voľne vybrať podľa okolností a stavu umierajúceho:</p>
-                <ul class="list-disc pl-6 space-y-1 mt-2">
-                    <li>krátke zvolania,</li>
-                    <li>krátke čítanie zo Svätého písma,</li>
-                    <li>litánie,</li>
-                    <li>modlitby odporúčania,</li>
-                    <li>modlitba po skonaní.</li>
-                </ul>
-                <p><strong>53.</strong> Tieto modlitby sa môžu modliť postupne počas dlhšieho obdobia, pričom sa podľa možnosti prispôsobia stavu umierajúceho.</p>
-                <p><strong>54.</strong> Modlitbu odporúčania je vhodné spojiť s gestom vkladania rúk, pričom veriaci alebo kňaz položí ruku na hlavu umierajúceho, prípadne ho označí znakom kríža na čele.</p>
-                <p><strong>55.</strong> Je vhodné, aby prítomní držali v rukách zažatú sviecu ako symbol krstného svetla a viery v večný život.</p>
-            </div>
-        </section>
-
-        <!-- TAB: I. ZVOLANIA -->
-        <section id="tab-zvolania" class="tab-content hidden space-y-6">
-            <h2 class="text-xl font-bold text-center text-indigo-700 dark:text-indigo-400 border-b pb-2">I. Krátke zvolania</h2>
-
-            <div class="rubric text-red-600 dark:text-red-400 italic">
-                Umierajúcemu sa môžu do ucha pomaly a zreteľne šepkať nasledujúce zvolania alebo ich vyriekne sám, ak vládze:
-            </div>
-
-            <div class="space-y-6">
-                <div>
-                    <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Na upevnenie viery:</h4>
-                    <ul class="space-y-1 pl-4 border-l-2 border-indigo-200 dark:border-indigo-800 italic">
-                        <li>Verím, že môj Vykupiteľ žije a v posledný deň vstanem z zeme.</li>
-                        <li>Verím, že uvidím dobrodenia Pánove v krajine žijúcich.</li>
-                        <li>Pane, verím, pomôž mojej neviere.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Na upevnenie nádeje:</h4>
-                    <ul class="space-y-1 pl-4 border-l-2 border-indigo-200 dark:border-indigo-800 italic">
-                        <li>V teba, Pane, som dúfal, nebudem zahanbený na veky.</li>
-                        <li>I keď by som mal ísť tmavou dolinou, nebudem sa Nebáť zlého, lebo ty si so mnou.</li>
-                        <li>Pán je moje svetlo a moja spása, koho sa mám strašiť?</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Na upevnenie lásky:</h4>
-                    <ul class="space-y-1 pl-4 border-l-2 border-indigo-200 dark:border-indigo-800 italic">
-                        <li>Milujem ťa, Pane, moja sila; Pán je moja opora a moje útočište.</li>
-                        <li>Kto nás odúčia od Kristovej lásky?</li>
-                        <li>Božia láska je rozliata v našich srdciach skrze Ducha Svätého, ktorého sme dostali.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Na upevnenie túžby:</h4>
-                    <ul class="space-y-1 pl-4 border-l-2 border-indigo-200 dark:border-indigo-800 italic">
-                        <li>Ako jeleň dychtí za vodou z prameňa, tak moja duša dychtí po tebe, Bože.</li>
-                        <li>Moja duša žízni po Bohu, po živom Bohu; kedyže prídem a zjavím sa pred Božou tvárou?</li>
-                        <li>Túžim odísť a byť s Kristom.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Ježišove slová:</h4>
-                    <ul class="space-y-1 pl-4 border-l-2 border-indigo-200 dark:border-indigo-800 italic">
-                        <li>Poďte ku mne všetci, ktorí sa namáhate a ste preťažení, a ja vás posilním.</li>
-                        <li>Ja som vzkriesenie a život; kto verí vo mňa, bude žiť, aj keď umrie.</li>
-                        <li>Idem vám pripraviť miesto; zasa prídem a vezmem vás k sebe.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Slová odovzdania do Božej vôle:</h4>
-                    <ul class="space-y-1 pl-4 border-l-2 border-indigo-200 dark:border-indigo-800 italic">
-                        <li>Oče, do tvojich rúk porúčam svojho ducha.</li>
-                        <li>Pane Ježišu, prijmi môjho ducha.</li>
-                        <li>Buď vôľa tvoja ako v nebi, tak i na zemi.</li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-semibold text-slate-800 dark:text-slate-200 mb-2">Vzývanie Panny Márie a svätého Jozefa:</h4>
-                    <ul class="space-y-1 pl-4 border-l-2 border-indigo-200 dark:border-indigo-800 italic">
-                        <li>Svatá Mária, Matka Božia, modli sa za mňa hriešneho teraz i v hodinu mojej smrti.</li>
-                        <li>Pod tvoju ochranu sa utiekame, svätá Božia Rodička.</li>
-                        <li>Svatý Jozef, patrón umierajúcich, oroduj za mňa.</li>
-                        <li>Ježiš, Mária, Jozef, vám odovzdávam svoje srdce i svoju dušu.</li>
-                        <li>Ježiš, Mária, Jozef, stojte pri mne v poslednom zápase.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB: II. ČÍTANIA -->
-        <section id="tab-citania" class="tab-content hidden space-y-6">
-            <h2 class="text-xl font-bold text-center text-indigo-700 dark:text-indigo-400 border-b pb-2">II. Biblické čítania</h2>
-
-            <div class="rubric text-red-600 dark:text-red-400 italic">
-                Môže sa prečítať jedno alebo viacero z nasledujúcich čítaní zo Svätého písma:
-            </div>
-
-            <div class="space-y-6">
-                <!-- Iz 35 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Iz 35, 3 – 4. 6c – 7. 10</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Boh sám príde a spasí nás</div>
-                    <p class="mt-2">Posilnite ochabnuté ruky a upevnite podlomené kolená! Povedzte malomyseľným: „Vzchopte sa, nebojte sa! Hľa, váš Boh! Prichádza odplata, Božia odveta; on sám príde a spasí nás.“ Vtedy sa na púšti vyprýštia vody a potoky na stepi. Vyschnutá zem sa zmení na močiar a vyprahnutá pôda na pramene vôd. A tí, ktorých Pán vykúpil, sa vrátia, s jasotom prídu na Sion a večná radosť bude ovenčovať ich hlavy. Uchváti ich radosť a veselosť a zmizne bolesť a vzdychanie.</p>
-                </div>
-
-                <!-- Job 19 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Jób 19, 1. 23 – 27a</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Ja viem, že môj Vykupiteľ žije</div>
-                    <p class="mt-2">Jób odpovedal: „Och, hocby moje slová boli napísané, hocby boli vryté do knihy, železným rytidlom a olovom na veky vysekané do skaly! Ja viem, že môj Vykupiteľ žije a v posledný deň vstanem zo zeme. A keď ma aj v mojej koži zoderú, vo svojom tele uvidím Boha. Ja sám ho uvidím, moje oči ho uzrú, a nie iný.“</p>
-                </div>
-
-                <!-- Žalm 23 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Žalm 23</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Pán je môj pastier</div>
-                    <p class="mt-2">Pán je môj pastier, nič mi nechýba: vodí ma na zelené paše. Vodí ma k tichým vodám, dušu mi osviežuje. Vodí ma po správnych chodníkoch, verný svojmu menu. I keď mám ísť tmavou dolinou, nebudem sa Nebáť zlého, lebo ty si so mnou. Tvoj prút a tvoja palica, tie sú mi útechou. Prestieraš mi stôl pred očami moich protivníkov. Hlavu mi pomazávaš olejom a môj kalich preteká. Dobrota a milosrdenstvo budú ma sprevádzať po všetky dni môjho života a budem bývať v Pánovom dome po dlhé veky.</p>
-                </div>
-
-                <!-- Žalm 25 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Žalm 25, 1 – 7</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">K tebe, Pane, dvíham svoju dušu</div>
-                    <p class="mt-2">K tebe, Pane, dvíham svoju dušu, tebe dôverujem, Bože môj, nech nie som zahanbený a nech sa moji nepriatelia netešia nadomnou. Veď nik, kto dúfa v teba, nebude zahanbený... Ukáž mi, Pane, svoje cesty a pouč ma o svojich chodníkoch. Veď ma vo svojej pravde a uč ma, lebo ty si Boh, môj Spasiteľ, a v teba dúfam po celý deň. Rozpomeň sa, Pane, na svoje zľutovanie a na svoje milosrdenstvo, ktoré je od vekov. Nespomínaj si na hriechy mojej mladosti a na moje poklesky; spomeň si na mňa vo svojom milosrdenstve pre svoju dobrotu, Pane.</p>
-                </div>
-
-                <!-- 1 Kor 15 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">1 Kor 15, 1 – 4</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Kristus bol vzkriesený podľa Písem</div>
-                    <p class="mt-2">Bratia, pripomínam vám evanjelium, ktoré som vám hlásal, ktoré ste prijali, v ktorom stojíte a skrze ktoré ste aj spasení, ak sa držíte toho slova, ako som vám ho hlásal, ibaže by ste boli nadarmo uverili. Odovzdal som vám predovšetkým to, čo som aj ja prijal: že Kristus zomrel za naše hriechy podľa Písem, že bol pochovaný a že bol tretieho dňa vzkriesený podľa Písem.</p>
-                </div>
-
-                <!-- 1 Jn 4 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">1 Jn 4, 16</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Boh je láska</div>
-                    <p class="mt-2">A my, čo sme uverili, spoznali sme lásku, akú má Boh k nám. Boh je láska; a kto ostáva v láske, ostáva v Bohu a Boh ostáva v ňom.</p>
-                </div>
-
-                <!-- Zjv 21 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Zjv 21, 1 – 7</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Boh im zotrie z očí každú slzu</div>
-                    <p class="mt-2">Vidol som nové nebo a novú zem, lebo prvotné nebo a prvotná zem sa pominuli a mora už niet. A videl som, ako z neba od Boha zostupuje sväté mesto, nový Jeruzalem, pripravený ako nevesta, ozdobená pre svojho ženícha. A počul som mohutný hlas od trónu hovoriť: „Hľa, Boží stánok je medzi ľuďmi! Bude bývať s nimi a oni budú jeho ľudom a sám Boh, ich Boh, bude s nimi. Zotrie im z očí každú slzu a smrti už nebude, ani smútku, ani náreku, ani bolesti už nebude, lebo prvé sa pominulo.“ A ten, čo sedel na tróne, povedal: „Hľa, všetko robím nové.“ ... Ja som Alfa i Omega, Počiatok i Koniec. Ja dám smädnému zadarmo z prameňa živej vody. Kto zvíťazí, zdedí toto: ja budem jeho Bohom a on bude mojím synom.</p>
-                </div>
-
-                <!-- Mt 25 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Mt 25, 1 – 13</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Hľa, ženích prichádza, vyjdite mu v ústrety!</div>
-                    <p class="mt-2">Ježiš povedal svojim učeníkom toto podobenstvo: „Nebeské kráľovstvo sa bude podobať desiatim pannám, ktoré si vzali lampy a vyšli v ústrety ženíchovi. Päť z nich bolo nerozumných a päť múdrych. Nerozumné si vzali lampy, ale olej si so sebou nevzali. Múdre si však vzali s lampami v nádobách aj olej. Keď ženích meškal, všetkým sa začalo chcieť spať a zdriemli. O polnoci sa ozval krik: ‚Hľa, ženích prichádza, vyjdite mu v ústrety!‘ Vtedy všetky tie panny vstali a pripravovali si lampy... Tieto múdre vošli s ním na svadbu a dvere sa zatvorili. Napokon prišli aj ostatné panny a hovorili: ‚Pane, Pane, otvor nám!‘ Ale on im odpovedal: ‚Veru, hovorím vám: Nepoznám vás.‘ Bdejte teda, lebo neviete ani dňa, ani hodiny.“</p>
-                </div>
-
-                <!-- Mk 15 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Mk 15, 33 – 37</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Ježiš zvolal mocným hlasom a dokonal</div>
-                    <p class="mt-2">Keď bolo šesť hodín, nastala tma po celej zemi až do deviatej hodiny. O deviatej hodine zvolal Ježiš mocným hlasom: „Eloi, Eloi, lema sabachthani?“, čo v preklade znamená: „Bože môj, Bože môj, prečo si ma opustil?“ Keď to počuli niektorí z tých, čo tam stály, hovorili: „Hľa, volá Eliáša!“ Kdosi potom pribehol, naplnil špongiu octom, nastokol ju na trstinu a dával mu piť so slovami: „Počkajte, uvidíme, či ho Eliáš príde sňať.“ Ale Ježiš zvolal mocným hlasom a dokonal.</p>
-                </div>
-
-                <!-- Lk 22 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Lk 22, 39 – 48</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Buď vôľa tvoja</div>
-                    <p class="mt-2">Ježiš vyšiel a podľa svojho zvyku išiel na Olivový vrch a učeníci šli za ním. Keď prišiel na miesto, povedal im: „Modlite sa, aby ste nepadli do pokušenia.“ Sám sa od nich vzdialil asi tak na dohodenie kameňom, kľakol si a modlil sa: „Otče, ak chceš, odním odo mňa tento kalich; no nech sa stane nie moja, ale tvoja vôľa.“ Tu sa mu zjavil anjel z neba a posilňoval ho. A on v smirteľnej úzkosti sa modlil ešte horlivejšie a jeho pot bol ako kvapky krvi, čo padajú na zem. Keď vstal od modlitby a prišiel k učeníkom, našiel ich od zármutku spať. I povedal im: „Čo spíte? Vstaňte a modlite sa, aby ste nepadli do pokušenia.“</p>
-                </div>
-
-                <!-- Lk 23 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Lk 23, 39 – 43</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Dnes budeš so mnou v raji</div>
-                    <p class="mt-2">Jeden z zločincov, ktorí tam viseli, sa mu rúhal: „Nie si ty Kristus?! Zachráň seba aj nás!“ Ale druhý ho zahriakol: „Ani ty sa nebojíš Boha, hoci si odsúdený na rovnaký trest? A my spravodlivo, lebo dostávame, čo sme si zaslúžili, ale tento neurobil nič zlé.“ Potom povedal: „Ježišu, spomeň si na mňa, keď prídeš do svojho kráľovstva.“ On mu odpovedal: „Veru, hovorím ti: Dnes budeš so mnou v raji.“</p>
-                </div>
-
-                <!-- Lk 24 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Lk 24, 1 – 8</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Vstal z mŕtvych</div>
-                    <p class="mt-2">V prvý deň týždňa zavčas ráno prišli ženy k hrobu a priniesli voňavé oleje, čo si pripravili. Kameň našli od hrobu odvalený, vošli dnu, ale telo Pána Ježiša nenašli. Ako nad tým rozpačito uvažovali, zastali pri nich dvaja mužovia v žiarivom odeve. Zmocnil sa ich strach i sklonili tvár k zemi. Ale oni sa im prihovorili: „Prečo hľadáte živého medzi mŕtvymi? Niet ho tu. Vstal z mŕtvych. Spomeňte si, ako vám povedal, keď bol ešte v Galilei: ‚Syna človeka musia vydať do rúk hriešnych ľudí a ukrižovať, ale on tretieho dňa vstane z mŕtvych.‘“ Tu sa rozpamätali na jeho slová.</p>
-                </div>
-
-                <!-- Jn 6 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Jn 6, 37 – 40</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Kto vidí Syna a verí v neho, má život večný</div>
-                    <p class="mt-2">Ježiš povedal zástupu: „Všetko, čo mi dáva Otec, príde ku mne. A toho, kto prichádza ku mne, neodoženiem, lebo som nezostúpil z neba, aby som plnil svoju vôľu, ale vôľu toho, ktorý ma poslal. A vôľa toho, ktorý ma poslal, je, aby som nestratil nič z toho, čo mi dal, ale aby som všetko vzkriesil v posledný deň. Lebo vôľa môjho Otca je, aby každý, kto vidí Syna a verí v neho, mal večný život; a ja ho vzkriesim v posledný deň.“</p>
-                </div>
-
-                <!-- Jn 14 -->
-                <div class="border-l-4 border-slate-300 dark:border-slate-700 pl-4 space-y-1">
-                    <div class="text-xs font-bold text-red-600 dark:text-red-400 uppercase tracking-wider">Jn 14, 1 – 6. 22 – 23. 27</div>
-                    <div class="font-semibold italic text-sm text-slate-600 dark:text-slate-400">Ježiš odchádza k Otcovi</div>
-                    <p class="mt-2">Ježiš povedal svojim učeníkom: „Nech sa vám srdce nevzrušuje! Veríte v Boha, verte aj vo mňa. V dome môjho Otca je mnoho príbytkov. Keby to tak nebolo, bol by som vám povedal, že vám idem pripraviť miesto?! Keď odídem a pripravím vám miesto, zasa prídem a vezmem vás k sebe, aby ste aj vy boli tam, kde som ja. A cestu, kam idem, poznáte.“ Tomáš mu povedal: „Pane, nevieme, kam ideš. Akože môžeme poznať cestu?!“ Ježiš mu odpovedal: „Ja som cesta, pravda a život. Nik nepríde k Otcovi, iba cezo mňa.“ Júda, nie ten Iškariotský, sa ho spýtal: „Pane, ako to, že seba chceš zjaviť nám, a svetu nie?“ Ježiš mu odpovedal: „Kto ma miluje, bude zachovávať moje slovo a môj Otec ho bude milovať; prídeme k nemu a urobíme si uňho príbytok... Pokoj vám zanechávam, svoj pokoj vám dávam. Ale ja vám nedávam, ako svet dáva. Nech sa vám srdce nevzrušuje a nestrachuje.“</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB: III. LITÁNIE -->
-        <section id="tab-litanie" class="tab-content hidden space-y-6">
-            <h2 class="text-xl font-bold text-center text-indigo-700 dark:text-indigo-400 border-b pb-2">III. Litánie</h2>
-
-            <div class="rubric text-red-600 dark:text-red-400 italic">
-                <strong>56.</strong> Ak umierajúci vydrží dlhšiu modlitbu, odporúča sa, aby sa prítomní podľa okolností modlili zaňho litánie s odpoveďou: <em>oroduj zaňho (-za ňu)</em> (alebo aspoň niekoľko prosieb z nich), pričom zvlášť spomenú svätca alebo svätých patrónov umierajúceho alebo rodiny. Možno odriekať aj niektoré zo zvyčajných modlitieb. Modlitby vedie niekto z prítomných.
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-y-1 gap-x-4 max-w-xl mx-auto text-sm sm:text-base">
-                <div class="font-semibold">Pane, zmiluj sa.</div>
-                <div class="text-right sm:text-left italic">Pane, zmiluj sa.</div>
-
-                <div class="font-semibold">Kriste, zmiluj sa.</div>
-                <div class="text-right sm:text-left italic">Kriste, zmiluj sa.</div>
-
-                <div class="font-semibold border-b pb-1 sm:border-0">Pane, zmiluj sa.</div>
-                <div class="text-right sm:text-left italic border-b pb-1 sm:border-0">Pane, zmiluj sa.</div>
-
-                <div class="mt-2">Svätá Mária, Matka Božia,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Michal,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätí Boží anjeli,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">orodujte zaňho (za ňu).</div>
-
-                <div>Svätý Ján Krstiteľ,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Jozef,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Peter a Pavol,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">orodujte zaňho (za ňu).</div>
-
-                <div>Svätý Ondrej,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Ján,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätá Mária Magdaléna,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Štefan,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Ignác Antiochijský,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Vavrinec,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Vojtech,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Ján Nepomucký,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätá Perpetua a Felicita,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">orodujte zaňho (za ňu).</div>
-
-                <div>Svätá Agnesa,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Gregor,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Augustín,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Atanáz,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Bazil,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Martin,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Benedikt,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Cyril a Metod,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">orodujte zaňho (za ňu).</div>
-
-                <div>Svätý Andrej Svorad a Benedikt,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">orodujte zaňho (za ňu).</div>
-
-                <div>Svätý František a Dominik,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">orodujte zaňho (za ňu).</div>
-
-                <div>Svätý František Xaverský,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Kamil,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Ján z Boha,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Vincent de Paul,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätý Ján Mária Vianney,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div>Svätá Katarína Sienská,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">oroduj zaňho (za ňu).</div>
-
-                <div class="font-semibold border-b pb-1 sm:border-0">Všetci Boží svätí a sväté,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic border-b pb-1 sm:border-0">orodujte zaňho (za ňu).</div>
-
-                <div class="mt-3">Buď mu (jej) milostivý,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">ochraňuj ho (ju), Pane.</div>
-
-                <div>Od všetkého zla</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">ochraňuj ho (ju), Pane.</div>
-
-                <div>Od každého hriechu</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">ochraňuj ho (ju), Pane.</div>
-
-                <div>Od večnej smrti</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">ochraňuj ho (ju), Pane.</div>
-
-                <div>Pre tvoje vtelenie</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">ochraňuj ho (ju), Pane.</div>
-
-                <div>Pre tvoju smrť a zmŕtvychvstanie</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">ochraňuj ho (ju), Pane.</div>
-
-                <div class="border-b pb-1 sm:border-0">Pre zoslanie Ducha Svätého</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic border-b pb-1 sm:border-0">ochraňuj ho (ju), Pane.</div>
-
-                <div class="mt-3">My hriešnici,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">ochraňuj ho (ju), Pane.</div>
-
-                <div>Odpusť nám hriechy,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic">ochraňuj ho (ju), Pane.</div>
-
-                <div class="border-b pb-1 sm:border-0">Ježišu, Syn živého Boha,</div>
-                <div class="text-right sm:text-left text-red-600 dark:text-red-400 font-medium italic border-b pb-1 sm:border-0">ochraňuj ho (ju), Pane.</div>
-
-                <div class="mt-3 font-semibold">Kriste, uslyš nás.</div>
-                <div class="text-right sm:text-left italic">Kriste, uslyš nás.</div>
-
-                <div class="font-semibold">Kriste, vyslyš nás.</div>
-                <div class="text-right sm:text-left italic">Kriste, vyslyš nás.</div>
-            </div>
-        </section>
-
-        <!-- TAB: IV. MODLITBY ODPORÚČANIA -->
-        <section id="tab-modlitby" class="tab-content hidden space-y-6">
-            <h2 class="text-xl font-bold text-center text-indigo-700 dark:text-indigo-400 border-b pb-2">IV. Modlitby odporúčania</h2>
-
-            <div class="rubric text-red-600 dark:text-red-400 italic">
-                <strong>57.</strong> Keď sa zdá, že prichádza okamih smrti, niekto z prítomných môže recitovať niektorú z týchto modlitieb v súlade s duchovnými dispozíciami umierajúceho.
-            </div>
-
-            <!-- Modlitba 1 -->
-            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-2">
-                <h3 class="font-bold text-lg text-indigo-700 dark:text-indigo-400">Vydaj sa na cestu</h3>
-                <p>Vydaj sa na cestu, kresťanská duša, z tohto sveta, v mene všemohúceho Boha Otca, ktorý ťa stvoril, v mene Ježiša Krista, Syna živého Boha, ktorý za teba trpel, v mene Ducha Svätého, ktorý bol zoslaný na teba, aby si dnes našla miesto pokoja a prebývala u Boha na svätom Sione spolu so svätou Božou Rodičkou Pannou Máriou, so svätým Jozefom a so všetkými anjelmi a Božími svätými.</p>
-            </div>
-
-            <!-- Modlitba 2 -->
-            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-2">
-                <h3 class="font-bold text-lg text-indigo-700 dark:text-indigo-400">Odporúčam ťa</h3>
-                <p>Odporúčam ťa, drahý brat <span class="text-red-600 dark:text-red-400 italic">(drahá sestra)</span>, všemohúcemu Bohu a zverujem ťa do rúk toho, ktorý ťa stvoril; vráť sa k svojmu Pôvodcovi, ktorý ťa utvoril z prachu zeme.</p>
-                <p>Keď opustíš tento pozemský život, nech ti prídu v ústrety Panna Mária, anjeli a svätí.</p>
-                <p>Nech ťa vyslobodí Kristus, ktorý bol za teba ukrižovaný, nech ťa oslobodí Kristus, ktorý za teba umrel,</p>
-                <p>nech ťa uvedie do raja Kristus, Syn živého Boha.</p>
-                <p>On, Dobrý pastier, nech ťa spozná medzi svojimi ovcami, nech ťa oslobodí od všetkých hriechov a prijme medzi svojich vyvolených.</p>
-                <p>Kiež uzrieš svojho Vykupiteľa z tváre do tváre a kiež budeš naňho hľadieť na veky vekov.</p>
-                <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-            </div>
-
-            <!-- Modlitba 3 (Prosby o vyslobodenie) -->
-            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-3">
-                <h3 class="font-bold text-lg text-indigo-700 dark:text-indigo-400">Prijmi, Pane, svojho služobníka</h3>
-
-                <div class="space-y-2">
-                    <p>Prijmi, Pane, svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span> na miesto spásy, v ktorú dúfa pre tvoje milosrdenstvo.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span> zo všetkých úzkostí.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span>, ako si vyslobodil Noema zo záplav potopy.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span>, ako si vyslobodil Abraháma z chaldejskej krajiny.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span>, ako si vyslobodil Jóba z jeho utrpení.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span>, ako si vyslobodil Mojžiša z ruky faraóna.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span>, ako si vyslobodil Daniela z jamy levov.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span>, ako si vyslobodil troch mládencov z horiacej pece a z rúk krutého kráľa.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span>, ako si vyslobodil Zuzanu z falošného obvinenia.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span>, ako si vyslobodil Dávida z rúk kráľa Šaula a z ruky Goliáša.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Pane, vyslobod' svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span>, ako si vyslobodil z väzenia Petra a Pavla.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-
-                    <p>Vyslobod', Pane, svojho služobníka <span class="text-red-600 dark:text-red-400 italic">(svoju služobnicu)</span> skrze Ježiša Krista, nášho Spasiteľa, ktorý za nás podstúpil trpkú smrť a daroval nám večný život.</p>
-                    <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-                </div>
-            </div>
-
-            <!-- Modlitba 4 -->
-            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-2">
-                <h3 class="font-bold text-lg text-indigo-700 dark:text-indigo-400">Odporúčame ti, Pane</h3>
-                <p>Odporúčame ti, Pane, tohto tvojho služobníka <span class="text-red-600 dark:text-red-400 italic">(túto tvoju služobnicu)</span> a prosíme ťa, Pane Ježišu Kriste, Spasiteľ sveta, milosrdne ho <span class="text-red-600 dark:text-red-400 italic">(ju)</span> prijmi do radosti svojho kráľovstva, veď ty si z lásky k nemu <span class="text-red-600 dark:text-red-400 italic">(k nej)</span> zostúpil z neba na zem; hoci aj zhrešil(a), predsa nezaprel(a) Otca, Syna a Ducha Svätého, veril(a) a verne sa klaňal(a) Bohu, ktorý všetko stvoril.</p>
-            </div>
-
-            <!-- Antifóna -->
-            <div class="bg-red-50/60 dark:bg-red-950/30 p-4 rounded-xl border border-red-200 dark:border-red-900/50 space-y-2">
-                <div class="rubric text-red-600 dark:text-red-400 italic font-medium">
-                    <strong>58.</strong> Môže sa recitovať alebo spievať antifóna:
-                </div>
-                <p class="italic font-serif leading-relaxed">
-                    Zdravas', Kráľovná, Matka milosrdenstva;<br>
-                    život náš i sladkosť a nádej naša, zdravas'.<br>
-                    K tebe voláme, hriešni synovia Evy,<br>
-                    v tomto slz údolí stenajúci, plačúci.<br>
-                    A preto teda, Orodovnica naša,<br>
-                    obráť k nám tie svoje premilosrdné oči.<br>
-                    A nám Ježiša, ktorý je požehnaný plod života tvojho,<br>
-                    tam vo večnosti ukáž.<br>
-                    Ó, milostivá a nad všetky pobožná,<br>
-                    ó, presladká Panna, Matka Božia Mária.
-                </p>
-            </div>
-        </section>
-
-        <!-- TAB: V. PO SKONANÍ -->
-        <section id="tab-skonanie" class="tab-content hidden space-y-6">
-            <h2 class="text-xl font-bold text-center text-indigo-700 dark:text-indigo-400 border-b pb-2">V. Modlitba po skonaní</h2>
-
-            <div class="rubric text-red-600 dark:text-red-400 italic">
-                <strong>59.</strong> Hneď po skonaní sa treba modliť:
-            </div>
-
-            <!-- Responzórium -->
-            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-3">
-                <div class="grid grid-cols-1 sm:grid-cols-12 gap-1">
-                    <span class="font-bold text-red-600 dark:text-red-400 sm:col-span-1">V.</span>
-                    <p class="sm:col-span-11">Svätí Boží, príďte na pomoc, anjeli Pánovi, ponáhľajte sa v ústrety.</p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-12 gap-1">
-                    <span class="font-bold text-red-600 dark:text-red-400 sm:col-span-1">R.</span>
-                    <p class="sm:col-span-11 font-medium">Vezmite túto dušu a zaveďte ju pred tvár Najvyššieho.</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-12 gap-1 pt-2">
-                    <span class="font-bold text-red-600 dark:text-red-400 sm:col-span-1">V.</span>
-                    <p class="sm:col-span-11">Nech ťa prijme Kristus, ktorý ťa povolal, a nech ťa anjeli vovedú do lona Abrahámovho.</p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-12 gap-1">
-                    <span class="font-bold text-red-600 dark:text-red-400 sm:col-span-1">R.</span>
-                    <p class="sm:col-span-11 font-medium">Vezmite túto dušu a zaveďte ju pred tvár Najvyššieho.</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-12 gap-1 pt-2">
-                    <span class="font-bold text-red-600 dark:text-red-400 sm:col-span-1">V.</span>
-                    <p class="sm:col-span-11">Odpočinutie večné daj mu <span class="text-red-600 dark:text-red-400 italic">(jej)</span>, Pane, a svetlo večné nech mu <span class="text-red-600 dark:text-red-400 italic">(jej)</span> svieti.</p>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-12 gap-1">
-                    <span class="font-bold text-red-600 dark:text-red-400 sm:col-span-1">R.</span>
-                    <p class="sm:col-span-11 font-medium">A zaveďte ju pred tvár Najvyššieho.</p>
-                </div>
-            </div>
-
-            <!-- Záverečná modlitba -->
-            <div class="bg-white dark:bg-slate-800 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 space-y-3">
-                <p class="font-bold text-indigo-700 dark:text-indigo-400">Modlime sa.</p>
-                <p>Odporúčame ti, Pane, dušu tvojho služobníka M. <span class="text-red-600 dark:text-red-400 italic">(dušu tvojej služobnice M.)</span>, ktorý(á) už opustil(a) tento svet. Pre svoje láskavé milosrdenstvo odpusť mu <span class="text-red-600 dark:text-red-400 italic">(jej)</span> viny, ktorých sa dopustil(a) z ľudskej krehkosti. O to ťa prosíme skrze Krista, nášho Pána.</p>
-                <p class="font-semibold text-red-600 dark:text-red-400">R. Amen.</p>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Standard HOREC Script Logic -->
-    <script>
-        // Tab switching using original event listener strategy
-        document.querySelectorAll('.tab-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const targetTab = button.getAttribute('data-tab');
-
-                // Update active state on tab buttons
-                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-
-                // Show target tab content, hide others
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    if (content.id === targetTab) {
-                        content.classList.remove('hidden');
-                        content.classList.add('block');
-                    } else {
-                        content.classList.add('hidden');
-                        content.classList.remove('block');
-                    }
-                });
-
-                // Scroll to top of content
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        });
-
-        // Font Sizing Logic
-        let currentFontScale = 100;
-        function changeFontSize(direction) {
-            const mainContent = document.getElementById('main-content');
-            if (direction === 0) {
-                currentFontScale = 100;
-            } else {
-                currentFontScale += direction * 10;
-                if (currentFontScale < 80) currentFontScale = 80;
-                if (currentFontScale > 160) currentFontScale = 160;
-            }
-            mainContent.style.fontSize = currentFontScale + '%';
-        }
-
-        // Rubrics Toggle Logic
-        let showRubrics = true;
-        function toggleRubrics() {
-            showRubrics = !showRubrics;
-            const rubrics = document.querySelectorAll('.rubric');
-            const rubricIcon = document.getElementById('rubric-icon');
-
-            rubrics.forEach(rubric => {
-                if (showRubrics) {
-                    rubric.classList.remove('section-hidden');
-                } else {
-                    rubric.classList.add('section-hidden');
-                }
-            });
-
-            if (showRubrics) {
-                rubricIcon.className = 'fa-regular fa-eye-slash';
-            } else {
-                rubricIcon.className = 'fa-regular fa-eye';
-            }
-        }
-
-        // Dropdown Page Selector Toggle & Close on Click Outside
-        const pageMenuBtn = document.getElementById('pageMenuBtn');
-        const pageMenuDropdown = document.getElementById('pageMenuDropdown');
-
-        pageMenuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            pageMenuDropdown.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', () => {
-            if (!pageMenuDropdown.classList.contains('hidden')) {
-                pageMenuDropdown.classList.add('hidden');
-            }
-        });
-    </script>
+<body>
+
+<div class="controls" id="controls">
+    <div class="controls-group">
+        <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+    </div>
+    <div class="controls-group">
+        <button onclick="changeFontSize(-2)">A-</button>
+        <button onclick="resetFontSize()">100%</button>
+        <button onclick="changeFontSize(2)">A+</button>
+    </div>
+    <div class="controls-group">
+        <button onclick="toggleTheme()" id="themeBtn">☀️ Svetlý motív</button>
+    </div>
+    <div class="controls-group">
+        <button class="btn-apply" onclick="filterSelected()">✓ Použiť výber</button>
+    </div>
+
+    <!-- Hlavné rozbalovacie menu -->
+    <nav class="nav-menu" id="navMenu">
+        <ul>
+            <li><a href="index_4.html">Riadny obrad prijímania chorých</a></li>
+            <li><a href="odporucanie.html">Obrad odporúčania zomierajúcich</a></li>
+            <li><a href="citania.html">Biblické čítania</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container" id="content">
+    <br>
+    <div class="header-title">ŠTVRTÁ KAPITOLA</div>
+    <h1 style="text-align: center; color: var(--red); margin-top: 5px; margin-bottom: 20px;">OBRAD ODPORÚČANIA ZOMIERAJÚCICH</h1>
+
+    <!-- Rýchle podmenu -->
+    <nav class="submenu" style="display: flex; gap: 8px; overflow-x: auto; padding: 10px 0; margin-bottom: 20px; border-bottom: 1px solid var(--control-border);">
+        <a href="#uvodne-pokyny" style="white-space: nowrap; padding: 6px 12px; background: var(--control-btn-bg); color: var(--control-btn-text); border: 1px solid var(--control-border); border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;">Pokyny</a>
+        <a href="#kratke-zvolania" style="white-space: nowrap; padding: 6px 12px; background: var(--control-btn-bg); color: var(--control-btn-text); border: 1px solid var(--control-border); border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;">I. Krátke zvolania</a>
+        <a href="#biblicke-citania" style="white-space: nowrap; padding: 6px 12px; background: var(--control-btn-bg); color: var(--control-btn-text); border: 1px solid var(--control-border); border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;">II. Biblické čítania</a>
+        <a href="#litanie" style="white-space: nowrap; padding: 6px 12px; background: var(--control-btn-bg); color: var(--control-btn-text); border: 1px solid var(--control-border); border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;">III. Litánie</a>
+        <a href="#modlitby-odporucania" style="white-space: nowrap; padding: 6px 12px; background: var(--control-btn-bg); color: var(--control-btn-text); border: 1px solid var(--control-border); border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;">IV. Modlitby odporúčania</a>
+        <a href="#modlitba-po-skonani" style="white-space: nowrap; padding: 6px 12px; background: var(--control-btn-bg); color: var(--control-btn-text); border: 1px solid var(--control-border); border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;">V. Modlitba po skonaní</a>
+    </nav>
+
+    <!-- ÚVODNÉ POKYNY -->
+    <section id="uvodne-pokyny">
+        <p class="rubrik">50. Láska k blížnemu núti kresťanov, aby vyjadrili spoločenstvo s umierajúcim bratom alebo sestrou, a to tak, že s ním a zaňho prosia o Božie milosrdenstvo a dôveru v Krista.</p>
+        <p class="rubrik">51. Modlitby, litániové prosby, krátke zvolania, žalmy a čítania Božieho slova, ktoré sú v tejto kapitole určené na odporúčanie duše, majú chorému, ktorý je ešte pri vedomí, pomôcť, aby podľa príkladu trpiaceho a umierajúceho Krista prijal vrodenú úzkosť zo smrti v sile toho, ktorý svojou smrťou zničil našu smrť a premohol ju v nádeji na nebeský život a zmŕtvychvstanie.</p>
+        <p class="rubrik">Aj tí, čo sa starajú o umierajúceho, ktorý je už v bezvedomí, môžu čerpať z týchto modlitieb útechu a pochopiť veľkonočný zmysel kresťanskej smrti. Je vhodné vyjadriť tento zmysel aj viditeľným znakom, a to poznačením umierajúceho znakom kríža na čele, kde bol týmto znakom prvý raz poznačený pri krste.</p>
+        <p class="rubrik">52. Modlitby a čítania sa majú vybrať z tých, ktoré sú tu uvedené, a pridať, ak treba, aj iné. Vždy sa majú prispôsobiť duševnému a telesnému stavu umierajúceho a iným okolnostiam miesta a osôb. Majú sa recitovať pomaly, skôr tichým hlasom a chvíľkami ticha. Často je osožné opakovať pomaly, raz i druhý raz, jedno alebo druhé krátke zvolanie z tu uvedených a odriekať ich s umierajúcim.</p>
+        <p class="rubrik">53. Hneď ako umierajúci skoná, všetci si podľa možnosti kľaknú a jeden z prítomných alebo presbyter, či diakon odrieka modlitbu, ktorá je v č. 59.</p>
+        <p class="rubrik">54. Kňazi a diakoni, nakoľko je to možné, majú spolu s príbuznými pomáhať umierajúcemu a odriekať modlitby odporúčania a skonu. Svojou prítomnosťou jasne ukazujú, že kresťan umiera v spoločenstve Cirkvi.</p>
+        <p class="rubrik">55. Ak však pre iné vážne pastoračné úlohy nemôžu byť prítomní, nech nezabudnú pripomenúť laikom, aby tí, čo sa starajú o zomierajúcich, spolu s nimi odriekali modlitby tu uvedené alebo iné. Treba sa postarať, aby laici mali poruke texty takýchto modlitieb a čítaní.</p>
+    </section>
+
+    <hr style="border: none; border-top: 1px solid var(--hr-color); margin: 25px 0;">
+
+    <!-- I. KRÁTKE ZVOLANIA -->
+    <section id="kratke-zvolania">
+        <h2 style="color: var(--red); text-align: center;">I. KRÁTKE ZVOLANIA</h2>
+
+        <p class="rubrik"><strong>Na upevnenie viery</strong></p>
+        <p class="clear">1. Kto verí v Syna, má večný život. <span class="source">(porov. Jn 6, 40)</span></p>
+        <p class="clear">2. Verím, že uvidím dobrodenia Pánove v krajine žijúcich. <span class="source">(Ž 27, 13)</span></p>
+        <p class="clear">3. V nebi máme večný dom. <span class="source">(2 Kor 5, 1)</span></p>
+        <p class="clear">4. Budeme vidieť Boha takého, aký je. <span class="source">(1 Jn 3, 2)</span></p>
+        <p class="clear">5. Budeme navždy s Pánom. <span class="source">(1 Sol 4, 17)</span></p>
+
+        <p class="rubrik" style="margin-top: 15px;"><strong>Na upevnenie nádeje</strong></p>
+        <p class="clear">1. Či žijeme, alebo umierame, patríme Pánovi. <span class="source">(Rim 14, 8)</span></p>
+        <p class="clear">2. Pán je moje svetlo a moja spása. <span class="source">(Ž 27, 1)</span></p>
+        <p class="clear">3. I keby som mal ísť tmavou dolinou, nebudem sa báť zlého, lebo ty si so mnou. <span class="source">(Ž 23, 4)</span></p>
+
+        <p class="rubrik" style="margin-top: 15px;"><strong>Na upevnenie lásky</strong></p>
+        <p class="clear">1. Kto nás odlúči od Kristovej lásky? <span class="source">(Rim 8, 35)</span></p>
+        <p class="clear">2. Prešli sme zo smrti do života, lebo milujeme bratov. <span class="source">(1 Jn 3, 14)</span></p>
+
+        <p class="rubrik" style="margin-top: 15px;"><strong>Na upevnenie túžby</strong></p>
+        <p class="clear">1. K tebe, Pane, dvíham svoju dušu. <span class="source">(Ž 25, 1)</span></p>
+        <p class="clear">2. Po Bohu žízni moja duša, po Bohu živom. <span class="source">(Ž 42, 3)</span></p>
+
+        <p class="rubrik" style="margin-top: 15px;"><strong>Ježišove slová</strong></p>
+        <p class="clear">1. Pán Ježiš hovorí: „Poďte, požehnaní môjho Otca, zaujmite kráľovstvo, ktoré je pre vás pripravené.“ <span class="source">(Mt 25, 34)</span></p>
+        <p class="clear">2. Pán Ježiš hovorí: „Idem vám pripraviť miesto a vezmem vás k sebe.“ <span class="source">(porov. Jn 14, 2 – 3)</span></p>
+        <p class="clear">3. Pán Ježiš hovorí: „V dome môjho Otca je mnoho príbytkov.“ <span class="source">(Jn 14, 2)</span></p>
+        <p class="clear">4. Pán Ježiš hovorí: „Chcem, aby aj oni boli so mnou, kde som ja.“ <span class="source">(porov. Jn 17, 24)</span></p>
+        <p class="clear">5. Pán Ježiš hovorí: „Veru, hovorím ti: Dnes budeš so mnou v raji.“ <span class="source">(Lk 23, 43)</span></p>
+
+        <p class="rubrik" style="margin-top: 15px;"><strong>Slová odovzdania do Božej vôle</strong></p>
+        <p class="clear">1. Pane, do tvojich rúk porúčam svojho ducha. <span class="source">(Ž 31, 6a)</span></p>
+        <p class="clear">2. Pane Ježišu, prijmi môjho ducha. <span class="source">(Sk 7, 59)</span></p>
+
+        <p class="rubrik" style="margin-top: 15px;"><strong>Vzývanie Panny Márie a svätého Jozefa</strong></p>
+        <p class="clear">1. Svätá Mária, oroduj za mňa.</p>
+        <p class="clear">2. Svätý Jozef, oroduj za mňa.</p>
+        <p class="clear">3. Ježiš, Mária, Jozef, stojte pri mne v poslednom boji.</p>
+    </section>
+
+    <hr style="border: none; border-top: 1px solid var(--hr-color); margin: 25px 0;">
+
+    <!-- II. BIBLICKÉ ČÍTANIA -->
+    <section id="biblicke-citania">
+        <h2 style="color: var(--red); text-align: center;">II. BIBLICKÉ ČÍTANIA</h2>
+
+        <p class="rubrik"><strong>Čítania zo Starého zákona</strong></p>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">Iz 35, 3 – 4. 6c – 7. 10</span></p>
+            <p class="rubrik" style="text-align: center; font-style: italic;">Boh sám príde a spasí vás</p>
+            <p class="clear"><strong>Posilňujte ruky zoslabnuté, upevňujte chvejúce sa kolená. Povedzte malomyseľným: „Vzchopte sa, nebojte sa! Hľa, váš Boh! Príde odveta, odplata Boha. On sám príde a spasí vás.“ Lebo na púšti vyrazí voda, potoky na pustatine. Vyprahnutá zem sa zmení na jazero a žíznivá pôda na pramene vôd. Na mieste, kde sa rozvaľovali šakaly, vyrastie tŕstie a sítie. A tí, ktorých Pán vykúpil, sa vrátia, s jasotom vojdú na Sion. Večná radosť ovenčí im hlavy, zaplaví ich radosť a veselosť, zmizne bôľ a vzdychanie.</strong></p>
+        </article>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">Jób 19, 1. 23 – 27a</span></p>
+            <p class="rubrik" style="text-align: center; font-style: italic;">Viem, že môj vykupiteľ žije</p>
+            <p class="clear"><strong>Jób prehovoril takto: „Bár by moje slová boli napísané, bár by ich zaznačili do knihy železným rydlom a olovom, aby navždy zostali vrýpané do skaly. Ja viem, že môj vykupiteľ žije a ako posledný bude stáť nad prachom; a hoc moja koža bude rozrušená, zo svojho tela budem vidieť Boha. Veru, ja sám ho uvidím.“</strong></p>
+        </article>
+
+        <p class="rubrik" style="margin-top: 25px;"><strong>Žalmy</strong></p>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">Ž 23, 1 – 3. 4. 5. 6</span></p>
+            <p class="clear"><span class="rubrik">R.</span> <strong>Pán je môj pastier, nič mi nechýba.</strong></p>
+            <p class="clear">1. Pán je môj pastier, nič mi nechýba: * pasie ma na zelených pasienkach.</p>
+            <p class="clear">2. Vodí ma k tichým vodám, * dušu mi osviežuje.</p>
+            <p class="clear">3. Vodí ma po správnych chodníkoch, * verný svojmu menu. – R.</p>
+            <p class="clear">4. I keby som mal ísť tmavou dolinou, † nebudem sa báť zlého, * lebo ty si so mnou.</p>
+            <p class="clear">5. Tvoj prút a tvoja palica, * tie sú mi útechou. – R.</p>
+            <p class="clear">6. Prestieraš mi stôl * pred očami mojich protivníkov.</p>
+            <p class="clear">7. Leješ mi olej na hlavu * a kalich mi napĺňaš až po okraj. – R.</p>
+            <p class="clear">8. Dobrota a milosť budú ma sprevádzať * po všetky dni môjho života.</p>
+            <p class="clear">9. A budem bývať v dome Pánovom * mnoho a mnoho dní. – R.</p>
+        </article>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">Ž 25, 1. 4b – 11</span></p>
+            <p class="clear"><span class="rubrik">R.</span> <strong>K tebe, Pane, dvíham svoju dušu.</strong></p>
+            <p class="clear">1. K tebe, Pane, dvíham svoju dušu; * pouč ma o svojich chodníkoch.</p>
+            <p class="clear">2. Veď ma vo svojej pravde a uč ma, † lebo ty si Boh, moja spása, * a v teba dúfam celý deň. – R.</p>
+            <p class="clear">3. Rozpomeň sa, Pane, na svoje zľutovanie * a na svoje milosrdenstvo, ktoré trvá od vekov.</p>
+            <p class="clear">4. Nespomínaj si na hriechy mojej mladosti a na moje priestupky, † ale pamätaj na mňa, vo svojom milosrdenstve, * veď si, Pane, dobrotivý. – R.</p>
+            <p class="clear">5. Pán je dobrý a spravodlivý: * ukazuje cestu hriešnikom.</p>
+            <p class="clear">6. Pokorných vedie k správnemu konaniu * a tichých pouča o svojich cestách. – R.</p>
+            <p class="clear">7. Všetky cesty Pánove sú milosrdenstvo a vernosť * pre tých, čo zachovávajú jeho zmluvu a jeho príkazy.</p>
+            <p class="clear">8. Pre tvoje meno, Pane, odpusť mi môj hriech, * i keď je veľký. – R.</p>
+        </article>
+
+        <p class="rubrik" style="margin-top: 25px;"><strong>Čítania z Nového zákona</strong></p>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">1 Kor 15, 1 – 4</span></p>
+            <p class="rubrik" style="text-align: center; font-style: italic;">Oznamujem vám blahozvesť</p>
+            <p class="clear"><strong>Bratia, pripomínam vám evanjelium, ktoré som vám hlásal a vy ste ho prijali, zotrvávate v ňom a prostredníctvom neho dosahujete spásu, ak sa ho držíte tak, ako som vám ho hlásal, ibaže by ste boli nadarmo uverili. Odovzdal som vám predovšetkým to, čo som aj ja prijal: že Kristus zomrel za naše hriechy podľa Písem; že bol pochovaný a že bol tretieho dňa vzkriesený podľa Písem.</strong></p>
+        </article>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">1 Jn 4, 16</span></p>
+            <p class="rubrik" style="text-align: center; font-style: italic;">Boh je láska</p>
+            <p class="clear"><strong>A my, čo sme uverili, spoznali sme lásku, akú má Boh k nám. Boh je láska; a kto ostáva v láske, ostáva v Bohu a Boh ostáva v ňom.</strong></p>
+        </article>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">Zjv 21, 1 – 7</span></p>
+            <p class="rubrik" style="text-align: center; font-style: italic;">Nové nebo a nová zem</p>
+            <p class="clear"><strong>Videl som nové nebo a novú zem, lebo prvé nebo a prvá zem sa pominuli a ani mora už niet. A videl som, ako z neba od Boha zostupuje sväté mesto, nový Jeruzalem, vystrojené ako nevesta, ozdobená pre svojho ženícha. A počul som mohutný hlas od trónu hovoriť: „Hľa, Boží stánok je medzi ľuďmi! A bude medzi nimi prebývať; oni budú jeho ľudom a sám Boh – ich Boh – bude s nimi. Zotrie im z očí každú slzu a už nebude smrti ani žiaľu; ani náreku, ani bolesti viac nebude, lebo prvé sa pominulo.“ A ten, čo sedel na trónu, povedal: „Hľa, všetko robím nové.“ A hovoril: „Píš: Tieto slová sú verné a pravdivé.“ A povedal mi: „Stalo sa! Ja som Alfa a Omega, Počiatok i Koniec. Smädnému dám zadarmo z prameňa živej vody. Kto zvíťazí, zdedí toto; a ja budem jeho Bohom a on bude mojím synom.“</strong></p>
+        </article>
+
+        <p class="rubrik" style="margin-top: 25px;"><strong>Evanjeliá</strong></p>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">Mt 25, 1 – 13</span></p>
+            <p class="rubrik" style="text-align: center; font-style: italic;">Hľa, ženích prichádza, vyjdite mu v ústrety</p>
+            <p class="clear"><strong>Ježiš povedal svojim učeníkom toto podobenstvo: „Vtedy sa nebeské kráľovstvo bude podobať desiatim pannám, ktoré si vzali lampy a vyšli naproti ženíchovi. Päť z nich bolo nerozumných a päť múdrych. Nerozumné si vzali lampy, ale olej si so sebou nevzali. Múdre si vzali s lampami aj olej do nádob. Keď ženích neprichádzal, všetkým sa začalo driemať a zaspali. O polnoci sa strhol krik: ,Ženích prichádza, vyjdite mu v ústrety!‘ Všetky panny sa prebudili a pripravovali si lampy. Tu nerozumné panny povedali múdrym: ,Dajte nám zo svojho oleja, lebo naše lampy hasnú.‘ Ale múdre odvetili: ,Aby azda nebolo ani nám, ani vám málo, choďte radšej k predavačom a kúpte si!‘ No kým išli kupovať olej, prišiel ženích a tie, čo boli pripravené, vošli s ním na svadbu a dvere sa zatvorili. Napokon prišli aj ostatné panny a vraveli: ,Pane, Pane, otvor nám!‘ Ale on im povedal: ,Veru, hovorím vám: Nepoznám vás.‘ Preto bdejte, lebo neviete ani dňa, ani hodiny.“</strong></p>
+        </article>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">Mk 15, 33 – 37</span></p>
+            <p class="rubrik" style="text-align: center; font-style: italic;">Ježiš na kríži zomiera</p>
+            <p class="clear"><strong>Keď bolo dvanásť hodín, nastala tma po celej zemi až do tretej hodiny popoludní. O tretej hodine zvolal Ježiš mocným hlasom: „Heloi, heloi, lema sabakthani?“, čo v preklade znamená: „Bože môj, Bože môj, prečo si ma opustil?“ Keď to počuli, niektorí z okolostojacich vraveli: „Pozrite, volá Eliáša.“ Ktosi odbehol, naplnil špongiu octom, nastokol ju na trstinu, dával mu piť a hovoril: „Počkajte, uvidíme, či ho Eliáš príde sňať.“ Ale Ježiš zvolal mocným hlasom a vydýchol.</strong></p>
+        </article>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">Lk 22, 39 – 48</span></p>
+            <p class="rubrik" style="text-align: center; font-style: italic;">Ježiš na Olivovej hore</p>
+            <p class="clear"><strong>Ježiš ako zvyčajne šiel na Olivovú horu a učeníci išli za ním. Keď prišiel na miesto, povedal im: „Modlite sa, aby ste neprišli do pokušenia!“ Sám sa od nich vzdialil asikoľko, čo by kameňom dohodil, kľakol si a modlil sa: „Otče, ak chceš, vezmi odo mňa tento kalich! No nie moja, ale tvoja vôľa nech sa stane!“ Tu sa mu zjavil anjel z neba a posilňoval ho. A on sa v smrteľnej úzkosti ešte vrúcnejšie modlil, pričom mu pot stekal na zem ako kvapky krvi. Keď vstal od modlitby a vrátil sa k učeníkom, našiel ich spať od zármutku. I povedal im: „Čo spíte? Vstaňte, modlite sa, aby ste neprišli do pokušenia!“</strong></p>
+        </article>
+
+        <article style="margin-bottom: 20px;">
+            <p class="rubrik"><span class="source">Lk 23, 39 – 43</span></p>
+            <p class="rubrik" style="text-align: center; font-style: italic;">Kajúci zločinec</p>
+            <p class="clear"><strong>Jeden zo zločincov, čo viseli na kríži, sa Ježišovi rúhal: „Nie si ty Mesiáš?! Zachráň seba i nás!“ Ale druhý ho zahriakol: „Ani ty sa nebojíš Boha, hoci si odsúdený na to isté? Lenže my spravodlivo, lebo dostávame, čo sme si skutkami zaslúžili. Ale on neurobil nič zlé.“</strong></p>
+        </article>
+    </section>
+
+    <hr style="border: none; border-top: 1px solid var(--hr-color); margin: 25px 0;">
+
+    <!-- III. LITÁNIE -->
+    <section id="litanie">
+        <h2 style="color: var(--red); text-align: center;">III. LITÁNIE</h2>
+        <p class="rubrik">Text litánií doplníš po zaslaní ďalších strán...</p>
+    </section>
+
+    <hr style="border: none; border-top: 1px solid var(--hr-color); margin: 25px 0;">
+
+    <!-- IV. MODLITBY ODPORÚČANIA -->
+    <section id="modlitby-odporucania">
+        <h2 style="color: var(--red); text-align: center;">IV. MODLITBY ODPORÚČANIA</h2>
+        <p class="rubrik">Text modlitieb odporúčania doplníš po zaslaní ďalších strán...</p>
+    </section>
+
+    <hr style="border: none; border-top: 1px solid var(--hr-color); margin: 25px 0;">
+
+    <!-- V. MODLITBA PO SKONANÍ -->
+    <section id="modlitba-po-skonani">
+        <h2 style="color: var(--red); text-align: center;">V. MODLITBA PO SKONANÍ</h2>
+        <p class="rubrik">Text modlitby po skonaní doplníš po zaslaní ďalších strán...</p>
+    </section>
+
+    <footer class="disclaimer">
+        <p><strong>Upozornenie:</strong> Tento text je publikovaný výhradne pre súkromnú potrebu a osobné účely.</p>
+    </footer>
+</div>
+
+<script src="script_2.js"></script>
 </body>
 </html>
