@@ -184,6 +184,7 @@ button.btn-apply {
 /* Rýchle podmenu */
 .submenu {
     display: flex;
+    justify-content: center;
     gap: 8px;
     overflow-x: auto;
     padding: 8px 12px;
