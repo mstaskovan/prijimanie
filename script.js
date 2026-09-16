@@ -130,3 +130,22 @@ window.addEventListener('scroll', function() {
 document.addEventListener('DOMContentLoaded', function() {
     initTheme();
 });
+/* Plynulý posun na začiatok stránky */
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+/* Sledovanie skrolovania pre zobrazenie tlačidla "Hore" */
+window.addEventListener('scroll', function() {
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    if (scrollBtn) {
+        if (window.scrollY > 300) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    }
+}, { passive: true });
