@@ -301,3 +301,6 @@ p {
     margin: 0;
     text-align: center;
 }
+body.hide-rubriks .rubrik {
+    display: none !important;
+}
