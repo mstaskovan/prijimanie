@@ -50,6 +50,7 @@ body {
     line-height: 1.5;
     margin: 0;
     padding: 4px;
+    padding-top: 130px;
     background-color: var(--bg-color);
     color: var(--text-color);
     transition: background-color 0.3s, color 0.3s;
@@ -303,4 +304,42 @@ p {
 }
 body.hide-rubriks .rubrik {
     display: none !important;
+}
+/* Obal pre cele menu na vrchu */
+.controls-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background-color: var(--bg-color, #121212); /* Nepriehľadné pozadie podľa témy */
+    border-bottom: 1px solid var(--control-border, #333);
+    transition: transform 0.3s ease-in-out; /* Plynulé schovávanie a vysúvanie */
+}
+
+/* Trieda pre skrytie menu pri scrolovaní nadol */
+.controls-wrapper.nav-hidden {
+    transform: translateY(-100%);
+}
+
+/* Rýchle podmenu */
+.submenu {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 8px 12px;
+    background-color: var(--bg-color, #121212);
+    -webkit-overflow-scrolling: touch;
+}
+
+.submenu a {
+    white-space: nowrap;
+    padding: 6px 12px;
+    background: var(--control-btn-bg, #222);
+    color: var(--control-btn-text, #fff);
+    border: 1px solid var(--control-border, #444);
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
 }
