@@ -111,7 +111,12 @@ button, label, a {
     gap: 6px;
 }
 
+/* ÚPRAVA: Jednotný vzhľad a Flexbox zarovnanie pre všetky tlačidlá vrátane SVG ikon */
 .controls button, .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px; /* Jednotná výška */
     padding: 6px 10px;
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
@@ -121,12 +126,20 @@ button, label, a {
     background-color: var(--control-btn-bg);
     color: var(--control-btn-text);
     border-radius: 6px;
+    line-height: 1;
 }
 
 .menu-toggle {
     font-size: 18px;
     padding: 6px 12px;
-    line-height: 1;
+}
+
+/* ÚPRAVA: Presné zarovnanie a veľkosť pre SVG ikony vo vnútri tlačidiel */
+.controls button svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
 }
 
 button.btn-apply {
