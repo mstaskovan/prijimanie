@@ -123,16 +123,6 @@ button, label, a {
     border-radius: 6px;
 }
 
-.btn-home {
-    font-size: 16px;
-    padding: 6px 10px;
-    color: var(--control-btn-text);
-}
-
-.btn-home i {
-    color: inherit; /* Podedí farbu tlačidla */
-}
-
 .menu-toggle {
     font-size: 18px;
     padding: 6px 12px;
