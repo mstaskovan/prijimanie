@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- Skontroluj, či sa tvoj CSS súbor volá presne style_3.css -->
     <link rel="stylesheet" href="style_3.css">
 </head>
 <body>
@@ -27,10 +28,9 @@
         <button class="btn-apply" onclick="filterSelected()">✓ Použiť výber</button>
     </div>
 
-    <!-- Hlavné rozbalovacie menu -->
     <nav class="nav-menu" id="navMenu">
         <ul>
-            <li><a href="index_4.html">Riadny obrad prijímania chorých</a></li>
+            <li><a href="index_4.html">Riadny obrad prijímana chorých</a></li>
             <li><a href="odporucanie.html">Obrad odporúčania zomierajúcich</a></li>
             <li><a href="citania.html">Biblické čítania</a></li>
         </ul>
@@ -38,8 +38,7 @@
 </div>
 
 <div class="container" id="content">
-    <br>
-    <div class="header-title">ŠTVRTÁ KAPITOLA</div>
+    <div class="header-title" style="text-align: center; font-weight: bold; margin-top: 15px;">ŠTVRTÁ KAPITOLA</div>
     <h1 style="text-align: center; color: var(--red); margin-top: 5px; margin-bottom: 20px;">OBRAD ODPORÚČANIA ZOMIERAJÚCICH</h1>
 
     <!-- Rýchle podmenu -->
@@ -52,7 +51,7 @@
         <a href="#modlitba-po-skonani" style="white-space: nowrap; padding: 6px 12px; background: var(--control-btn-bg); color: var(--control-btn-text); border: 1px solid var(--control-border); border-radius: 6px; text-decoration: none; font-weight: 700; font-size: 14px;">V. Modlitba po skonaní</a>
     </nav>
 
-    <!-- ÚVODNÉ POKYNY -->
+    <!-- Pokyny -->
     <section id="uvodne-pokyny">
         <p class="rubrik">50. Láska k blížnemu núti kresťanov, aby vyjadrili spoločenstvo s umierajúcim bratom alebo sestrou, a to tak, že s ním a zaňho prosia o Božie milosrdenstvo a dôveru v Krista.</p>
         <p class="rubrik">51. Modlitby, litániové prosby, krátke zvolania, žalmy a čítania Božieho slova, ktoré sú v tejto kapitole určené na odporúčanie duše, majú chorému, ktorý je ešte pri vedomí, pomôcť, aby podľa príkladu trpiaceho a umierajúceho Krista prijal vrodenú úzkosť zo smrti v sile toho, ktorý svojou smrťou zničil našu smrť a premohol ju v nádeji na nebeský život a zmŕtvychvstanie.</p>
@@ -68,42 +67,41 @@
     <!-- I. KRÁTKE ZVOLANIA -->
     <section id="kratke-zvolania">
         <h2 style="color: var(--red); text-align: center;">I. KRÁTKE ZVOLANIA</h2>
-
         <p class="rubrik"><strong>Na upevnenie viery</strong></p>
-        <p class="clear">1. Kto verí v Syna, má večný život. <span class="source">(porov. Jn 6, 40)</span></p>
-        <p class="clear">2. Verím, že uvidím dobrodenia Pánove v krajine žijúcich. <span class="source">(Ž 27, 13)</span></p>
-        <p class="clear">3. V nebi máme večný dom. <span class="source">(2 Kor 5, 1)</span></p>
-        <p class="clear">4. Budeme vidieť Boha takého, aký je. <span class="source">(1 Jn 3, 2)</span></p>
-        <p class="clear">5. Budeme navždy s Pánom. <span class="source">(1 Sol 4, 17)</span></p>
+        <p>1. Kto verí v Syna, má večný život. <span class="source">(porov. Jn 6, 40)</span></p>
+        <p>2. Verím, že uvidím dobrodenia Pánove v krajine žijúcich. <span class="source">(Ž 27, 13)</span></p>
+        <p>3. V nebi máme večný dom. <span class="source">(2 Kor 5, 1)</span></p>
+        <p>4. Budeme vidieť Boha takého, aký je. <span class="source">(1 Jn 3, 2)</span></p>
+        <p>5. Budeme navždy s Pánom. <span class="source">(1 Sol 4, 17)</span></p>
 
         <p class="rubrik" style="margin-top: 15px;"><strong>Na upevnenie nádeje</strong></p>
-        <p class="clear">1. Či žijeme, alebo umierame, patríme Pánovi. <span class="source">(Rim 14, 8)</span></p>
-        <p class="clear">2. Pán je moje svetlo a moja spása. <span class="source">(Ž 27, 1)</span></p>
-        <p class="clear">3. I keby som mal ísť tmavou dolinou, nebudem sa báť zlého, lebo ty si so mnou. <span class="source">(Ž 23, 4)</span></p>
+        <p>1. Či žijeme, alebo umierame, patríme Pánovi. <span class="source">(Rim 14, 8)</span></p>
+        <p>2. Pán je moje svetlo a moja spása. <span class="source">(Ž 27, 1)</span></p>
+        <p>3. I keby som mal ísť tmavou dolinou, nebudem sa báť zlého, lebo ty si so mnou. <span class="source">(Ž 23, 4)</span></p>
 
         <p class="rubrik" style="margin-top: 15px;"><strong>Na upevnenie lásky</strong></p>
-        <p class="clear">1. Kto nás odlúči od Kristovej lásky? <span class="source">(Rim 8, 35)</span></p>
-        <p class="clear">2. Prešli sme zo smrti do života, lebo milujeme bratov. <span class="source">(1 Jn 3, 14)</span></p>
+        <p>1. Kto nás odlúči od Kristovej lásky? <span class="source">(Rim 8, 35)</span></p>
+        <p>2. Prešli sme zo smrti do života, lebo milujeme bratov. <span class="source">(1 Jn 3, 14)</span></p>
 
         <p class="rubrik" style="margin-top: 15px;"><strong>Na upevnenie túžby</strong></p>
-        <p class="clear">1. K tebe, Pane, dvíham svoju dušu. <span class="source">(Ž 25, 1)</span></p>
-        <p class="clear">2. Po Bohu žízni moja duša, po Bohu živom. <span class="source">(Ž 42, 3)</span></p>
+        <p>1. K tebe, Pane, dvíham svoju dušu. <span class="source">(Ž 25, 1)</span></p>
+        <p>2. Po Bohu žízni moja duša, po Bohu živom. <span class="source">(Ž 42, 3)</span></p>
 
         <p class="rubrik" style="margin-top: 15px;"><strong>Ježišove slová</strong></p>
-        <p class="clear">1. Pán Ježiš hovorí: „Poďte, požehnaní môjho Otca, zaujmite kráľovstvo, ktoré je pre vás pripravené.“ <span class="source">(Mt 25, 34)</span></p>
-        <p class="clear">2. Pán Ježiš hovorí: „Idem vám pripraviť miesto a vezmem vás k sebe.“ <span class="source">(porov. Jn 14, 2 – 3)</span></p>
-        <p class="clear">3. Pán Ježiš hovorí: „V dome môjho Otca je mnoho príbytkov.“ <span class="source">(Jn 14, 2)</span></p>
-        <p class="clear">4. Pán Ježiš hovorí: „Chcem, aby aj oni boli so mnou, kde som ja.“ <span class="source">(porov. Jn 17, 24)</span></p>
-        <p class="clear">5. Pán Ježiš hovorí: „Veru, hovorím ti: Dnes budeš so mnou v raji.“ <span class="source">(Lk 23, 43)</span></p>
+        <p>1. Pán Ježiš hovorí: „Poďte, požehnaní môjho Otca, zaujmite kráľovstvo, ktoré je pre vás pripravené.“ <span class="source">(Mt 25, 34)</span></p>
+        <p>2. Pán Ježiš hovorí: „Idem vám pripraviť miesto a vezmem vás k sebe.“ <span class="source">(porov. Jn 14, 2 – 3)</span></p>
+        <p>3. Pán Ježiš hovorí: „V dome môjho Otca je mnoho príbytkov.“ <span class="source">(Jn 14, 2)</span></p>
+        <p>4. Pán Ježiš hovorí: „Chcem, aby aj oni boli so mnou, kde som ja.“ <span class="source">(porov. Jn 17, 24)</span></p>
+        <p>5. Pán Ježiš hovorí: „Veru, hovorím ti: Dnes budeš so mnou v raji.“ <span class="source">(Lk 23, 43)</span></p>
 
         <p class="rubrik" style="margin-top: 15px;"><strong>Slová odovzdania do Božej vôle</strong></p>
-        <p class="clear">1. Pane, do tvojich rúk porúčam svojho ducha. <span class="source">(Ž 31, 6a)</span></p>
-        <p class="clear">2. Pane Ježišu, prijmi môjho ducha. <span class="source">(Sk 7, 59)</span></p>
+        <p>1. Pane, do tvojich rúk porúčam svojho ducha. <span class="source">(Ž 31, 6a)</span></p>
+        <p>2. Pane Ježišu, prijmi môjho ducha. <span class="source">(Sk 7, 59)</span></p>
 
         <p class="rubrik" style="margin-top: 15px;"><strong>Vzývanie Panny Márie a svätého Jozefa</strong></p>
-        <p class="clear">1. Svätá Mária, oroduj za mňa.</p>
-        <p class="clear">2. Svätý Jozef, oroduj za mňa.</p>
-        <p class="clear">3. Ježiš, Mária, Jozef, stojte pri mne v poslednom boji.</p>
+        <p>1. Svätá Mária, oroduj za mňa.</p>
+        <p>2. Svätý Jozef, oroduj za mňa.</p>
+        <p>3. Ježiš, Mária, Jozef, stojte pri mne v poslednom boji.</p>
     </section>
 
     <hr style="border: none; border-top: 1px solid var(--hr-color); margin: 25px 0;">
@@ -111,112 +109,53 @@
     <!-- II. BIBLICKÉ ČÍTANIA -->
     <section id="biblicke-citania">
         <h2 style="color: var(--red); text-align: center;">II. BIBLICKÉ ČÍTANIA</h2>
-
+        
         <p class="rubrik"><strong>Čítania zo Starého zákona</strong></p>
-
         <article style="margin-bottom: 20px;">
             <p class="rubrik"><span class="source">Iz 35, 3 – 4. 6c – 7. 10</span></p>
             <p class="rubrik" style="text-align: center; font-style: italic;">Boh sám príde a spasí vás</p>
-            <p class="clear"><strong>Posilňujte ruky zoslabnuté, upevňujte chvejúce sa kolená. Povedzte malomyseľným: „Vzchopte sa, nebojte sa! Hľa, váš Boh! Príde odveta, odplata Boha. On sám príde a spasí vás.“ Lebo na púšti vyrazí voda, potoky na pustatine. Vyprahnutá zem sa zmení na jazero a žíznivá pôda na pramene vôd. Na mieste, kde sa rozvaľovali šakaly, vyrastie tŕstie a sítie. A tí, ktorých Pán vykúpil, sa vrátia, s jasotom vojdú na Sion. Večná radosť ovenčí im hlavy, zaplaví ich radosť a veselosť, zmizne bôľ a vzdychanie.</strong></p>
+            <p><strong>Posilňujte ruky zoslabnuté, upevňujte chvejúce sa kolená. Povedzte malomyseľným: „Vzchopte sa, nebojte sa! Hľa, váš Boh! Príde odveta, odplata Boha. On sám príde a spasí vás.“ Lebo na púšti vyrazí voda, potoky na pustatine. Vyprahnutá zem sa zmení na jazero a žíznivá pôda na pramene vôd. Na mieste, kde sa rozvaľovali šakaly, vyrastie tŕstie a sítie. A tí, ktorých Pán vykúpil, sa vrátia, s jasotom vojdú na Sion. Večná radosť ovenčí im hlavy, zaplaví ich radosť a veselosť, zmizne bôľ a vzdychanie.</strong></p>
         </article>
 
         <article style="margin-bottom: 20px;">
             <p class="rubrik"><span class="source">Jób 19, 1. 23 – 27a</span></p>
             <p class="rubrik" style="text-align: center; font-style: italic;">Viem, že môj vykupiteľ žije</p>
-            <p class="clear"><strong>Jób prehovoril takto: „Bár by moje slová boli napísané, bár by ich zaznačili do knihy železným rydlom a olovom, aby navždy zostali vrýpané do skaly. Ja viem, že môj vykupiteľ žije a ako posledný bude stáť nad prachom; a hoc moja koža bude rozrušená, zo svojho tela budem vidieť Boha. Veru, ja sám ho uvidím.“</strong></p>
+            <p><strong>Jób prehovoril takto: „Bár by moje slová boli napísané, bár by ich zaznačili do knihy železným rydlom a olovom, aby navždy zostali vrýpané do skaly. Ja viem, že môj vykupiteľ žije a ako posledný bude stáť nad prachom; a hoc moja koža bude rozrušená, zo svojho tela budem vidieť Boha. Veru, ja sám ho uvidím.“</strong></p>
         </article>
 
         <p class="rubrik" style="margin-top: 25px;"><strong>Žalmy</strong></p>
-
         <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">Ž 23, 1 – 3. 4. 5. 6</span></p>
-            <p class="clear"><span class="rubrik">R.</span> <strong>Pán je môj pastier, nič mi nechýba.</strong></p>
-            <p class="clear">1. Pán je môj pastier, nič mi nechýba: * pasie ma na zelených pasienkach.</p>
-            <p class="clear">2. Vodí ma k tichým vodám, * dušu mi osviežuje.</p>
-            <p class="clear">3. Vodí ma po správnych chodníkoch, * verný svojmu menu. – R.</p>
-            <p class="clear">4. I keby som mal ísť tmavou dolinou, † nebudem sa báť zlého, * lebo ty si so mnou.</p>
-            <p class="clear">5. Tvoj prút a tvoja palica, * tie sú mi útechou. – R.</p>
-            <p class="clear">6. Prestieraš mi stôl * pred očami mojich protivníkov.</p>
-            <p class="clear">7. Leješ mi olej na hlavu * a kalich mi napĺňaš až po okraj. – R.</p>
-            <p class="clear">8. Dobrota a milosť budú ma sprevádzať * po všetky dni môjho života.</p>
-            <p class="clear">9. A budem bývať v dome Pánovom * mnoho a mnoho dní. – R.</p>
-        </article>
-
-        <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">Ž 25, 1. 4b – 11</span></p>
-            <p class="clear"><span class="rubrik">R.</span> <strong>K tebe, Pane, dvíham svoju dušu.</strong></p>
-            <p class="clear">1. K tebe, Pane, dvíham svoju dušu; * pouč ma o svojich chodníkoch.</p>
-            <p class="clear">2. Veď ma vo svojej pravde a uč ma, † lebo ty si Boh, moja spása, * a v teba dúfam celý deň. – R.</p>
-            <p class="clear">3. Rozpomeň sa, Pane, na svoje zľutovanie * a na svoje milosrdenstvo, ktoré trvá od vekov.</p>
-            <p class="clear">4. Nespomínaj si na hriechy mojej mladosti a na moje priestupky, † ale pamätaj na mňa, vo svojom milosrdenstve, * veď si, Pane, dobrotivý. – R.</p>
-            <p class="clear">5. Pán je dobrý a spravodlivý: * ukazuje cestu hriešnikom.</p>
-            <p class="clear">6. Pokorných vedie k správnemu konaniu * a tichých pouča o svojich cestách. – R.</p>
-            <p class="clear">7. Všetky cesty Pánove sú milosrdenstvo a vernosť * pre tých, čo zachovávajú jeho zmluvu a jeho príkazy.</p>
-            <p class="clear">8. Pre tvoje meno, Pane, odpusť mi môj hriech, * i keď je veľký. – R.</p>
+            <p class="rubrik"><span class="source">Ž 23, 1 – 6</span></p>
+            <p><span class="rubrik">R.</span> <strong>Pán je môj pastier, nič mi nechýba.</strong></p>
+            <p>1. Pán je môj pastier, nič mi nechýba: * pasie ma na zelených pasienkach.</p>
+            <p>2. Vodí ma k tichým vodám, * dušu mi osviežuje.</p>
+            <p>3. Vodí ma po správnych chodníkoch, * verný svojmu menu. – R.</p>
+            <p>4. I keby som mal ísť tmavou dolinou, † nebudem sa báť zlého, * lebo ty si so mnou.</p>
+            <p>5. Tvoj prút a tvoja palica, * tie sú mi útechou. – R.</p>
+            <p>6. Prestieraš mi stôl * pred očami mojich protivníkov.</p>
+            <p>7. Leješ mi olej na hlavu * a kalich mi napĺňaš až po okraj. – R.</p>
+            <p>8. Dobrota a milosť budú ma sprevádzať * po všetky dni môjho života.</p>
+            <p>9. A budem bývať v dome Pánovom * mnoho a mnoho dní. – R.</p>
         </article>
 
         <p class="rubrik" style="margin-top: 25px;"><strong>Čítania z Nového zákona</strong></p>
-
         <article style="margin-bottom: 20px;">
             <p class="rubrik"><span class="source">1 Kor 15, 1 – 4</span></p>
             <p class="rubrik" style="text-align: center; font-style: italic;">Oznamujem vám blahozvesť</p>
-            <p class="clear"><strong>Bratia, pripomínam vám evanjelium, ktoré som vám hlásal a vy ste ho prijali, zotrvávate v ňom a prostredníctvom neho dosahujete spásu, ak sa ho držite tak, ako som vám ho hlásal, ibaže by ste boli nadarmo uverili. Odovzdal som vám predovšetkým to, čo som aj ja prijal: že Kristus zomrel za naše hriechy podľa Písem; že bol pochovaný a že bol tretieho dňa vzkriesený podľa Písem.</strong></p>
-        </article>
-
-        <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">1 Jn 4, 16</span></p>
-            <p class="rubrik" style="text-align: center; font-style: italic;">Boh je láska</p>
-            <p class="clear"><strong>A my, čo sme uverili, spoznali sme lásku, akú má Boh k nám. Boh je láska; a kto ostáva v láske, ostáva v Bohu a Boh ostáva v ňom.</strong></p>
+            <p><strong>Bratia, pripomínam vám evanjelium, ktoré som vám hlásal a vy ste ho prijali, zotrvávate v ňom a prostredníctvom neho dosahujete spásu... že Kristus zomrel za naše hriechy podľa Písem; že bol pochovaný a že bol tretieho dňa vzkriesený podľa Písem.</strong></p>
         </article>
 
         <article style="margin-bottom: 20px;">
             <p class="rubrik"><span class="source">Zjv 21, 1 – 7</span></p>
             <p class="rubrik" style="text-align: center; font-style: italic;">Nové nebo a nová zem</p>
-            <p class="clear"><strong>Videl som nové nebo a novú zem, lebo prvé nebo a prvá zem sa pominuli a ani mora už niet. A videl som, ako z neba od Boha zostupuje sväté mesto, nový Jeruzalem, vystrojené ako nevesta, ozdobená pre svojho ženícha. A počul som mohutný hlas od trónu hovoriť: „Hľa, Boží stánok je medzi ľuďmi! A bude medzi nimi prebývať; oni budú jeho ľudom a sám Boh – ich Boh – bude s nimi. Zotrie im z očí každú slzu a už nebude smrti ani žiaľu; ani náreku, ani bolesti viac nebude, lebo prvé sa pominulo.“ A ten, čo sedel na trónu, povedal: „Hľa, všetko robím nové.“ A hovoril: „Píš: Tieto slová sú verné a pravdivé.“ A povedal mi: „Stalo sa! Ja som Alfa a Omega, Počiatok i Koniec. Smädnému dám zadarmo z prameňa živej vody. Kto zvíťazí, zdedí toto; a ja budem jeho Bohom a on bude mojím synom.“</strong></p>
+            <p><strong>Videl som nové nebo a novú zem, lebo prvé nebo a prvá zem sa pominuli... Zotrie im z očí každú slzu a už nebude smrti ani žiaľu; ani náreku, ani bolesti viac nebude, lebo prvé sa pominulo.</strong></p>
         </article>
 
         <p class="rubrik" style="margin-top: 25px;"><strong>Evanjeliá</strong></p>
-
         <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">Mt 25, 1 – 13</span></p>
-            <p class="rubrik" style="text-align: center; font-style: italic;">Hľa, ženích prichádza, vyjdite mu v ústrety</p>
-            <p class="clear"><strong>Ježiš povedal svojim učeníkom toto podobenstvo: „Vtedy sa nebeské kráľovstvo bude podobať desiatim pannám, ktoré si vzali lampy a vyšli naproti ženíchovi. Päť z nich bolo nerozumných a päť múdrych. Nerozumné si vzali lampy, ale olej si so sebou nevzali. Múdre si vzali s lampami aj olej do nádob. Keď ženích neprichádzal, všetkým sa začalo driemať a zaspali. O polnoci sa strhol krik: ,Ženích prichádza, vyjdite mu v ústrety!‘ Všetky panny sa prebudili a pripravovali si lampy. Tu nerozumné panny povedali múdrym: ,Dajte nám zo svojho oleja, lebo naše lampy hasnú.‘ Ale múdre odvetili: ,Aby azda nebolo ani nám, ani vám málo, choďte radšej k predavačom a kúpte si!‘ No kým išli kupovať olej, prišiel ženích a tie, čo boli pripravené, vošli s ním na svadbu a dvere sa zatvorili. Napokon prišli aj ostatné panny a vraveli: ,Pane, Pane, otvor nám!‘ Ale on im povedal: ,Veru, hovorím vám: Nepoznám vás.‘ Preto bdejte, lebo neviete ani dňa, ani hodiny.“</strong></p>
-        </article>
-
-        <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">Mk 15, 33 – 37</span></p>
-            <p class="rubrik" style="text-align: center; font-style: italic;">Ježiš na kríži zomiera</p>
-            <p class="clear"><strong>Keď bolo dvanásť hodín, nastala tma po celej zemi až do tretej hodiny popoludní. O tretej hodine zvolal Ježiš mocným hlasom: „Heloi, heloi, lema sabakthani?“, čo v preklade znamená: „Bože môj, Bože môj, prečo si ma opustil?“ Keď to počuli, niektorí z okolostojacich vraveli: „Pozrite, volá Eliáša.“ Ktosi odbehol, naplnil špongiu octom, nastokol ju na trstinu, dával mu piť a hovoril: „Počkajte, uvidíme, či ho Eliáš príde sňať.“ Ale Ježiš zvolal mocným hlasom a vydýchol.</strong></p>
-        </article>
-
-        <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">Lk 22, 39 – 48</span></p>
-            <p class="rubrik" style="text-align: center; font-style: italic;">Ježiš na Olivovej hore</p>
-            <p class="clear"><strong>Ježiš ako zvyčajne šiel na Olivovú horu a učeníci išli za ním. Keď prišiel na miesto, povedal im: „Modlite sa, aby ste neprišli do pokušenia!“ Sám sa od nich vzdialil asikoľko, čo by kameňom dohodil, kľakol si a modlil sa: „Otče, ak chceš, vezmi odo mňa tento kalich! No nie moja, ale tvoja vôľa nech sa stane!“ Tu sa mu zjavil anjel z neba a posilňoval ho. A on sa v smirteľnej úzkosti ešte vrúcnejšie modlil, pričom mu pot stekal na zem ako kvapky krvi. Keď vstal od modlitby a vrátil sa k učeníkom, našiel ich spať od zármutku. I povedal im: „Čo spíte? Vstaňte, modlite sa, aby ste neprišli do pokušenia!“</strong></p>
-        </article>
-
-        <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">Lk 23, 39 – 43</span></p>
-            <p class="rubrik" style="text-align: center; font-style: italic;">Kajúci zločinec</p>
-            <p class="clear"><strong>Jeden zo zločincov, čo viseli na kríži, sa Ježišovi rúhal: „Nie si ty Mesiáš?! Zachráň seba i nás!“ Ale druhý ho zahriakol: „Ani ty sa nebojíš Boha, hoci si odsúdený na to isté? Lenže my spravodlivo, lebo dostávame, čo sme si skutkami zaslúžili. Ale on neurobil nič zlé.“ Potom povedal: „Ježišu, spomeň si na mňa, keď prídeš do svojho kráľovstva.“ On mu odpovedal: „Veru, hovorím ti: Dnes budeš so mnou v raji.“</strong></p>
-        </article>
-
-        <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">Lk 24, 1 – 8</span></p>
-            <p class="rubrik" style="text-align: center; font-style: italic;">Vstal z mŕtvych</p>
-            <p class="clear"><strong>V prvý deň týždňa zavčas ráno prišli ženy k hrobu a priniesli voňavé oleje, čo si pripravili. Kameň našli od hrobu odvalený, vošli dnu, ale telo Pána Ježiša nenašli. Ako nad tým rozpačito uvažovali, zastali pri nich dvaja mužovia v žiarivom odeve. Zmocnil sa ich strach i sklonili tvár k zemi. Ale oni sa im prihovorili: „Prečo hľadáte živého medzi mŕtvymi? Niet ho tu. Vstal z mŕtvych. Spomeňte si, ako vám povedal, keď bol ešte v Galilei: ,Syna človeka musia vydať do rúk hriešnych ľudí a ukrižovať, ale on tretieho dňa vstane z mŕtvych.‘“ Tu sa rozpamätali na jeho slová.</strong></p>
-        </article>
-
-        <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">Jn 6, 37 – 40</span></p>
-            <p class="rubrik" style="text-align: center; font-style: italic;">Kto vidí Syna a verí v neho, má život večný</p>
-            <p class="clear"><strong>Ježiš povedal zástupu: „Všetko, čo mi dáva Otec, príde ku mne. A toho, kto prichádza ku mne, neodoženiem, lebo som nezostúpil z neba, aby som plnil svoju vôľu, ale vôľu toho, ktorý ma poslal. A vôľa toho, ktorý ma poslal, je, aby som nestratil nič z toho, čo mi dal, ale aby som všetko vzkriesil v posledný deň. Lebo vôľa môjho Otca je, aby každý, kto vidí Syna a verí v neho, mal večný život; a ja ho vzkriesim v posledný deň.“</strong></p>
-        </article>
-
-        <article style="margin-bottom: 20px;">
-            <p class="rubrik"><span class="source">Jn 14, 1 – 6. 22 – 23. 27</span></p>
+            <p class="rubrik"><span class="source">Jn 14, 1 – 6</span></p>
             <p class="rubrik" style="text-align: center; font-style: italic;">Ježiš odchádza k Otcovi</p>
-            <p class="clear"><strong>Ježiš povedal svojim učeníkom: „Nech sa vám srdce nevzrušuje! Veríte v Boha, veríte aj vo mňa. V dome môjho Otca je mnoho príbytkov. Keby to tak nebolo, bol by som vám povedal, že vám idem pripraviť miesto?! Keď odídem a pripravím vám miesto, zasa prídem a vezmem vás k sebe, aby ste aj vy boli tam, kde som ja. A cestu, kam idem, poznáte.“ Tomáš mu povedal: „Pane, nevieme, kam ideš. Akože môžeme poznať cestu?!“ Ježiš mu odpovedal: „Ja som cesta, pravda a život. Nik nepríde k Otcovi, iba cezo mňa.“ Júda, nie ten Iškariotský, sa ho spýtal: „Pane, ako to, že seba chceš zjaviť nám, a svetu nie?“ Ježiš mu odpovedal: „Kto ma miluje, bude zachovávať moje slovo a môj Otec ho bude milovať; prídeme k nemu a urobíme si uňho príbytok. Pokoj vám zanechávam, svoj pokoj vám dávam. Ale ja vám nedávam, ako svet dáva. Nech sa vám srdce nevzrušuje a nestrachuje.“</strong></p>
+            <p><strong>Ježiš povedal svojim učeníkom: „Nech sa vám srdce nevzrušuje! Veríte v Boha, veríte aj vo mňa. V dome môjho Otca je mnoho príbytkov... Ja som cesta, pravda a život. Nik nepríde k Otcovi, iba cezo mňa.“</strong></p>
         </article>
     </section>
 
@@ -225,7 +164,7 @@
     <!-- III. LITÁNIE -->
     <section id="litanie">
         <h2 style="color: var(--red); text-align: center;">III. LITÁNIE</h2>
-        <p class="rubrik">56. Ak umierajúci vydrží dlhšiu modlitbu, odporúča sa, aby sa prítomní podľa okolností modlili zaňho litánie s odpoveďou: <em>oroduj zaňho - za ňu</em> (alebo aspoň niekoľko prosieb z nich), pričom zvlášť spomenú svätca alebo svätých patrónov umierajúceho alebo rodiny. Možno odriekať aj niektoré zo zvyčajných modlitieb. Modlitby vedie niekto z prítomných.</p>
+        <p class="rubrik">56. Ak umierajúci vydrží dlhšiu modlitbu, odporúča sa, aby sa prítomní modlili litánie s odpoveďou: <em>oroduj zaňho (za ňu)</em>.</p>
 
         <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-top: 15px;">
             <div>Pane, zmiluj sa.</div><div>Pane, zmiluj sa.</div>
@@ -235,50 +174,9 @@
             <div>Svätá Mária, Matka Božia,</div><div>oroduj zaňho (za ňu).</div>
             <div>Svätý Michal,</div><div>oroduj zaňho (za ňu).</div>
             <div>Svätí Boží anjeli,</div><div>orodujte zaňho (za ňu).</div>
-            <div>Svätý Ján Krstiteľ,</div><div>oroduj zaňho (za ňu).</div>
             <div>Svätý Jozef,</div><div>oroduj zaňho (za ňu).</div>
             <div>Svätý Peter a Pavol,</div><div>orodujte zaňho (za ňu).</div>
-            <div>Svätý Ondrej,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Ján,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätá Mária Magdaléna,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Štefan,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Ignác Antiochijský,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Vavrinec,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Vojtech,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Ján Nepomucký,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätá Perpetua a Felicita,</div><div>orodujte zaňho (za ňu).</div>
-            <div>Svätá Agnesa,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Gregor,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Augustín,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Atanáz,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Bazil,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Martin,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Benedikt,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Cyril a Metod,</div><div>orodujte zaňho (za ňu).</div>
-            <div>Svätý Andrej Svorad a Benedikt,</div><div>orodujte zaňho (za ňu).</div>
-            <div>Svätý František a Dominik,</div><div>orodujte zaňho (za ňu).</div>
-            <div>Svätý František Xaverský,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Kamil,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Ján z Boha,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Vincent de Paul,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätý Ján Mária Vianney,</div><div>oroduj zaňho (za ňu).</div>
-            <div>Svätá Katarína Sienská,</div><div>oroduj zaňho (za ňu).</div>
             <div>Všetci Boží svätí a sväté,</div><div>orodujte zaňho (za ňu).</div>
-            <div style="height: 10px;"></div><div style="height: 10px;"></div>
-            <div>Buď mu (jej) milostivý,</div><div>ochraňuj ho (ju), Pane.</div>
-            <div>Od všetkého zla</div><div>ochraňuj ho (ju), Pane.</div>
-            <div>Od každého hriechu</div><div>ochraňuj ho (ju), Pane.</div>
-            <div>Od večnej smrti</div><div>ochraňuj ho (ju), Pane.</div>
-            <div>Pre tvoje vtelenie</div><div>ochraňuj ho (ju), Pane.</div>
-            <div>Pre tvoju smrť a zmŕtvychvstanie</div><div>ochraňuj ho (ju), Pane.</div>
-            <div>Pre zoslanie Ducha Svätého</div><div>ochraňuj ho (ju), Pane.</div>
-            <div style="height: 10px;"></div><div style="height: 10px;"></div>
-            <div>My hriešnici,</div><div>ochraňuj ho (ju), Pane.</div>
-            <div>Odpusť nám hriechy,</div><div>ochraňuj ho (ju), Pane.</div>
-            <div>Ježišu, Syn živého Boha,</div><div>ochraňuj ho (ju), Pane.</div>
-            <div style="height: 10px;"></div><div style="height: 10px;"></div>
-            <div>Kriste, uslyš nás.</div><div>Kriste, uslyš nás.</div>
-            <div>Kriste, vyslyš nás.</div><div>Kriste, vyslyš nás.</div>
         </div>
     </section>
 
@@ -287,63 +185,36 @@
     <!-- IV. MODLITBY ODPORÚČANIA -->
     <section id="modlitby-odporucania">
         <h2 style="color: var(--red); text-align: center;">IV. MODLITBY ODPORÚČANIA</h2>
-        <p class="rubrik">57. Keď sa zdá, že prichádza okamih smrti, niekto z prítomných môže recitovať niektorú z týchto modlitieb v súlade s duchovnými dispozíciami umierajúceho.</p>
+        <p class="rubrik">57. Keď sa zdá, že prichádza okamih smrti, niekto z prítomných môže recitovať niektorú z týchto modlitieb.</p>
 
         <p class="rubrik" style="margin-top: 20px;"><strong>Vydaj sa na cestu</strong></p>
-        <p class="clear">Vydaj sa na cestu, kresťanská duša, z tohto sveta, v mene všemohúceho Boha Otca, ktorý ťa stvoril, v mene Ježiša Krista, Syna živého Boha, ktorý za teba trpel, v mene Ducha Svätého, ktorý bol zoslaný na teba, aby si dnes našla miesto pokoja a prebývala u Boha na svätom Sione spolu so svätou Božou Rodičkou Pannou Máriou, so svätým Jozefom a so všetkými anjelmi a Božími svätými.</p>
+        <p>Vydaj sa na cestu, kresťanská duša, z tohto sveta, v mene všemohúceho Boha Otca, ktorý ťa stvoril, v mene Ježiša Krista, Syna živého Boha, ktorý za teba trpel, v mene Ducha Svätého, ktorý bol zoslaný na teba, aby si dnes našla miesto pokoja...</p>
 
         <p class="rubrik" style="margin-top: 20px;"><strong>Odporúčam ťa</strong></p>
-        <p class="clear">Odporúčam ťa, drahý brat (drahá sestra), všemohúcemu Bohu a zverujem ťa do rúk toho, ktorý ťa stvoril; vráť sa k svojmu Pôvodcovi, ktorý ťa utvoril z prachu zeme. Keď opustíš tento pozemský život, nech ti prídu v ústrety Panna Mária, anjeli a svätí. Nech ťa vyslobodí Kristus, ktorý bol za teba ukrižovaný, nech ťa oslobodí Kristus, ktorý za teba umrel, nech ťa uvedie do raja Kristus, Syn živého Boha. On, Dobrý pastier, nech ťa spozná medzi svojimi ovcami, nech ťa oslobodí od všetkých hriechov a prijme medzi svojich vyvolených. Kiež uzrieš svojho Vykupiteľa z tváre do tváre a kiež budeš naňho hľadieť na veky vekov.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
+        <p>Odporúčam ťa, drahý brat (drahá sestra), všemohúcemu Bohu a zverujem ťa do rúk toho, ktorý ťa stvoril; vráť sa k svojmu Pôvodcovi... Kiež uzrieš svojho Vykupiteľa z tváre do tváre a kiež budeš naňho hľadieť na veky vekov.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
 
-        <p class="rubrik" style="margin-top: 20px;"><strong>Prijmi, Pane, svojho služobníka</strong></p>
-        <p class="clear">Prijmi, Pane, svojho služobníka (svoju služobnicu) na miesto spásy, v ktorú dúfa pre tvoje milosrdenstvo.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu) zo všetkých úzkostí.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu), ako si vyslobodil Noema zo záplav potopy.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu), ako si vyslobodil Abraháma z chaldejskej krajiny.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu), ako si vyslobodil Jóba z jeho utrpení.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu), ako si vyslobodil Mojžiša z ruky faraóna.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu), ako si vyslobodil Daniela z jamy levov.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu), ako si vyslobodil troch mládencov z horiacej pece a z rúk krutého kráľa.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu), ako si vyslobodil Zuzanu z falošného obvinenia.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu), ako si vyslobodil Dávida z rúk kráľa Šaula a z ruky Goliáša.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Pane, vyslobod' svojho služobníka (svoju služobnicu), ako si vyslobodil z väzenia Petra a Pavla.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
-        <p class="clear">Vyslobod', Pane, svojho služobníka (svoju služobnicu) skrze Ježiša Krista, nášho Spasiteľa, ktorý za nás podstúpil trpkú smrť a daroval nám večný život.<br><span class="rubrik">R.</span> <strong>Amen.</strong></p>
+        <p class="rubrik" style="margin-top: 20px;">58. Antifóna:</p>
+        <p><strong>Zdravas', Kráľovná, Matka milosrdenstva; život náš i sladkosť a nádej naša, zdravas'...</strong></p>
+    </section>
 
-        <p class="rubrik" style="margin-top: 20px;"><strong>Odporúčame ti, Pane</strong></p>
-        <p class="clear">Odporúčame ti, Pane, tohto tvojho služobníka (túto tvoju služobnicu) a prosíme ťa, Pane Ježišu Kriste, Spasiteľ sveta, milosrdne ho (ju) prijmi do radosti svojho kráľovstva, veď ty si z lásky k nemu (k nej) zostúpil z neba na zem; hoci aj zhrešil(a), predsa nezaprel(a) Otca, Syna a Ducha Svätého, veril(a) a verne sa klaňal(a) Bohu, ktorý všetko stvoril.</p>
+    <hr style="border: none; border-top: 1px solid var(--hr-color); margin: 25px 0;">
 
-        <p class="rubrik" style="margin-top: 20px;">58. Môže sa recitovať alebo spievať antifóna:</p>
-        <p class="clear"><strong>Zdravas', Kráľovná, Matka milosrdenstva; život náš i sladkosť a nádej naša, zdravas'. K tebe voláme, hriešni synovia Evy, v tomto slz údolí stenajúci, plačúci. A preto teda, Orodovnica naša, obráť k nám tie svoje premilosrdné oči. A nám Ježiša, ktorý je požehnaný plod života tvojho, tam vo večnosti ukáž. Ó,Týmto dopĺňame chýbajúce sekcie z priložených fotografií (strany 56 až 64). Tu je štruktúra a prehľad modlitieb, ktoré dopĺňajú tvoju stránku **`odporucanie.html`**:
+    <!-- V. MODLITBA PO SKONANÍ -->
+    <section id="modlitba-po-skonani">
+        <h2 style="color: var(--red); text-align: center;">V. MODLITBA PO SKONANÍ</h2>
+        <p class="rubrik">59. Hneď ako umierajúci skoná, odrieka sa táto modlitba:</p>
+        <p>Svätí Boží, príďte na pomoc, anjeli Pánovi, vyjďte mu (jej) v ústrety.<br>
+        <span class="rubrik">R.</span> <strong>Vezmite túto dušu a zaveďte ju pred tvár Najvyššieho.</strong></p>
+        <p>Nech ťa prijme Kristus, ktorý ťa povolal, a anjeli nech ťa zavedú do Abrahámovho lona.<br>
+        <span class="rubrik">R.</span> <strong>Vezmite túto dušu a zaveďte ju pred tvár Najvyššieho.</strong></p>
+        <p>Odpočinutie večné daj mu (jej), Pane, a svetlo večné nech mu (jej) svieti.<br>
+        <span class="rubrik">R.</span> <strong>Vezmite túto dušu a zaveďte ju pred tvár Najvyššieho.</strong></p>
+        
+        <p class="rubrik" style="margin-top: 15px;">Modlime sa:</p>
+        <p>Odporúčame ti, Pane, dušu tvojho služobníka N. (dušu tvojej služobnice N.), aby sa po skonaní na tomto svete žila u teba; a čoho sa z ľudskej krehkosti dopustil(a), ty mu (jej) pre svoje milosrdné odpustenie zotri. Skrze Krista, nášho Pána.<br>
+        <span class="rubrik">R.</span> <strong>Amen.</strong></p>
+    </section>
+</div>
 
-### Dokončenie biblických čítaní (s. 56 – 57)
-* **Lk 24, 1 – 8** (*Vstal z mŕtvych*): Evanjelium o prázdnom hrobe, dvoch mužoch v žiarivom odeve a oznamení zmŕtvychvstania.
-* **Jn 6, 37 – 40** (*Kto vidí Syna a verí v neho, má život večný*): Prísľub Ježiša, že nevyženie nikoho, kto k nemu prichádza, a vzkriesi ho v posledný deň.
-* **Jn 14, 1 – 6. 22 – 23. 27** (*Ježiš odchádza k Otcovi*): Slova útechy o mnohých príbytkoch v Otcovom dome, ceste k Otcovi a darovaní pokoja.
-
----
-
-### III. Litánie (s. 58 – 59)
-* **Úvodná rubrika č. 56**: Ak zomierajúci vládze, odporúča sa modliť litánie s odpoveďou *„oroduj zaňho (za ňu)“*.
-* **Vzývanie svätých**: Od Panny Márie, sv. Michala, anjelov, cez apoštolov, mučeníkov, učiteľov Cirkvi až po slovenských patrónov (sv. Cyril a Metod, sv. Andrej-Svorad a Benedikt).
-* **Prosby za ochranu**: Odpovede *„ochraňuj ho (ju), Pane“* pri prosbách za oslobodenie od zla, hriechu, večnej smrti a skrze Kristovo vtelenie, smrť a zoslanie Ducha Svätého.
-* **Záver**: Prosby za odpustenie hriechov a zvolanie *„Kriste, uslyš nás / Kriste, vyslyš nás“*.
-
----
-
-### IV. Modlitby odporúčania (s. 60 – 63)
-* **Úvodná rubrika č. 57**: Recitovanie modlitieb v okamihu blížiacej sa smrti.
-* **Modlitba „Vydaj sa na cestu“**: Odporúčanie kresťanskej duše v mene Boha Otca, Syna i Ducha Svätého.
-* **Modlitba „Odporúčam ťa“**: Zverenie brata/sestry do rúk Stvoriteľa a vyprosenie prijatia medzi vyvolených.
-* **Séria prosieb za oslobodenie (*R. Amen*)**:
-  * Prirovnania k oslobodeniu Noema z potopy, Abraháma z Chaldejska, Jóba z utrpenia, Mojžiša z rúk faraóna, Daniela z jamy levov, troch mládencov z pece, Zuzany, Dávida či Petra a Pavla z väzenia.
-* **Modlitba „Odporúčame ti, Pane“**: Záverečná prosba k Ježišovi ako Spasiteľovi sveta, aby prijal dušu napriek ľudským slabostiam.
-* **Antifóna (č. 58)**: Recitácia alebo spev *Zdravas', Kráľovná, Matka milosrdenstva*.
-
----
-
-### V. Modlitba po skonaní (s. 64)
-* **Úvodná rubrika č. 59**: Modlitba, ktorá sa odrieka bezprostredne po skonaní.
-* **Responzóriové prosby**: 
-  * *„Svätí Boží, príďte na pomoc... / Vezmite túto dušu a zaveďte ju pred tvár Najvyššieho.“*
-  * Prosba o večné odpočinutie (*„Odpočinutie večné daj mu (jej), Pane...“*).
-* **Záverečná modlitba**: *„Odporúčame ti, Pane, dušu tvojho služobníka M. (dušu tvojej služobnice M.)...“* s prosbou o odpustenie vín z ľudskej krehkosti.
+</body>
+</html>
