@@ -1,5 +1,6 @@
 :root {
-    --base-font-size: 30px;
+    --base-font-size: 30px; /* Tu si nastav ľubovoľnú výchoziu veľkosť textu */
+    
     /* Tmavý režim (Default) */
     --bg-color: #000000;
     --text-color: #ffffff;
@@ -47,12 +48,17 @@
     box-sizing: border-box; 
 }
 
+/* Nastavenie premennej pre koreňový element HTML */
+html {
+    font-size: var(--base-font-size);
+}
+
 body {
     font-family: 'Roboto', sans-serif;
+    font-size: var(--base-font-size); /* Zabezpečí prepojenie s JS */
     line-height: 1.5;
     margin: 0;
     padding: 4px;
-    /* Dynamické odsadenie zhora, aby navigačný obal neprekrýval prvé riadky textu */
     padding-top: calc(115px + env(safe-area-inset-top));
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -210,7 +216,7 @@ button.btn-apply {
     padding-bottom: 16px;
     padding-left: 4px;
     padding-right: 4px;
-    font-size: var(--base-font-size);
+    font-size: inherit; /* Podedí veľkosť z body / :root */
 }
 
 .chapter-title {
@@ -365,6 +371,7 @@ p {
     color: var(--rubrik-color);
     font-weight: bold;
 }
+
 /* Plávajúce tlačidlo Naspäť na začiatok */
 #scrollTopBtn {
     position: fixed;
@@ -386,7 +393,6 @@ p {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Polopriehľadnosť pri zobrazení */
 #scrollTopBtn.visible {
     opacity: 0.6;
     visibility: visible;
