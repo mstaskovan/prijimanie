@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stránka sa pripravuje</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Doplňujúci štýl pre vycentrovanie obsahu na stred obrazovky */
+        .prep-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 120px);
+            padding: 20px 10px;
+        }
 
+        .prep-card {
+            background-color: var(--control-bg);
+            border: 1px solid var(--control-border);
+            border-radius: 12px;
+            padding: 40px 24px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .prep-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .prep-card h1 {
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .prep-card p {
+            text-align: center;
+            margin-bottom: 24px;
+            opacity: 0.9;
+        }
+
+        .prep-card .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--accent-btn);
+            color: var(--accent-btn-text);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 6px;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .prep-card .btn-back:hover,
+        .prep-card .btn-back:active {
+            opacity: 0.9;
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Horný ovládací panel z tvojho projektu -->
+    <header class="controls-wrapper" id="headerControls">
+        <div class="controls" id="controls">
+            <div class="controls-group">
+                <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+            </div>
+            <div class="controls-group">
+                <button onclick="changeFontSize(-2)">A-</button>
+                <button onclick="resetFontSize()">100%</button>
+                <button onclick="changeFontSize(2)">A+</button>
+            </div>
+            <div class="controls-group">
+                <button onclick="toggleTheme()" id="themeBtn">☀️ Svetlý motív</button>
+            </div>
+
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="index.html">Riadny obrad prijímania chorých</a></li>
+                    <li><a href="odporucanie.html">Obrad odporúčania zomierajúcich</a></li>
+                    <li><a href="citania.html">Biblické čítania</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hlavný obsah oznamu -->
+    <div class="prep-wrapper">
+        <div class="prep-card">
+            <div class="prep-icon">⏳</div>
+            <h1>Stránka sa pripravuje</h1>
+            <p>Na obsahu pre túto sekciu momentálne pracujeme. Vráťte sa, prosím, neskôr.</p>
+            <a href="index.html" class="btn-back">← Späť na hlavnú stránku</a>
+        </div>
+    </div>
+
+    <!-- Tlačidlo pre posun nahor -->
+    <button id="scrollTopBtn" onclick="scrollToTop()" aria-label="Načiatok stránky">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
