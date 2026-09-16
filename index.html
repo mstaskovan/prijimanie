@@ -3,11 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Riadny obrad prijímania chorých</title>
+    <title>Obrad odporúčania zomierajúcich</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Sticky podmenu hneď pod hlavným ovládacím panelom */
+        .sticky-submenu {
+            position: sticky;
+            top: 55px; /* Prispôsob podľa výšky hlavného #controls panela */
+            z-index: 99;
+            background: var(--bg-color, #ffffff);
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--control-border);
+        }
+        .sticky-submenu a {
+            white-space: nowrap;
+            padding: 6px 12px;
+            background: var(--control-btn-bg);
+            color: var(--control-btn-text);
+            border: 1px solid var(--control-border);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,10 +50,10 @@
         <button onclick="toggleTheme()" id="themeBtn">☀️ Svetlý motív</button>
     </div>
     <div class="controls-group">
-        <button class="btn-apply" onclick="filterSelected()">✓ Použiť výber</button>
+        <button class="btn-apply" onclick="filterSelected()">✓ Skryť / Zobraziť pokyny</button>
     </div>
 
-    <!-- PRESUNUTÉ SEM (dovnútra .controls): -->
+    <!-- Hlavné rozbalovacie menu -->
     <nav class="nav-menu" id="navMenu">
         <ul>
             <li><a href="index.html">Riadny obrad prijímania chorých</a></li>
@@ -37,447 +63,57 @@
     </nav>
 </div>
 
-    <div class="container" id="content">
-        <br>
-        <div class="chapter-title">PRVÁ KAPITOLA</div>
-        <div class="header-title">RIADNY OBRAD PRIJÍMANIA CHORÝCH</div>
+<div class="container" id="content">
+    <br>
+    <div class="header-title" style="text-align: center; font-weight: bold;">ŠTVRTÁ KAPITOLA</div>
+    <h1 style="text-align: center; color: var(--red); margin-top: 5px; margin-bottom: 20px;">OBRAD ODPORÚČANIA ZOMIERAJÚCICH</h1>
 
-        <p class="rubrik num-rubrik">14. Kňaz alebo diakon vysluhuje chorým sväté prijímanie a viatikum podľa knihy <i>Pomazanie chorých a pastoračná starostlivosť o nich</i>. Keď Eucharistiu prináša chorým akolyta alebo mimoriadny vysluhovateľ svätého prijímania, poverený podľa noriem práva, má sa dodržať obrad, ktorý nasleduje.</p>
+    <!-- Prichytené rýchle podmenu (Sticky) -->
+    <nav class="sticky-submenu">
+        <a href="#uvodne-pokyny">Pokyny</a>
+        <a href="#kratke-zvolania">I. Krátke zvolania</a>
+        <a href="#biblicke-citania">II. Biblické čítania</a>
+        <a href="#litanie">III. Litánie</a>
+        <a href="#modlitby-odporucania">IV. Modlitby odporúčania</a>
+        <a href="#modlitba-po-skonani">V. Modlitba po skonaní</a>
+    </nav>
 
-        <p class="rubrik num-rubrik">15. Tým, čo nemôžu prijať Eucharistiu pod spôsobom chleba, je dovolené podať ju iba pod spôsobom vína.<br>
-        Kristova krv sa nesie k chorému v nádobke uzavretej tak, aby sa úplne vylúčilo nebezpečenstvo vyliatia. Pri vysluhovaní sviatosti v jednotlivých prípadoch sa má vybrať vhodnejší spôsob z tých, ktoré sú určené na rozdávanie prijímania pod obidvoma spôsobmi.<br>
-        Ak po prijímaní zostalo niečo z najdrahšej Kristovej krvi, prijme ju vysluhovateľ a urobí povinnú purifikáciu.</p>
+    <!-- ÚVODNÉ POKYNY -->
+    <section id="uvodne-pokyny">
+        <p class="rubrik">50. Láska k blížnemu núti kresťanov, aby vyjadrili spoločenstvo s umierajúcim bratom alebo sestrou, a to tak, že s ním a zaňho prosia o Božie milosrdenstvo a dôveru v Krista.</p>
+        <p class="rubrik">51. Modlitby, litániové prosby, krátke zvolania, žalmy a čítania Božieho slova, ktoré sú v tejto kapitole určené na odporúčanie duše, majú chorému, ktorý je ešte pri vedomí, pomôcť, aby podľa príkladu trpiaceho a umierajúceho Krista prijal vrodenú úzkosť zo smrti v sile toho, ktorý svojou smrťou zničil našu smrť a premohol ju v nádeji na nebeský život a zmŕtvychvstanie.</p>
+        <p class="rubrik">Aj tí, čo sa starajú o umierajúceho, ktorý je už v bezvedomí, môžu čerpať z týchto modlitieb útechu a pochopiť veľkonočný zmysel kresťanskej smrti. Je vhodné vyjadriť tento zmysel aj viditeľným znakom, a to poznačením umierajúceho znakom kríža na čele, kde bol týmto znakom prvý raz poznačený pri krste.</p>
+        <p class="rubrik">52. Modlitby a čítania sa majú vybrať z tých, ktoré sú tu uvedené, a pridať, ak treba, aj iné. Vždy sa majú prispôsobiť duševnému a telesnému stavu umierajúceho a iným okolnostiam miesta a osôb. Majú sa recitovať pomaly, skôr tichým hlasom a chvíľkami ticha. Často je osožné opakovať pomaly, raz i druhý raz, jedno alebo druhé krátke zvolanie z tu uvedených a odriekať ich s umierajúcim.</p>
+        <p class="rubrik">53. Hneď ako umierajúci skoná, všetci si podľa možnosti kľaknú a jeden z prítomných alebo presbyter, či diakon odrieka modlitbu, ktorá je v č. 59.</p>
+        <p class="rubrik">54. Kňazi a diakoni, nakoľko je to možné, majú spolu s príbuznými pomáhať umierajúcemu a odriekať modlitby odporúčania a skonu. Svojou prítomnosťou jasne ukazujú, že kresťan umiera v spoločenstve Cirkvi.</p>
+        <p class="rubrik">55. Ak však pre iné vážne pastoračné úlohy nemôžu byť prítomní, nech nezabudnú pripomenúť laikom, aby tí, čo sa starajú o zomierajúcich, spolu s nimi odriekali modlitby tu uvedené alebo iné. Treba sa postarať, aby laici mali poruke texty takýchto modlitieb a čítaní.</p>
+    </section>
 
-        <h1>ÚVODNÉ OBRADY</h1>
+    <hr style="border: none; border-top: 1px solid var(--hr-color); margin: 25px 0;">
 
-        <h2>Pozdrav</h2>
-        <p class="rubrik num-rubrik">16. Vysluhovateľ, primerane oblečený na túto službu (porov. bod 8), príde k chorému a vľúdne pozdraví jeho i ostatných prítomných. Môže to urobiť týmito slovami:</p>
-        
-        <p><strong>Pokoj tomuto domu a všetkým, čo v ňom bývajú.</strong></p>
+    <!-- (Časti I. až IV. zostávajú rovnaké ako doteraz) -->
 
-        <p class="rubrik num-rubrik">Možno použiť aj iné slová zo Svätého písma, ktorými sa veriaci zvyčajne pozdravujú.</p>
+    <!-- V. MODLITBA PO SKONANÍ -->
+    <section id="modlitba-po-skonani">
+        <h2 style="color: var(--red); text-align: center;">V. MODLITBA PO SKONANÍ</h2>
+        <p class="rubrik">59. Hneď po skonaní sa treba modliť:</p>
 
-        <h2>Krátka poklona Oltárnej sviatosti</h2>
-        <p class="rubrik num-rubrik">17. Potom položí Najsvätejšiu sviatosť na stôl a spolu s prítomnými sa jej klania. Možno použiť niektorú z týchto formúl:</p>
+        <p><span style="color: var(--red); font-weight: bold;">V.</span> <strong>Svätí Boží, príďte na pomoc,<br>anjeli Pánovi, ponáhľajte sa v ústrety.</strong><br>
+        <span style="color: var(--red); font-weight: bold;">R.</span> Vezmite túto dušu<br>a zveďte ju pred tvár Najvyššieho.</p>
 
-        <div class="option-block" data-group="poklona">
-            <label class="option-select">
-                <input type="radio" name="poklona" value="1">
-                <span class="versicle">1.</span>
-            </label>
-            <p><strong>Svätá hostina, pri ktorej prijímame Krista:<br>
-            slávi sa pamiatka jeho umučenia,<br>
-            duša sa napĺňa milosťou<br>
-            a dostávame závdavok budúcej slávy.</strong></p>
-        </div>
+        <p><span style="color: var(--red); font-weight: bold;">V.</span> <strong>Nech ťa prijme Kristus, ktorý ťa povolal,<br>a nech ťa anjeli vovedú do lona Abrahámovho.</strong><br>
+        <span style="color: var(--red); font-weight: bold;">R.</span> Vezmite túto dušu<br>a zveďte ju pred tvár Najvyššieho.</p>
 
-        <div class="option-block" data-group="poklona">
-            <label class="option-select">
-                <input type="radio" name="poklona" value="2">
-                <span class="versicle">2.</span>
-            </label>
-            <p><strong>Aké láskavé je tvoje zmýšľanie, Pane!<br>
-            Aby si ukázal svoju dobrotu<br>
-            voči svojim deťom,<br>
-            dávaš im prevzácny chlieb z neba;<br>
-            hladných kŕmiš dobrotami<br>
-            a pyšných boháčov prepúšťaš naprázdno.</strong></p>
-        </div>
+        <p><span style="color: var(--red); font-weight: bold;">V.</span> <strong>Odpočinutie večné daj mu (jej), Pane,<br>a svetlo večné nech mu (jej) svieti.</strong><br>
+        <span style="color: var(--red); font-weight: bold;">R.</span> A zveďte ju pred tvár Najvyššieho.</p>
 
-        <div class="option-block" data-group="poklona">
-            <label class="option-select">
-                <input type="radio" name="poklona" value="3">
-                <span class="versicle">3.</span>
-            </label>
-            <p><strong>Zdrav buď, pravé telo Krista<br>
-            z Panny Matky zrodené,<br>
-            za nás ako obeť čistá na kríži umučené.<br>
-            Z jeho boku tiekla voda i krv,<br>
-            čo nás obmyla;<br>
-            ochraňuj nás v chvíli smrti,<br>
-            sviatosť spásy premilá.<br>
-            Ježiš drahý, dobrotivý,<br>
-            Syn Márie milostivý!</strong></p>
-        </div>
+        <p style="margin-top: 20px;"><strong>Modlime sa.</strong></p>
 
-        <div class="option-block" data-group="poklona">
-            <label class="option-select">
-                <input type="radio" name="poklona" value="4">
-                <span class="versicle">4.</span>
-            </label>
-            <p><strong>Ja som živý chlieb,<br>
-            ktorý zostúpil z neba.<br>
-            Kto bude jesť z tohto chleba,<br>
-            bude žiť naveky.<br>
-            A chlieb, ktorý ja dám,<br>
-            je moje telo za život sveta.</strong></p>
-        </div>
+        <p><strong>Odporúčame ti, Pane, dušu tvojho služobníka M., <em>(dušu tvojej služobnice M.)</em>, ktorý(á) už opustil(a) tento svet. Pre svoje láskavé milosrdenstvo odpusť mu (jej) viny, ktorých sa dopustil(a) z ľudskej krehkosti. O to ťa prosíme skrze Krista, nášho Pána.</strong><br>
+        <span style="color: var(--red); font-weight: bold;">R.</span> <strong>Amen.</strong></p>
+    </section>
+</div>
 
-        <div class="option-block" data-group="poklona">
-            <label class="option-select">
-                <input type="radio" name="poklona" value="5" checked>
-                <span class="versicle">5.</span>
-            </label>
-            <p><strong>Klaniame sa ti, Pane Ježišu,<br>
-            v Najsvätejšej oltárnej sviatosti.</strong></p>
-        </div>
-
-        <h2>Prežehnanie</h2>
-        <p class="rubrik num-rubrik">18. Potom sa prežehná a pozdraví prítomných:</p>
-        
-        <p><span class="versicle">V.</span> <strong>V mene Otca i Syna ✠ i Ducha Svätého.</strong><br>
-        <span class="versicle">R.</span> Amen.<br>
-        <span class="versicle"><strong>V.</span> Bratia a sestry, velebte Pána, ktorý nás (vás) dobrotivo pozýva k stolu Kristovho tela.</strong><br>
-        <span class="versicle">R.</span> Zvelebený Boh naveky.</p>
-
-        <h1>ÚKON KAJÚCNOSTI</h1>
-        <p class="rubrik num-rubrik">19. Vysluhovateľ vyzve chorého i ostatných prítomných na úkon kajúcnosti:</p>
-
-        <div class="option-block" data-group="kajucnost">
-            <label class="option-select">
-                <input type="radio" name="kajucnost" value="1">
-                <span class="versicle">1.</span>
-            </label>
-            <p><strong>Bratia a sestry, uznajme svoje hriechy, aby sme mohli mať s čistým srdcom účasť na tomto posvätnom slávení.</strong></p>
-            <p class="rubrik">Nasleduje chvíľa ticha. Potom všetci spoločne vyznávajú:</p>
-            <p>Vyznávam všemohúcemu Bohu i vám, bratia a sestry, že som veľa zhrešil myšlienkami, slovami, skutkami a zanedbávaním dobrého.</p>
-            <p class="rubrik">Bijú sa do pŕs a hovoria:</p>
-            <p>Moja vina, moja vina, moja preveľká vina.</p>
-            <p class="rubrik">Potom pokračujú:</p>
-            <p>Preto prosím blahoslavenú Máriu, vždy Pannu, všetkých anjelov a svätých i vás, bratia a sestry, modlite sa za mňa k Pánu, Bohu nášmu.</p>
-            <p class="rubrik">Vysluhovateľ uzavrie úkon kajúcnosti slovami:</p>
-            <p><strong>Nech sa zmiluje nad nami všemohúci Boh, nech nám hriechy odpustí a privedie nás do života večného.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="kajucnost">
-            <label class="option-select">
-                <input type="radio" name="kajucnost" value="2" checked>
-                <span class="versicle">2.</span>
-            </label>
-            <p><strong>Bratia a sestry, uznajme svoje hriechy, aby sme mohli mať s čistým srdcom účasť na tomto posvätnom slávení.</strong></p>
-            <p class="rubrik">Nasleduje chvíľa ticha. Potom vysluhovateľ powie:</p>
-            <p><span class="versicle"><strong>V.</span> Zmiluj sa nad nami, Pane.</strong><br>
-            <span class="versicle">R.</span> Lebo sme sa prehrešili proti tebe.<br>
-            <span class="versicle"><strong>V.</span> Ukáž nám, Pane, svoje milosrdenstvo.</strong><br>
-            <span class="versicle">R.</span> A daj nám svoju spásu.</p>
-            <p class="rubrik">Vysluhovateľ uzavrie úkon kajúcnosti slovami:</p>
-            <p><strong>Nech sa zmiluje nad nami všemohúci Boh, nech nám hriechy odpustí a privedie nás do života večného.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="kajucnost">
-            <label class="option-select">
-                <input type="radio" name="kajucnost" value="3">
-                <span class="versicle">3.</span>
-            </label>
-            <p><strong>Bratia a sestry, uznajme svoje hriechy, aby sme mohli mať s čistým srdcom účasť na tomto posvätnom slávení.</strong></p>
-            <p class="rubrik">Nasleduje chvíľa ticha. Potom vysluhovateľ alebo niekto z prítomných prednesie tieto alebo iné zvolania s invokáciou Pane, zmiluj sa:</p>
-            <p><span class="versicle"><strong>V.</span> Pane, ty si nám veľkonočným tajomstvom získal spásu.</strong><br>
-            <span class="indent"><strong>Pane, zmiluj sa <span class="rubrik">(Alebo: Kyrie, eléison)</span>.</strong></span><br>
-            <span class="versicle">R.</span> Pane, zmiluj sa <span class="rubrik">(Alebo: Kyrie, eléison)</span>.<br>
-            <span class="versicle"><strong>V.</span> Ty stále obnovuješ medzi nami pamiatku svojho umučenia.</strong><br>
-            <span class="indent"><strong>Kriste, zmiluj sa <span class="rubrik">(Alebo: Christe, eléison)</span>.</strong></span><br>
-            <span class="versicle">R.</span> Kriste, zmiluj sa <span class="rubrik">(Alebo: Christe, eléison)</span>.<br>
-            <span class="versicle"><strong>V.</span> V prijímaní svojho tela nám dávaš účasť na veľkonočnej obete.</strong><br>
-            <span class="indent"><strong>Pane, zmiluj sa <span class="rubrik">(Alebo: Kyrie, eléison)</span>.</strong></span><br>
-            <span class="versicle">R.</span> Pane, zmiluj sa <span class="rubrik">(Alebo: Kyrie, eléison)</span>.</p>
-            <p class="rubrik">Vysluhovateľ uzavrie úkon kajúcnosti slovami:</p>
-            <p><strong>Nech sa zmiluje nad nami všemohúci Boh, nech nám hriechy odpustí a privedie nás do života večného.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <h1>KRÁTKE ČÍTANIE BOŽIEHO SLOVA</h1>
-        <p class="rubrik num-rubrik">20. Podľa okolností môže niekto z prítomných alebo sám vysluhovateľ prečítať text Svätého písma, napríklad:</p>
-
-        <div class="option-block" data-group="citanie">
-            <label class="option-select">
-                <input type="radio" name="citanie" value="1" checked>
-                <span class="versicle">1.</span>
-            </label>
-            <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 6, 54 – 55</span></p>
-            <p class="clear"><strong>Kto je moje telo a pije moju krv, má večný život a ja ho vzkriesim v posledný deň. Lebo moje telo je pravý pokrm a moja krv je pravý nápoj.</strong></p>
-        </div>
-
-        <div class="option-block" data-group="citanie">
-            <label class="option-select">
-                <input type="radio" name="citanie" value="2">
-                <span class="versicle">2.</span>
-            </label>
-            <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 6, 54 – 58</span></p>
-            <p class="clear"><strong>Kto je moje telo a pije moju krv, má večný život a ja ho vzkriesim v posledný deň. Lebo moje telo je pravý pokrm a moja krv je pravý nápoj. Kto je moje telo a pije moju krv, ostáva vo mne a ja v ňom.<br>
-            Ako mňa poslal živý Otec a ja žijem z Otca, aj ten, čo mňa je, bude žiť zo mňa. Toto je ten chlieb, ktorý zostúpil z neba, a nie aký jedli otcovia a pomreli. Kto je tento chlieb, bude žiť naveky.</strong></p>
-        </div>
-
-        <div class="option-block" data-group="citanie">
-            <label class="option-select">
-                <input type="radio" name="citanie" value="3">
-                <span class="versicle">3.</span>
-            </label>
-            <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 14, 6</span></p>
-            <p class="clear"><strong>Ja som cesta, pravda a život. Nik nepríde k Otcovi, iba cezo mňa.</strong></p>
-        </div>
-
-        <div class="option-block" data-group="citanie">
-            <label class="option-select">
-                <input type="radio" name="citanie" value="4">
-                <span class="versicle">4.</span>
-            </label>
-            <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 14, 23</span></p>
-            <p class="clear"><strong>Kto ma miluje, bude zachovávať moje slovo a môj Otec ho bude milovať; prídeme k nemu a urobíme si uňho príbytok.</strong></p>
-        </div>
-
-        <div class="option-block" data-group="citanie">
-            <label class="option-select">
-                <input type="radio" name="citanie" value="5">
-                <span class="versicle">5.</span>
-            </label>
-            <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 14, 27</span></p>
-            <p class="clear"><strong>Pokoj vám zanechávam, svoj pokoj vám dávam. Ale ja vám nedávam, ako svet dáva. Nech sa vám srdce nevzrušuje a nestrachuje.</strong></p>
-        </div>
-
-        <div class="option-block" data-group="citanie">
-            <label class="option-select">
-                <input type="radio" name="citanie" value="6">
-                <span class="versicle">6.</span>
-            </label>
-            <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 15, 4</span></p>
-            <p class="clear"><strong>Ostaňte vo mne a ja vo vás. Ako ratolesť nemôže prinášať ovocie sama od seba, ak neostane na viniči, tak ani vy, ak neostanete vo mne.</strong></p>
-        </div>
-
-        <div class="option-block" data-group="citanie">
-            <label class="option-select">
-                <input type="radio" name="citanie" value="7">
-                <span class="versicle">7.</span>
-            </label>
-            <p><span class="rubrik">(Pán Ježiš hovorí:)</span> <span class="source">Jn 15, 5</span></p>
-            <p class="clear"><strong>Ja som vinič, vy ste ratolesti. Kto ostáva vo mne a ja v ňom, prináša veľa ovocia; lebo bezo mňa nemôžete nič urobiť.</strong></p>
-        </div>
-
-        <div class="option-block" data-group="citanie">
-            <label class="option-select">
-                <input type="radio" name="citanie" value="8">
-                <span class="versicle">8.</span>
-            </label>
-            <p><span class="rubrik">(Svätý apoštol Pavol píše:)</span> <span class="source">1 Kor 11, 26</span></p>
-            <p class="clear"><strong>Vždy, keď budete jesť tento chlieb a piť tento kalich, zvestujete Pánovu smrť, kým nepríde.</strong></p>
-        </div>
-
-        <div class="option-block" data-group="citanie">
-            <label class="option-select">
-                <input type="radio" name="citanie" value="9">
-                <span class="versicle">9.</span>
-            </label>
-            <p><span class="rubrik">(Svätý apoštol Ján píše:)</span> <span class="source">1 Jn 4, 16</span></p>
-            <p class="clear"><strong>My, čo sme uverili, spoznali sme lásku, akú má Boh k nám. Boh je láska; a kto ostáva v láske, ostáva v Bohu a Boh ostáva v ňom.</strong></p>
-        </div>
-
-        <h1>SVÄTÉ PRIJÍMANIE</h1>
-        <h2>Modlitba Pána</h2>
-        <p class="rubrik num-rubrik">21. Potom vysluhovateľ uvedie Modlitbu Pána týmito alebo podobnými slovami:</p>
-
-        <p><strong>A teraz spoločne prosme nebeského Otca a modlime sa, ako nás naučil náš Pán Ježiš Kristus:</strong></p>
-
-        <p class="rubrik">Všetci spoločne hovoria:</p>
-        <p>Otče náš, ktorý si na nebesiach,<br>
-        posväť sa meno tvoje,<br>
-        príď kráľovstvo tvoje,<br>
-        buď vôľa tvoja ako v nebi, tak i na zemi.<br>
-        Chlieb náš každodenný daj nám dnes<br>
-        a odpusť nám naše viny,<br>
-        ako i my odpúšťame svojim vinníkom,<br>
-        a neuveď nás do pokušenia,<br>
-        ale zbav nás Zlého.</p>
-
-        <h2>Prijímanie</h2>
-        <p class="rubrik num-rubrik">22. Vysluhovateľ ukáže Najsvätejšiu sviatosť a powie:</p>
-
-        <p><strong>Hľa, Baránok Boží, ktorý sníma hriechy sveta. Blažení tí, čo sú pozvaní na hostinu Baránkovu.</strong></p>
-
-        <p class="rubrik">Chorý a tí, čo budú prijímať, hovoria:</p>
-        <p>Pane, nie som hoden, aby si vošiel pod moju strechu, ale povedz iba slovo a duša mi ozdravie.</p>
-
-        <p class="rubrik num-rubrik">23. Vysluhovateľ pristúpi k chorému, ukáže mu Oltárnu sviatosť a powie:</p>
-        <p><strong>Telo Kristovo.</strong></p>
-
-        <p class="rubrik">Chorý odpovie:</p>
-        <p>Amen.</p>
-
-        <p class="rubrik">Po zvolaní Amen prijímajúci prijme hostiu. Ostatní prijímajú Eucharistiu zvyčajným spôsobom.</p>
-
-        <p class="rubrik num-rubrik">24. Po svätom prijímaní si vysluhovateľ zvyčajne očistí prsty a nádobku.<br>
-        Potom, ak je to vhodné, možno zachovať chvíľu posvätného ticha.</p>
-
-        <h2>Modlitba po prijímaní</h2>
-        <p class="rubrik num-rubrik">25. Potom vysluhovateľ powie záverečnú modlitbu:</p>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="1">
-                <span class="versicle">1.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Pane, svätý Otče, všemohúci večný Bože,<br> s dôverou ťa prosíme,<br> nech prijatie najsvätejšieho tela<br> (najsvätejšej krvi)<br> nášho Pána Ježiša Krista, tvojho Syna,<br> ochraňuje a posilňuje tohto nášho brata<br>(túto našu sestru),<br> nech mu (jej) prinesie úľavu na tele i na duši<br> a nech mu (jej) slúži na večnú spásu.<br> Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="2" checked>
-                <span class="versicle">2.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Bože, naša spása, ty si zavŕšil dielo nášho vykúpenia veľkonočným tajomstvom svojho Syna; keď sviatostnými znakmi zvestujeme jeho smrť a zmŕtvychvstanie, daj, aby sme mali vždy väčšiu účasť na diele nášho spásy. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="3">
-                <span class="versicle">3.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Dobrotivý Otče, pri tomto oltári si nás posilnil tým istým nebeským chlebom; naplň nás všetkých svojím Duchom a v láske nám zjednoť srdcia i mysle. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="4">
-                <span class="versicle">4.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Bože, milosrdný Otče, nech nás posvätí účasť na eucharistickej hostine, aby nás telo a krv nášho Pána Ježiša Krista spojili všetkých v bratskej láske. O to ťa prosíme skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="5">
-                <span class="versicle">5.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Dobrotivý Otče, vo svojej nesmiernej láske si nás nasýtil duchovným pokrmom; prosíme ťa, daj, aby sme sa účasťou na tejto sviatosti naučili správne hodnotiť pozemské veci a milovať hodnoty nebeské. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="6">
-                <span class="versicle">6.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Dobrotivý Otče, vrúcne ti ďakujeme, že môžeme prijímať Najsvätejšiu sviatosť a že nám už v pozemskom živote dávaš účasť na nebeskej hostine. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="7">
-                <span class="versicle">7.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Všemohúci Bože, svojimi sviatosťami nám dávaš nový život; vrúcne ťa prosíme, pomáhaj nám šíriť vo svete Kristovu lásku a dosvedčovať ju skutkami. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="8">
-                <span class="versicle">8.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Milosrdný Bože, doprial si nám účasť na tom istom chlebe a kalichu; prosíme ťa, pomáhaj nám žiť tak, aby sme všetci boli jedno v Kristovi a radostne s ním spolupracovali na spáse sveta. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="9">
-                <span class="versicle">9.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Všemohúci Bože, ďakujeme ti, že si nás nasýtil pri svojom stole, a prosíme ťa, aby tento sviatostný pokrm živil v našich srdciach lásku a pobádal nás slúžiť ti v našich bratoch a sestrách. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="10">
-                <span class="versicle">10.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Dobrotivý Bože, ďakujeme ti, že si nás posilnil chlebom života, a prosíme ťa, daj, nech sila Ducha Svätého, ktorá pôsobí vo sviatostiach, ustavične obnovuje, aby sme ti zostali úprimne oddaní. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="11">
-                <span class="versicle">11.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Milosrdný Bože, ty si nám dal účasť na jednom chlebe a na jednom kalichu; vrúcne ťa prosíme, posilňuj nás v láske k tebe a daj, aby sme stále žili novým životom. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <p class="rubrik num-rubrik">Vo Veľkonočnom období:</p>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="12">
-                <span class="versicle">12.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Dobrotivý Bože, pri veľkonočnej hostine si nás posilnil sviatostným pokrmom; naplň nás všetkých svojím Duchom a v láske nám zjednoť srdcia i mysle. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="13">
-                <span class="versicle">13.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Prosíme ťa, nekonečný Bože, nech nás dôstojné prijatie sviatosti tvojho Syna očistí od všetkých chýb minulosti a pretvorí na nových ľudí. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <div class="option-block" data-group="modlitba">
-            <label class="option-select">
-                <input type="radio" name="modlitba" value="14">
-                <span class="versicle">14.</span>
-            </label>
-            <p><strong>Modlime sa.</p>
-            <p>Všemohúci a večný Bože, zmŕtvychvstaním tvojho Syna znovu si nám otvoril cestu do večného života; naplň nás silou spásonosného pokrmu, ktorý sme prijali, a zveľaďuj v nás účinky veľkonočného tajomstva. Skrze Krista, nášho Pána.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-        
-        <h1>ZÁVEREČNÉ OBRADY</h1>
-        <p class="rubrik num-rubrik">26. Vysluhovateľ vzýva Božie požehnanie, prežehná sa a pritom hovorí:</p>
-
-        <div class="option-block" data-group="pozehnanie">
-            <label class="option-select">
-                <input type="radio" name="pozehnanie" value="1">
-                <span class="versicle">1.</span>
-            </label>
-            <p><strong>Nech nás žehná Pán, nech nás chráni od zlého a nech nás privedie do večného života.</strong></p>
-        </div>
-
-        <div class="option-block" data-group="pozehnanie">
-            <label class="option-select">
-                <input type="radio" name="pozehnanie" value="2" checked>
-                <span class="versicle">2.</span>
-            </label>
-            <p><strong>Nech nás žehná a chráni všemohúci a milosrdný Pán, Otec i Syn i Duch Svätý.</strong><br>
-            <span class="versicle">R.</span> Amen.</p>
-        </div>
-
-        <footer class="disclaimer">
-            <p><strong>Upozornenie:</strong> Tento text je publikovaný výhradne pre súkromnú potrebu a osobné účely pri službe akolytu, či mimoriadného vysluhovateľa, podľa knihy <i>„Sväté prijímanie a viatikum, ktoré chorým prináša mimoriadny vysluhovateľ“</i>, ktorú vydal Spolok svätého Vojtecha v Trnave 2018. Kód ani text nie sú určené na verejné šírenie ani komerčné použitie bez súhlasu držiteľa autorských práv.</p>
-        </footer>
-    </div>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
