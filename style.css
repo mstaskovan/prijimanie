@@ -139,7 +139,9 @@ button, label, a {
     display: block;
     width: 18px;
     height: 18px;
+    fill: none; /* Dôležité, aby ikona nebola plná */
     stroke: currentColor;
+    stroke-width: 2;
 }
 
 button.btn-apply {
