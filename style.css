@@ -226,7 +226,6 @@ button.btn-apply {
     color: var(--heading-color);
     margin-top: 10px;
     margin-bottom: 20px;
-    border-bottom: 1px solid var(--header-border);
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -237,6 +236,7 @@ button.btn-apply {
     letter-spacing: 0.5px;
     color: var(--heading-color);
     padding-bottom: 8px;
+    border-bottom: 1px solid var(--header-border);
     font-weight: 700;
     text-transform: uppercase;
 }
