@@ -80,13 +80,18 @@ function toggleMenu() {
     }
 }
 
-/* Zavretie menu pri kliknutí mimo neho ALEBO pri kliknutí na odkaz */
+/* Zavretie menu pri kliknutí mimo neho ALEBO pri kliknutí na akýkoľvek odkaz */
 document.addEventListener('click', function(event) {
     const menu = document.getElementById('navMenu');
     const toggleBtn = document.querySelector('.menu-toggle');
     
     if (menu && menu.classList.contains('active')) {
-        if ((!menu.contains(event.target) && !toggleBtn.contains(event.target)) || event.target.tagName === 'A') {
+        // Zavrieť ak sa klikne mimo menu a tlačidla, ALEBO ak sa klikne na odkaz v menu/submenu
+        const isMenuClick = menu.contains(event.target);
+        const isToggleClick = toggleBtn && toggleBtn.contains(event.target);
+        const isLinkClick = event.target.tagName === 'A' || event.target.closest('a');
+
+        if ((!isMenuClick && !isToggleClick) || isLinkClick) {
             menu.classList.remove('active');
         }
     }
