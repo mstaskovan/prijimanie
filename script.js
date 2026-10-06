@@ -100,12 +100,17 @@ document.addEventListener('click', function(event) {
     }
 });
 
-/* Sledovanie skrolovania (skrytie/zobrazenie lišty + cross-platform iOS scroll fix) */
+/* Sledovanie skrolovania (skrytie/zobrazenie lišty s dead zónou + cross-platform iOS scroll fix) */
 let lastScrollTop = 0;
+let scrollUpDistance = 0; // Uchováva vzdialenosť prescrolovanú smerom nahor
+const SCROLL_UP_DEADZONE = 40; // Počet pixelov, ktoré treba prejet nahor, aby sa menu znova zobrazilo (nastav podľa potreby)
 
 window.addEventListener('scroll', function() {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
     
+    // Ošetrenie pre iOS (bounce efekt pri skrolovaní úplne nahor/nadol)
+    if (scrollTop < 0) scrollTop = 0;
+
     const headerWrapper = document.getElementById('headerControls');
     const controls = document.getElementById('controls');
     const menu = document.getElementById('navMenu');
@@ -113,39 +118,29 @@ window.addEventListener('scroll', function() {
     const targetElement = headerWrapper || controls;
 
     if (targetElement) {
-        if (scrollTop > lastScrollTop && scrollTop > 50) {
-            targetElement.classList.add('nav-hidden');
-            targetElement.classList.add('controls-hidden');
-            if (menu) menu.classList.remove('active');
+        if (scrollTop > lastScrollTop) {
+            // Skrolovanie NADOL: okamžité skrytie
+            scrollUpDistance = 0; // Resetujeme akumulátor pre pohyb nahor
+            
+            if (scrollTop > 50) {
+                targetElement.classList.add('nav-hidden');
+                targetElement.classList.add('controls-hidden');
+                if (menu) menu.classList.remove('active');
+            }
         } else {
-            targetElement.classList.remove('nav-hidden');
-            targetElement.classList.remove('controls-hidden');
+            // Skrolovanie NAHOR: pripočítavame prescrolovanú vzdialenosť
+            scrollUpDistance += (lastScrollTop - scrollTop);
+
+            // Menu sa vyroluje až keď pretne hranicu deadzóny ALEBO ak je používateľ úplne na vrchu stránky
+            if (scrollUpDistance >= SCROLL_UP_DEADZONE || scrollTop <= 10) {
+                targetElement.classList.remove('nav-hidden');
+                targetElement.classList.remove('controls-hidden');
+            }
         }
     }
     
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    lastScrollTop = scrollTop;
 }, { passive: true });
-
-/* Plynulý posun na začiatok stránky */
-function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-}
-
-/* Sledovanie skrolovania pre zobrazenie tlačidla "Hore" */
-window.addEventListener('scroll', function() {
-    const scrollBtn = document.getElementById('scrollTopBtn');
-    if (scrollBtn) {
-        if (window.scrollY > 300) {
-            scrollBtn.classList.add('visible');
-        } else {
-            scrollBtn.classList.remove('visible');
-        }
-    }
-}, { passive: true });
-
 /* Inicializácia po načítaní DOM */
 document.addEventListener('DOMContentLoaded', function() {
     initTheme();
