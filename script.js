@@ -100,10 +100,10 @@ document.addEventListener('click', function(event) {
     }
 });
 
-/* Sledovanie skrolovania s deadzónou pri skrátenom skrytí menu */
+/* Sledovanie skrolovania s otočenou logikou deadzóny */
 let lastScrollTop = 0;
-let scrollDownDistance = 0; // Uchováva vzdialenosť pri posune prstom k hornému okraju
-const SCROLL_DOWN_DEADZONE = 40; // Počet pixelov gesta nahor, po ktorých sa menu skryje (nastav podľa potreby)
+let scrollDistance = 0;
+const SCROLL_DEADZONE = 40; // Počet pixelov pre prekročenie deadzóny (nastav podľa potreby)
 
 window.addEventListener('scroll', function() {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -119,22 +119,22 @@ window.addEventListener('scroll', function() {
 
     if (targetElement) {
         if (scrollTop > lastScrollTop) {
-            // Posun obsahu NADOL (prst ide k HORNÉMU okraju) -> SKRYTIE MENU
-            scrollDownDistance += (scrollTop - lastScrollTop);
-
-            // Skryje sa až po prekročení deadzóny
-            if (scrollDownDistance >= SCROLL_DOWN_DEADZONE && scrollTop > 50) {
+            // Smer 1: Okamžitá reakcia
+            scrollDistance = 0;
+            
+            if (scrollTop > 50) {
                 targetElement.classList.add('nav-hidden');
                 targetElement.classList.add('controls-hidden');
                 if (menu) menu.classList.remove('active');
             }
         } else {
-            // Posun obsahu NAHOR (prst ide k DOLNÉMU okraju) -> ZOBRAZENIE MENU
-            scrollDownDistance = 0; // Reset akumulátora skrytia
+            // Smer 2: Reakcia až po prekročení deadzóny
+            scrollDistance += (lastScrollTop - scrollTop);
 
-            // Okamžité vyrolovanie menu
-            targetElement.classList.remove('nav-hidden');
-            targetElement.classList.remove('controls-hidden');
+            if (scrollDistance >= SCROLL_DEADZONE || scrollTop <= 10) {
+                targetElement.classList.remove('nav-hidden');
+                targetElement.classList.remove('controls-hidden');
+            }
         }
     }
     
