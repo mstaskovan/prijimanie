@@ -100,15 +100,15 @@ document.addEventListener('click', function(event) {
     }
 });
 
-/* Sledovanie skrolovania (skrytie/zobrazenie lišty s dead zónou + cross-platform iOS scroll fix) */
+/* Sledovanie skrolovania s deadzónou pri skrátenom skrytí menu */
 let lastScrollTop = 0;
-let scrollUpDistance = 0; // Uchováva vzdialenosť prescrolovanú smerom nahor
-const SCROLL_UP_DEADZONE = 40; // Počet pixelov, ktoré treba prejet nahor, aby sa menu znova zobrazilo (nastav podľa potreby)
+let scrollDownDistance = 0; // Uchováva vzdialenosť pri posune prstom k hornému okraju
+const SCROLL_DOWN_DEADZONE = 40; // Počet pixelov gesta nahor, po ktorých sa menu skryje (nastav podľa potreby)
 
 window.addEventListener('scroll', function() {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
     
-    // Ošetrenie pre iOS (bounce efekt pri skrolovaní úplne nahor/nadol)
+    // Ošetrenie pre iOS bounce efekt
     if (scrollTop < 0) scrollTop = 0;
 
     const headerWrapper = document.getElementById('headerControls');
@@ -119,28 +119,28 @@ window.addEventListener('scroll', function() {
 
     if (targetElement) {
         if (scrollTop > lastScrollTop) {
-            // Skrolovanie NADOL: okamžité skrytie
-            scrollUpDistance = 0; // Resetujeme akumulátor pre pohyb nahor
-            
-            if (scrollTop > 50) {
+            // Posun obsahu NADOL (prst ide k HORNÉMU okraju) -> SKRYTIE MENU
+            scrollDownDistance += (scrollTop - lastScrollTop);
+
+            // Skryje sa až po prekročení deadzóny
+            if (scrollDownDistance >= SCROLL_DOWN_DEADZONE && scrollTop > 50) {
                 targetElement.classList.add('nav-hidden');
                 targetElement.classList.add('controls-hidden');
                 if (menu) menu.classList.remove('active');
             }
         } else {
-            // Skrolovanie NAHOR: pripočítavame prescrolovanú vzdialenosť
-            scrollUpDistance += (lastScrollTop - scrollTop);
+            // Posun obsahu NAHOR (prst ide k DOLNÉMU okraju) -> ZOBRAZENIE MENU
+            scrollDownDistance = 0; // Reset akumulátora skrytia
 
-            // Menu sa vyroluje až keď pretne hranicu deadzóny ALEBO ak je používateľ úplne na vrchu stránky
-            if (scrollUpDistance >= SCROLL_UP_DEADZONE || scrollTop <= 10) {
-                targetElement.classList.remove('nav-hidden');
-                targetElement.classList.remove('controls-hidden');
-            }
+            // Okamžité vyrolovanie menu
+            targetElement.classList.remove('nav-hidden');
+            targetElement.classList.remove('controls-hidden');
         }
     }
     
     lastScrollTop = scrollTop;
 }, { passive: true });
+
 /* Inicializácia po načítaní DOM */
 document.addEventListener('DOMContentLoaded', function() {
     initTheme();
