@@ -103,7 +103,7 @@ document.addEventListener('click', function(event) {
 /* Sledovanie skrolovania s otočenou logikou deadzóny */
 let lastScrollTop = 0;
 let scrollDistance = 0;
-const SCROLL_DEADZONE = 40; // Počet pixelov pre prekročenie deadzóny (nastav podľa potreby)
+const SCROLL_DEADZONE = 80; // Počet pixelov pre prekročenie deadzóny (nastav podľa potreby)
 
 window.addEventListener('scroll', function() {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
