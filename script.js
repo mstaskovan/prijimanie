@@ -103,7 +103,7 @@ document.addEventListener('click', function(event) {
 /* Sledovanie skrolovania (skrytie/zobrazenie lišty s deadzónou + tlačidlo Hore) */
 let lastScrollTop = 0;
 let scrollDistance = 0;
-const SCROLL_DEADZONE = 150; // Ak chceš ešte dlhšiu dráhu na vyrolovanie menu, zväčši toto číslo (napr. na 120)
+const SCROLL_DEADZONE = 300; // Ak chceš ešte dlhšiu dráhu na vyrolovanie menu, zväčši toto číslo (napr. na 120)
 
 window.addEventListener('scroll', function() {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
