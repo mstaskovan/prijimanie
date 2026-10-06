@@ -100,10 +100,10 @@ document.addEventListener('click', function(event) {
     }
 });
 
-/* Sledovanie skrolovania s otočenou logikou deadzóny */
+/* Sledovanie skrolovania (skrytie/zobrazenie lišty s deadzónou + tlačidlo Hore) */
 let lastScrollTop = 0;
 let scrollDistance = 0;
-const SCROLL_DEADZONE = 80; // Počet pixelov pre prekročenie deadzóny (nastav podľa potreby)
+const SCROLL_DEADZONE = 80; // Ak chceš ešte dlhšiu dráhu na vyrolovanie menu, zväčši toto číslo (napr. na 120)
 
 window.addEventListener('scroll', function() {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -114,12 +114,14 @@ window.addEventListener('scroll', function() {
     const headerWrapper = document.getElementById('headerControls');
     const controls = document.getElementById('controls');
     const menu = document.getElementById('navMenu');
+    const scrollBtn = document.getElementById('scrollTopBtn');
     
     const targetElement = headerWrapper || controls;
 
+    // 1. Logika skrývania a zobrazenia menu s deadzónou
     if (targetElement) {
         if (scrollTop > lastScrollTop) {
-            // Smer 1: Okamžitá reakcia
+            // Smer nadol: okamžité skrytie menu a reset akumulátora
             scrollDistance = 0;
             
             if (scrollTop > 50) {
@@ -128,9 +130,10 @@ window.addEventListener('scroll', function() {
                 if (menu) menu.classList.remove('active');
             }
         } else {
-            // Smer 2: Reakcia až po prekročení deadzóny
+            // Smer nahor: načítanie prejdenej vzdialenosti
             scrollDistance += (lastScrollTop - scrollTop);
 
+            // Vyrolovanie až po prekročení deadzóny alebo pri dosiahnutí vrchu stránky
             if (scrollDistance >= SCROLL_DEADZONE || scrollTop <= 10) {
                 targetElement.classList.remove('nav-hidden');
                 targetElement.classList.remove('controls-hidden');
@@ -138,8 +141,25 @@ window.addEventListener('scroll', function() {
         }
     }
     
+    // 2. Správa viditeľnosti plávajúceho tlačidla "Hore"
+    if (scrollBtn) {
+        if (scrollTop > 300) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    }
+
     lastScrollTop = scrollTop;
 }, { passive: true });
+
+/* Plynulý posun na začiatok stránky */
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
 
 /* Inicializácia po načítaní DOM */
 document.addEventListener('DOMContentLoaded', function() {
